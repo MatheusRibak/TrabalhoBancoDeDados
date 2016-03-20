@@ -9,10 +9,10 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-
-
 public class Endereco {
-	
+
+	public final static String NOME_COLLECTION = Endereco.class.getSimpleName()
+			.toLowerCase();
 	private String rua;
 	private String numero;
 	private String bairro;
