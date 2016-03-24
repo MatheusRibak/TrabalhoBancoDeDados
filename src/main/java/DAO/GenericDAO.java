@@ -8,7 +8,7 @@ import org.jongo.MongoCollection;
 import com.mongodb.MongoClient;
 
 public class GenericDAO {
-	//teste
+	//test
 	private static GenericDAO genericDao;
 	private Jongo jongo;
 
