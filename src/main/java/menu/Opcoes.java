@@ -1,30 +1,30 @@
-package principal;
+package menu;
 
 import java.util.Scanner;
 
 public class Opcoes {
 	Scanner sc = new Scanner(System.in);
 
-	protected void limparConsole() {
+	public void limparConsole() {
 		for (int i = 0; i < 30; i++) {
 			System.out.println();
 		}
 	}
 
-	protected void voltarMenuPrincipal() {
+	public void voltarMenuPrincipal() {
 		System.out.println("Voltar ao menu principal?");
 		System.out.print("Digite [S] para sim ou [N] para não");
 		String opcao = sc.next();
 		if (opcao.equalsIgnoreCase("s")) {
-			Mensagens mensagem = new Mensagens();
-			mensagem.menuPrincipal();
+			MenuPrincipal mp = new MenuPrincipal();
+			mp.menuPrincipal();
 			sc.close();
 		} else {
 			opcaoNaoEncontrada();
 		}
 	}
 
-	protected void opcaoNaoEncontrada() {
+	public void opcaoNaoEncontrada() {
 		System.out.println("Opção não encontrada!\n");
 		voltarMenuPrincipal();
 	}

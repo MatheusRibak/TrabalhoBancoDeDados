@@ -1,13 +1,12 @@
 package principal;
 
+import menu.MenuPrincipal;
+
 public class Main {
 	
-	public static void main(String[] args) {
-		Mensagens mensagens = new Mensagens();
-		
+	public static void main(String[] args) {		
 		System.out.println("Seja bem-vindo ao sistema!");
-		mensagens.menuPrincipal();
-	
+		MenuPrincipal mp = new MenuPrincipal();
 	}
 	
 }
