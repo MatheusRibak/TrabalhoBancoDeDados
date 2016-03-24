@@ -2,15 +2,33 @@ package principal;
 
 import java.time.Instant;
 import java.util.Date;
+import java.util.Scanner;
 
 import DAO.GenericDAO;
 import Model.Endereco;
 import Model.Pessoa;
 
 public class Main {
-
+	
 	public static void main(String[] args) {
-		GenericDAO genericDao = new GenericDAO();
+		Scanner scanner = new Scanner(System.in);
+		Mensagens mensagens = new Mensagens();
+		int escolha;
+		
+		System.out.println("Seja bem-vindo ao sistema!");
+		mensagens.menuPrincipal();
+		escolha = scanner.nextInt();
+		
+		
+		
+		
+		
+	}
+	
+	
+	
+	/* ~~ Exemplo de Cadastro ~~
+	 * GenericDAO genericDao = new GenericDAO();
 		
 		Endereco endereco = new Endereco();
 		endereco.setRua("Irineu Bornhausen");
@@ -30,9 +48,6 @@ public class Main {
 		pessoa.setEmail("mm.poletto@gmail.com");
 		
 		genericDao.inserir(pessoa);
-		
-		
-		
-	}
+	 */
 	
 }
