@@ -10,20 +10,18 @@ import Model.Pessoa;
 
 public class Main {
 	
-	public static void main(String[] args) {
-		Scanner scanner = new Scanner(System.in);
+	/*public static void main(String[] args) {
 		Mensagens mensagens = new Mensagens();
-		int escolha;
 		
 		System.out.println("Seja bem-vindo ao sistema!");
 		mensagens.menuPrincipal();
-		escolha = scanner.nextInt();
 		
 		
 		
 		
 		
-	}
+		
+	}*/
 	
 	
 	
