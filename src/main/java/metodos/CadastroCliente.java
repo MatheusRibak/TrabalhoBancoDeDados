@@ -65,6 +65,7 @@ public class CadastroCliente {
 		
 		System.out.print("\tDigite [S] para Salvar ou [C] para Cancelar... ");
 		String opcao = sc.nextLine();
+		opcao = sc.nextLine();
 		if(opcao.equalsIgnoreCase("s")){
 			// SALVA O ENDEREÇO > CLIENTE
 			Endereco endereco = new Endereco();
