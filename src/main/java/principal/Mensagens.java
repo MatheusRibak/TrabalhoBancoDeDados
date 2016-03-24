@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Mensagens {
 	
-	private static String MENSAGEM_FINAL = "Escolha uma opção e tecle ENTER.. ";
+	private static String MENSAGEM_FINAL = "Escolha uma opção e tecle ENTER... ";
 	private Opcoes opcoes = new Opcoes();
 	
 	protected void menuPrincipal(){
