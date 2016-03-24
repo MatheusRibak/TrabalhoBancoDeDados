@@ -6,7 +6,6 @@ public class Mensagens {
 	
 	private static String MENSAGEM_FINAL = "Escolha uma opção e tecle ENTER.. ";
 	private Opcoes opcoes = new Opcoes();
-	private Scanner scanner = new Scanner(System.in);
 	
 	protected void menuPrincipal(){
 		System.out.println("Menu principal:");
