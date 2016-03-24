@@ -37,9 +37,10 @@ public class GenericDAO {
 		
 	}
 
-	public Object buscar(Class classe, Integer id){
-		
-		return null;
+	public Object buscar(Class classe, String campoConsulta, String cond){
+		MongoCollection collection = jongo.getCollection(classe.getName());
+		Object objeto = collection.findOne("{" + campoConsulta + ":" + cond + "}").as(classe);
+		return objeto;
 	}
 
 	public List<Object> todos(){
