@@ -2,17 +2,46 @@ package DAO;
 
 import java.util.List;
 
-public interface GenericDAO<T> {
-	void inserir(T entidade);
+import org.jongo.Jongo;
 
-	void alterar(T entidade);
+import com.mongodb.MongoClient;
 
-	void excluir(T entidade);
+public class GenericDAO {
+	private static GenericDAO genericDao;
+	private Jongo jongo;
 
-	T buscar(Integer id);
+	public static GenericDAO getDao() {
+		if (genericDao == null) {
+			genericDao = new GenericDAO();
+		}
+		return genericDao;
+	}
 
-	Integer maiorId();
+	public GenericDAO() {
+		MongoClient mongoClient = new MongoClient("localhost", 27017);
+		jongo = new Jongo(mongoClient.getDB("meclegal"));
+	}
+	
+	public void inserir(Class entidade){
+		
+	}
 
-	List<T> todos();
+	public void alterar(Class entidade){
+		
+	}
+
+	public void excluir(Class entidade){
+		
+	}
+
+	public Object buscar(Class classe, Integer id){
+		
+		return null;
+	}
+
+	public List<Object> todos(){
+		
+		return null;
+	}
 
 }
