@@ -19,7 +19,7 @@ public class GenericDAO {
 
 	public GenericDAO() {
 		MongoClient mongoClient = new MongoClient("localhost", 27017);
-		jongo = new Jongo(mongoClient.getDB("meclegal"));
+		jongo = new Jongo(mongoClient.getDB("TrabalhoBancoDeDados"));
 	}
 	
 	public void inserir(Class entidade){
