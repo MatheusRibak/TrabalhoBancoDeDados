@@ -1,7 +1,5 @@
 package principal;
 
-import java.util.Scanner;
-
 public class Mensagens {
 	
 	private static String MENSAGEM_FINAL = "Escolha uma opção e tecle ENTER... ";

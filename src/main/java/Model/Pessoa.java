@@ -19,8 +19,8 @@ public class Pessoa {
 	private String rg;
 	private String cpf;
 	private Date dataNascimento;
-	private Endereco endereco;
 	private String telefoneCelular;
 	private String email;
+	private Endereco endereco;
 
 }
