@@ -104,7 +104,7 @@ public class CadastroVendedor {
 			vendedor.setSalario(salario);
 			GenericDAO dao = new GenericDAO();
 			dao.inserir(vendedor);
-			System.out.println("Cadastro conclúido com sucesso!\n");	
+			System.out.println("Cadastro concluído com sucesso!\n");	
 			opcoes.voltarMenuPrincipal();
 			
 		}else{

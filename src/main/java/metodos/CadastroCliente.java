@@ -95,7 +95,7 @@ public class CadastroCliente {
 			cliente.setPessoa(pessoa);
 			GenericDAO dao = new GenericDAO();
 			dao.inserir(cliente);
-			System.out.println("Cadastro conclúido com sucesso!\n");	
+			System.out.println("Cadastro concluído com sucesso!\n");	
 			opcoes.voltarMenuPrincipal();
 			
 		}else{
