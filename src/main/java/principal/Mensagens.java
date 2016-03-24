@@ -3,7 +3,6 @@ package principal;
 public class Mensagens {
 	
 	private static String MENSAGEM_FINAL = "Escolha uma opção e tecle ENTER... ";
-	private Opcoes opcoes = new Opcoes();
 	
 	protected void menuPrincipal(){
 		System.out.println("Menu principal:");
@@ -13,9 +12,16 @@ public class Mensagens {
 			System.out.println("[4]: Cadastrar Venda");
 			System.out.println("[5]: Alterar cadastro da loja");
 		System.out.print(MENSAGEM_FINAL);
-		opcoes.menuPrincipal();
+		OpcoesMenuPrincipal omp = new OpcoesMenuPrincipal();
+		omp.menuPrincipal();
 	}
 	
+	protected void menuLoja(){
+		System.out.println("Menu Loja:");
+			System.out.println("[1]: Cadastrar loja");
+			System.out.println("[2]: Alterar loja");
+		System.out.print(MENSAGEM_FINAL);
+	}
 	
 	
 }
