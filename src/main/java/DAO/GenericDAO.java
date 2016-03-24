@@ -3,6 +3,7 @@ package DAO;
 import java.util.List;
 
 import org.jongo.Jongo;
+import org.jongo.MongoCollection;
 
 import com.mongodb.MongoClient;
 
@@ -22,8 +23,9 @@ public class GenericDAO {
 		jongo = new Jongo(mongoClient.getDB("TrabalhoBancoDeDados"));
 	}
 	
-	public void inserir(Class entidade){
-		
+	public void inserir(Object entidade){
+		MongoCollection collection = jongo.getCollection(entidade.getClass().getName());
+		collection.insert(entidade);
 	}
 
 	public void alterar(Class entidade){
