@@ -5,7 +5,9 @@ import java.util.ArrayList;
 import org.bson.Document;
 import org.jongo.Jongo;
 import org.jongo.MongoCollection;
+import org.jongo.MongoCursor;
 
+import com.mongodb.DB;
 import com.mongodb.MongoClient;
 import com.mongodb.client.FindIterable;
 
@@ -21,11 +23,12 @@ public class Main {
 		///Celular celular = new Celular();
 		//celular.setDescricao("merda");
 		//celular = dao.buscar(Celular.class, "empresa", "samsung");
-		MongoClient mongoClient = new MongoClient("localhost", 27017);
+		/*MongoClient mongoClient = new MongoClient("localhost", 27017);
 		Jongo jongo = new Jongo(mongoClient.getDB("TrabalhoBancoDeDados"));
 		MongoCollection collection = jongo.getCollection("Celular");
 		Celular celular = collection.findOne("{empresa:'samsung'}").as(Celular.class);
-		System.out.println(celular.getDescricao().toString());
+		System.out.println(celular.getDescricao().toString());*/
+	
 		MenuPrincipal mp = new MenuPrincipal();
 		
 	}
