@@ -1,11 +1,16 @@
 package DAO;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import org.jongo.Jongo;
 import org.jongo.MongoCollection;
 
+import Model.Celular;
+
 import com.mongodb.MongoClient;
+import com.mongodb.client.MongoCursor;
 
 public class GenericDAO {
 	
@@ -38,10 +43,13 @@ public class GenericDAO {
 		
 	}
 
-	public Object buscar(Class classe, String campoConsulta, String cond){
+	public Celular buscar(Class classe, String campoConsulta, String cond){
+		System.out.println("buscar");
 		MongoCollection collection = jongo.getCollection(classe.getName());
-		Object objeto = collection.findOne("{" + campoConsulta + ":" + cond + "}").as(classe);
-		return objeto;
+		System.out.println("collection");
+		Celular celular = collection.findOne("{" + campoConsulta + ":'" + cond + "'}").as(Celular.class);
+		System.out.println("collection.findone");
+		return celular;
 	}
 
 	public List<Object> todos(){
