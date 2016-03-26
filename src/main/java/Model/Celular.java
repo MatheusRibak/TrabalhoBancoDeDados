@@ -17,7 +17,9 @@ public class Celular {
 	private String empresa; //Nokia, Apple, entre outros. 
 	private String descricao;
 	private String camera;
-	private String memoria;
+	private String memoriaRAM; //1GB, 2GB, etc;
+	private String memoria; 
+	private String quantidadeChips;
 	private Double valor;
 
 }

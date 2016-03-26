@@ -27,6 +27,10 @@ public class CadastroCelular {
 		String megapixel = sc.nextLine();
 		System.out.print("Insira a quantidade de memória do aparelho: ");
 		String memoria = sc.nextLine();
+		System.out.print("Insire a memória RAM do aparelho: ");
+		String memoriaRAM = sc.nextLine();
+		System.out.print("Insira a quantidade de chips do aparalho:");
+		String quantidadeChips = sc.nextLine();
 		System.out.print("\nInsira o valor: R$");
 		Double valor = sc.nextDouble();
 		
@@ -35,6 +39,8 @@ public class CadastroCelular {
 		System.out.println("Descrição: " + descricao);
 		System.out.println("Megapixel: " + megapixel);
 		System.out.println("Memória: " + memoria);
+		System.out.println("Memória RAM: " + memoriaRAM);
+		System.out.println("Quantidade de Chips: " + quantidadeChips);
 		System.out.println("Valor: R$" + valor);
 		
 		System.out.print("\tDigite [S] para Salvar ou [C] para Cancelar... ");
@@ -47,6 +53,8 @@ public class CadastroCelular {
 			celular.setDescricao(descricao);
 			celular.setCamera(megapixel);
 			celular.setMemoria(memoria);
+			celular.setMemoriaRAM(memoriaRAM);
+			celular.setQuantidadeChips(quantidadeChips);
 			celular.setValor(valor);
 			GenericDAO dao = new GenericDAO();
 			dao.inserir(celular);
