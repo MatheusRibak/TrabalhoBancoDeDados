@@ -10,7 +10,7 @@ import javax.swing.table.DefaultTableModel;
 
 public class CriaTabela {
 
-	private void criarTableImoveis(JTable table, Container tela,
+	public DefaultTableModel criarTableImoveis(JTable table, Container tela,
 			DefaultTableModel dtmodel, List<String> colunas, int col,
 			int lin, int larg, int alt) {
 		
@@ -29,7 +29,8 @@ public class CriaTabela {
 		jsp.setBounds(col, lin, larg, alt);
 		jsp.setVisible(true);
 		tela.add(jsp);
-
+				
+		return dtmodel;
 	}
 
 }

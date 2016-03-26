@@ -1,6 +1,7 @@
 package Telas;
 
 import java.awt.Container;
+import java.util.ArrayList;
 
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
@@ -9,13 +10,16 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
+import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
 
 import Componentes.CriaButton;
 import Componentes.CriaField;
 import Componentes.CriaLabel;
 import Componentes.CriaPanel;
 import Componentes.CriaRadioButton;
+import Componentes.CriaTabela;
 
 public class TelaProcuraPessoa extends JFrame{
 	private static final long serialVersionUID = -9172268853152388303L;
@@ -25,12 +29,15 @@ public class TelaProcuraPessoa extends JFrame{
 	private CriaPanel cp = new CriaPanel();
 	private CriaField cf = new CriaField();
 	private CriaButton cb = new CriaButton();
+	private CriaTabela ct = new CriaTabela();
 	private CriaRadioButton crb = new CriaRadioButton();
 	private JTextField jtfProNome, jtfProRG, jtfProTelefone;
 	private JRadioButton jrbCliente, jrbVendedor, jrbTodos;
 	private JButton jbtProcurar, jbtNovo;
 	private ButtonGroup btnProGrupo;
 	private Container tela;
+	private JTable jtbPessoas;
+	private DefaultTableModel dtmPessoas = new DefaultTableModel();
 	
 	public TelaProcuraPessoa() {
 		tela = getContentPane();
@@ -48,7 +55,13 @@ public class TelaProcuraPessoa extends JFrame{
 	}
 	
 	private void criarTabela() {
+		ArrayList<String> colunas = new ArrayList<String>();
+		colunas.add("ID");
+		colunas.add("Nome");
+		colunas.add("RG");
 		
+		dtmPessoas = ct.criarTableImoveis(jtbPessoas, tela, dtmPessoas, colunas, 0, 170, 800, 400);
+		dtmPessoas.addRow(new String[]{"01", "MATHEUS OTAVIO POLETTO", "5.432.123"});		
 		
 	}
 
