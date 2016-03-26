@@ -49,13 +49,12 @@ public class GenericDAO<T> {
 		return objeto;
 	}
 
-	/*public MongoCursor<Object> listar(Class classe, String collectionNome ,String campoConsulta, String cond){
-		MongoCollection collection = jongo.getCollection(collectionNome);
-		Object objeto = collection.findOne("{"+campoConsulta+":'"+cond+"'}").as(classe);
+	public MongoCursor<Object> listar(Class classe, String collectionNome){
+		MongoCollection collection = jongo.getCollection(collectionNome);		
+		MongoCursor<Object> cursor = (MongoCursor<Object>) collection.find().as(classe);
+		return cursor;
 		
-		//MongoCursor<Object> cursor = collection.find().as(classe);
-		
-	}*/
+	}
 	
 	public List<Object> todos(){
 		

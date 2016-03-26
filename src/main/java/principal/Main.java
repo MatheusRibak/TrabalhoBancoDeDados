@@ -1,6 +1,6 @@
 package principal;
 
-import org.bson.Document;
+import com.mongodb.client.MongoCursor;
 
 import DAO.GenericDAO;
 import Model.Celular;
@@ -17,14 +17,8 @@ public class Main {
 		celular = (Celular) objeto;
 		System.out.println(celular.getDescricao());
 		
+
 		MenuPrincipal mp = new MenuPrincipal();
 	}
 	
 }
-/*
- * 		MongoClient mongoClient = new MongoClient("localhost", 27017);
-		Jongo jongo = new Jongo(mongoClient.getDB("TrabalhoBancoDeDados"));
-		MongoCollection collection = jongo.getCollection("Model.Celular");
-		Celular celular = collection.findOne("{empresa:'Samsung'}").as(Celular.class);
-		System.out.println(celular.getDescricao());
- */
