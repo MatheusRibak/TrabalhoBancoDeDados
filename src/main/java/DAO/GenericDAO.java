@@ -12,7 +12,7 @@ import Model.Celular;
 import com.mongodb.MongoClient;
 import com.mongodb.client.MongoCursor;
 
-public class GenericDAO {
+public class GenericDAO<T> {
 	
 	private static GenericDAO genericDao;
 	private Jongo jongo;
@@ -43,15 +43,20 @@ public class GenericDAO {
 		
 	}
 
-	public Celular buscar(Class classe, String campoConsulta, String cond){
-		System.out.println("buscar");
-		MongoCollection collection = jongo.getCollection(classe.getName());
-		System.out.println("collection");
-		Celular celular = collection.findOne("{" + campoConsulta + ":'" + cond + "'}").as(Celular.class);
-		System.out.println("collection.findone");
-		return celular;
+	public Object buscar(Class classe, String collectionNome ,String campoConsulta, String cond){
+		MongoCollection collection = jongo.getCollection(collectionNome);
+		Object objeto = collection.findOne("{"+campoConsulta+":'"+cond+"'}").as(classe);
+		return objeto;
 	}
 
+	/*public MongoCursor<Object> listar(Class classe, String collectionNome ,String campoConsulta, String cond){
+		MongoCollection collection = jongo.getCollection(collectionNome);
+		Object objeto = collection.findOne("{"+campoConsulta+":'"+cond+"'}").as(classe);
+		
+		//MongoCursor<Object> cursor = collection.find().as(classe);
+		
+	}*/
+	
 	public List<Object> todos(){
 		
 		return null;
