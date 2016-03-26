@@ -2,22 +2,31 @@ package Telas;
 import javax.swing.*;
 import javax.swing.plaf.basic.BasicBorders.RadioButtonBorder;
 
+import Componentes.CriaField;
+import Componentes.CriaLabel;
+
 import java.awt.*;
-import java.awt.event.*;
 
+import lombok.Getter;
+import lombok.Setter;
+
+
+@Getter @Setter
 public class TelaLogin extends JFrame {
-	JTextField jtflogin;
-	JButton btnlogin;
-	JLabel jlblogin, jlbsenha;
-
-	JPasswordField Senha;
+	private static final long serialVersionUID = -2619511002441617106L;
+	private JTextField jtflogin;
+	private JButton btnlogin;
+	private JLabel jlblogin, jlbsenha;
+	private JPasswordField Senha;
+	private CriaField cf = new CriaField();
+	private CriaLabel cl = new CriaLabel();
 
 	public TelaLogin() {
-
 		Container tela = getContentPane();
-		setLayout(null);
 		setTitle("Nome Sistema - Login");
-		jlblogin = new JLabel("Login");
+		setLayout(null);
+		
+		jlblogin = cl.criarLabel("Login", 100, 45, 100, 50, jlblogin);
 		jlbsenha = new JLabel("Senha");
 		btnlogin = new JButton("Login");
 		jtflogin = new JTextField();
@@ -36,7 +45,6 @@ public class TelaLogin extends JFrame {
 		setVisible(true);
 		setLocationRelativeTo(null);
 		getContentPane().setBackground(Color.white);
-		
 	}
 
 	public static void main(String args[]) {
