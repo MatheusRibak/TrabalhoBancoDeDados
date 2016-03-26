@@ -22,5 +22,9 @@ public class Pessoa {
 	private String telefoneCelular;
 	private String email;
 	private Endereco endereco;
+	private String estadoCivil;
+	private String genero;
+	private String telefoneResidencial;
+
 
 }
