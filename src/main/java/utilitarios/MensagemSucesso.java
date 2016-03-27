@@ -14,12 +14,13 @@ public class MensagemSucesso {
 	}
 
 	public void sucessoCadastrarCelular() {
-		CORPO_MENSAGEM = "Imóvel cadastrado com sucesso!";
+		CORPO_MENSAGEM = "Celular cadastrado com sucesso!";
 		exibeMensagem(CORPO_MENSAGEM);
 	}
 
+	
 	public void sucessoAlterarCliente() {
-		CORPO_MENSAGEM = "Imóvel cadastrado com sucesso!";
+		CORPO_MENSAGEM = "Cliente alterado com sucesso!";
 		exibeMensagem(CORPO_MENSAGEM);
 	}
 
