@@ -4,9 +4,12 @@ import java.awt.Container;
 import java.awt.Font;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseListener;
+import java.text.ParseException;
 
+import javax.swing.JFormattedTextField;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import javax.swing.text.MaskFormatter;
 
 public class CriaField {
 	
@@ -27,6 +30,19 @@ public class CriaField {
 		tela.add(textField);
 		return textField;
 
+	}
+	
+	public JTextField criarMaskFieldDate(Integer col, Integer lin, Integer lar, Integer alt, JTextField textField, Container tela){
+		try {
+			textField = new JFormattedTextField(new MaskFormatter("##/##/##"));
+		} catch (ParseException e) {
+			textField = new JTextField();
+		}
+		textField.setBounds(col, lin, lar, alt);
+		textField.setVisible(true);
+		textField.setText("MMDDANO");
+		tela.add(textField);
+		return textField;
 	}
 
 }
