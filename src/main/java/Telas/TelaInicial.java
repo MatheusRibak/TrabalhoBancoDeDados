@@ -60,7 +60,7 @@ public class TelaInicial extends JFrame {
 		jmiCadVendedor = cm.criarMenuItem(jmiCadVendedor, "Vendedor",
 				jmnCadastro);
 		jmiCadVenda = cm.criarMenuItem(jmiCadVenda, "Venda", jmnCadastro);
-		jmiCadVendedor = cm.criarMenuItem(jmiCadLoja, "Loja", jmnCadastro);
+		
 
 		jmnProcurar = new JMenu("Procurar");
 
@@ -68,7 +68,7 @@ public class TelaInicial extends JFrame {
 		jmiCadCelular = cm.criarMenuItem(jmiProCelular, "Celular", jmnProcurar);
 		jmiCadVendedor = cm.criarMenuItem(jmiProLoja, "Vendedor", jmnProcurar);
 		jmiCadVenda = cm.criarMenuItem(jmiProVenda, "Venda", jmnProcurar);
-		jmiCadVenda = cm.criarMenuItem(jmiProVenda, "Loja", jmnProcurar);
+		
 	}
 
 	public static void main(String[] args) {

@@ -15,7 +15,7 @@ import lombok.Setter;
 public class Usuario {
 	private String login;
 	private String senha;
-	private Integer nivelAcesso; // nível = 1 (corretor) = 2 (gestor)
+	private Integer nivelAcesso; // nível = 1 (Vendedor) = 2 (Gestor)
 	private Vendedor vendedor;
 
 }
