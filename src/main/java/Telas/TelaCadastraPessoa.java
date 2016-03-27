@@ -35,10 +35,10 @@ public class TelaCadastraPessoa extends JFrame implements ActionListener, KeyLis
 
 	public TelaCadastraPessoa() {
 		tela = getContentPane();
-		setTitle("Celulares - Cadastro Cliente");
+		setTitle("Celulares - Cadastro Pessoa Física");
 		setLayout(null);
 
-		jlbTituloFrame = cl.criarTitulo("Cadastro de Cliente", jlbTituloFrame, tela);
+		jlbTituloFrame = cl.criarTitulo("Cadastro de Pessoa Física", jlbTituloFrame, tela);
 		
 		criarCamposCadastrado();
 
