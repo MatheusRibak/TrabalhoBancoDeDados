@@ -14,6 +14,7 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
+import metodos.ProcurarPessoa;
 import Componentes.CriaButton;
 import Componentes.CriaField;
 import Componentes.CriaLabel;
@@ -61,7 +62,8 @@ public class TelaProcuraPessoa extends JFrame{
 		colunas.add("RG");
 		
 		dtmPessoas = ct.criarTableImoveis(jtbPessoas, tela, dtmPessoas, colunas, 0, 170, 800, 400);
-		dtmPessoas.addRow(new String[]{"01", "MATHEUS OTAVIO POLETTO", "5.432.123"});		
+		ProcurarPessoa pp = new ProcurarPessoa();
+		pp.procurarTodos(dtmPessoas);	
 		
 	}
 
