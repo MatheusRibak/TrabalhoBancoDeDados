@@ -3,29 +3,28 @@ package utilitarios;
 import javax.swing.JOptionPane;
 
 public class MensagemErro {
+	private static String TITULO_MENSAGEM = "Campo(os) em branco!";
+	private static int TIPO_MENSAGEM = JOptionPane.ERROR_MESSAGE;
+	private String CORPO_MENSAGEM = "Erro!";
 
-	// erros de cadastro
+	// NECESSÁRIO APENAS TROCAR CORPO_MENSAGEM AO CRIAR NOVO METODO
 	protected void erroCadastrarCliente() {
-		JOptionPane.showMessageDialog(null,
-				"Os campos de NOME, RG E CPF são obrigatorios! Preencha-os corretamente e tente novamente.",
-				"Campo(os) em branco", JOptionPane.ERROR_MESSAGE);
+		CORPO_MENSAGEM = "Os campos de NOME, RG E CPF são obrigatorios! Preencha-os corretamente e tente novamente.";
+		exibeMensagem(CORPO_MENSAGEM);
 	}
 
 	protected void erroCadastrarVendedor() {
-		JOptionPane.showMessageDialog(null, "Todos os campos são obrigatórios! Preencha-os e tente novamente.",
-				"Campo(os) em branco", JOptionPane.ERROR_MESSAGE);
+		CORPO_MENSAGEM = "Todos os campos são obrigatórios! Preencha-os e tente novamente.";
+		exibeMensagem(CORPO_MENSAGEM);
 	}
 
 	protected void erroCadastroCelular() {
-		JOptionPane.showMessageDialog(null,
-				"Todos os campos do painel 'Principal' são obrigatórios! Preencha-os e tente novamente.",
-				"Campo(os) em branco", JOptionPane.ERROR_MESSAGE);
+		CORPO_MENSAGEM = "Todos os campos do painel 'Principal' são obrigatórios! Preencha-os e tente novamente.";
+		exibeMensagem(CORPO_MENSAGEM);
 	}
 
-	// erros de pesquisa
-//	protected void erroPesquisarRg() {
-	//	JOptionPane.showMessageDialog(null, "Impossível pesquisar por um RG vazio!", "Alerta!",
-		//		JOptionPane.ERROR_MESSAGE);
-	//}
-
+	private void exibeMensagem(String CORPO_MENSAGEM) {
+		JOptionPane.showMessageDialog(null, CORPO_MENSAGEM, TITULO_MENSAGEM,
+				TIPO_MENSAGEM);
+	}
 }

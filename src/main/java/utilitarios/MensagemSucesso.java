@@ -3,30 +3,28 @@ package utilitarios;
 import javax.swing.JOptionPane;
 
 public class MensagemSucesso {
+	private static String TITULO_MENSAGEM = "Sucesso!";
+	private static int TIPO_MENSAGEM = JOptionPane.PLAIN_MESSAGE;
+	private String CORPO_MENSAGEM = "Cadastrado!";
 
-	public void sucessoCadastrarVendedor() {
-		JOptionPane.showMessageDialog(null, "Corretor cadastrado com sucesso!", "Sucesso!", JOptionPane.PLAIN_MESSAGE);
-	}
-
+	// NECESSÁRIO APENAS TROCAR CORPO_MENSAGEM AO CRIAR NOVO METODO
 	public void sucessoCadastrarCliente() {
-		JOptionPane.showMessageDialog(null, "Cliente cadastrado com sucesso!", "Sucesso!", JOptionPane.PLAIN_MESSAGE);
+		CORPO_MENSAGEM = "Cliente cadastrado com sucesso!";
+		exibeMensagem(CORPO_MENSAGEM);
 	}
 
 	public void sucessoCadastrarCelular() {
-		JOptionPane.showMessageDialog(null, "Imóvel cadastrado com sucesso!", "Sucesso!", JOptionPane.PLAIN_MESSAGE);
+		CORPO_MENSAGEM = "Imóvel cadastrado com sucesso!";
+		exibeMensagem(CORPO_MENSAGEM);
 	}
-
-//	public void sucessoGerarEstorno() {
-	//	JOptionPane.showMessageDialog(null, "Estorno efeutado com sucesso! A venda e a nota fiscal foram removidas!",
-		//		"Sucesso!", JOptionPane.PLAIN_MESSAGE);
-//	}
 
 	public void sucessoAlterarCliente() {
-		JOptionPane.showMessageDialog(null, "Cliente alterado com sucesso!", "Sucesso!", JOptionPane.PLAIN_MESSAGE);
+		CORPO_MENSAGEM = "Imóvel cadastrado com sucesso!";
+		exibeMensagem(CORPO_MENSAGEM);
 	}
 
-	public void sucessoAlterarCorretor() {
-		JOptionPane.showMessageDialog(null, "Corretor alterado com sucesso!", "Sucesso!", JOptionPane.PLAIN_MESSAGE);
+	private void exibeMensagem(String CORPO_MENSAGEM) {
+		JOptionPane.showMessageDialog(null, CORPO_MENSAGEM, TITULO_MENSAGEM,
+				TIPO_MENSAGEM);
 	}
-
 }
