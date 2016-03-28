@@ -4,7 +4,6 @@ import java.util.Scanner;
 
 import metodos.CadastroCelular;
 import metodos.CadastroCliente;
-import metodos.CadastroLoja;
 import metodos.CadastroVenda;
 import metodos.CadastroVendedor;
 
@@ -43,10 +42,6 @@ public class MenuPrincipal {
 			//CHAMA CADASTRO DE NOVA VENDA
 			CadastroVenda cadVenda = new CadastroVenda();
 			break;
-		case 5:
-			//CHAMA CADASTRO DE LOJA
-			CadastroLoja cadLoja = new CadastroLoja();
-			break;	
 		default:
 			break;
 		}
