@@ -19,12 +19,11 @@ public class Pessoa {
 	private String rg;
 	private String cpf;
 	private Date dataNascimento;
-	private String telefoneCelular;
 	private String email;
 	private Endereco endereco;
 	private String estadoCivil;
 	private String sexo; 
-	private String genero;
+	private String telefoneCelular;
 	private String telefoneResidencial;
 
 

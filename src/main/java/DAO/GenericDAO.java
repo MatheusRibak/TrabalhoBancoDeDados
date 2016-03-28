@@ -63,7 +63,22 @@ public class GenericDAO<T> {
 		iterable.forEach(new Block<Document>() {
 		    @Override
 		    public void apply(final Document document) {
-		        System.out.println(document);
+		      //System.out.println(document);
+		    	docs.add(document);
+		    }
+		});
+		return docs;
+		
+	}
+	
+	public ArrayList<?> listaQualquer(Class classe){
+		FindIterable<Document> iterable = db.getCollection(collectionNome).find();
+		
+		ArrayList<Document> docs = new ArrayList<Document>();
+		iterable.forEach(new Block<Document>() {
+		    @Override
+		    public void apply(final Document document) {
+		      //System.out.println(document);
 		    	docs.add(document);
 		    }
 		});
