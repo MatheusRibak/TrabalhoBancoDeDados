@@ -18,7 +18,7 @@ public class Celular {
 	private String descricao;
 	private String camera;
 	private String memoriaRAM; //1GB, 2GB, etc;
-	private String memoria; 
+	private String memoria; //memoria interna
 	private String quantidadeChips;
 	private Double valor;
 	private String IMEI; 
