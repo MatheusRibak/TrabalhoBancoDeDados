@@ -51,7 +51,7 @@ public class CadastroCelular {
 			Celular celular = new Celular();
 			celular.setEmpresa(marca);
 			celular.setDescricao(descricao);
-			celular.setCamera(megapixel);
+			celular.setCameraFrontal(megapixel);
 			celular.setMemoria(memoria);
 			celular.setMemoriaRAM(memoriaRAM);
 			celular.setQuantidadeChips(quantidadeChips);

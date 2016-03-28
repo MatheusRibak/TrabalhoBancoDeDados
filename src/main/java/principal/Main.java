@@ -42,7 +42,7 @@ public class Main {
 		Cliente cliente1 = new Cliente(pessoa);
 		Vendedor vendedor1 = new Vendedor(pessoa, 1500.0, 10.0);
 		
-		Celular celular = new Celular("gt1212", "samsung", "asasasa", "13", "1", "500mb", "1", 500.0, "310310931093*/1212");
+		//Celular celular = new Celular("gt1212", "samsung", "asasasa", "13", "1", "500mb", "1", 500.0, "310310931093*/1212");
 		
 		Date dataVenda = null;
 		try {
@@ -51,8 +51,8 @@ public class Main {
 		} catch (ParseException e) {
 			System.out.println("Erro na conversão da data de nascimento!");
 		}		
-		Venda venda1 = new Venda(dataVenda, cliente1, celular, vendedor1);
-		dao.inserir(venda1);
+		//Venda venda1 = new Venda(dataVenda, cliente1, celular, vendedor1);
+		//dao.inserir(venda1);
 
 		MenuPrincipal mp = new MenuPrincipal();
 	}
