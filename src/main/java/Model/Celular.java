@@ -21,5 +21,6 @@ public class Celular {
 	private String memoria; 
 	private String quantidadeChips;
 	private Double valor;
+	private String lmei; //o que isto significa? 
 
 }
