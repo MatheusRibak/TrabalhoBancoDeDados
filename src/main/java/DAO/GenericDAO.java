@@ -63,7 +63,7 @@ public class GenericDAO<T> {
 		iterable.forEach(new Block<Document>() {
 		    @Override
 		    public void apply(final Document document) {
-		        //System.out.println(document);
+		        System.out.println(document);
 		    	docs.add(document);
 		    }
 		});
