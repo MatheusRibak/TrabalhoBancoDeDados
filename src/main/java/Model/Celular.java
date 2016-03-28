@@ -22,5 +22,17 @@ public class Celular {
 	private String quantidadeChips;
 	private Double valor;
 	private String IMEI; 
+	
+	private String tamanhoDaTela;
+	private String sistemaOperacional;
+	private String cameraFrontal;
+	private String tipoChip; //nano, normal, micro
+	private String peso;
+	private String garantia;
+	private String cor;
+	private String TV; // apenas sim ou não
+	private String conectividade; //3g, 4g
+	private String quantidade; //quantidade de ceulares que vão ser cadastrada. 
+	
 
 }
