@@ -7,14 +7,13 @@ import java.util.List;
 import org.bson.Document;
 import org.jongo.Jongo;
 import org.jongo.MongoCollection;
+import org.jongo.MongoCursor;
 
 import Model.Celular;
 
 import com.mongodb.Block;
-import com.mongodb.Cursor;
 import com.mongodb.MongoClient;
 import com.mongodb.client.FindIterable;
-import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
 
 public class GenericDAO<T> {
@@ -72,17 +71,15 @@ public class GenericDAO<T> {
 	}
 	
 	public ArrayList<?> listaQualquer(Class classe){
-		FindIterable<Document> iterable = db.getCollection(collectionNome).find();
-		
-		ArrayList<Document> docs = new ArrayList<Document>();
-		iterable.forEach(new Block<Document>() {
-		    @Override
-		    public void apply(final Document document) {
-		      //System.out.println(document);
-		    	docs.add(document);
-		    }
+		MongoCursor<?> cursor = (MongoCursor<?>) jongo.getCollection(classe.getName()).find().as(classe);
+
+		ArrayList array = new ArrayList<>();
+
+		cursor.forEach(retornado -> {
+			array.add(retornado);
 		});
-		return docs;
+
+		return array;
 		
 	}
 	
