@@ -40,7 +40,8 @@ public class TelaLogin extends JFrame implements ActionListener, KeyListener{
 		jtfSenha = cf.criarPasswordField(150, 115, 100, 24, jtfSenha, tela);
 		btnlogin = cb.criarBotao("Entrar", 100, 160, 150, 30, btnlogin, tela, this);
 
-		setSize(365, 285);
+		setSize(1000, 650);
+		setResizable(false);
 		setVisible(true);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
