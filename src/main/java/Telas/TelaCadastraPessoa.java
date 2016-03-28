@@ -19,17 +19,22 @@ import Componentes.CriaButton;
 import Componentes.CriaField;
 import Componentes.CriaLabel;
 import Componentes.CriaPanel;
+import Componentes.FieldEmUpper;
 
 public class TelaCadastraPessoa extends JFrame implements ActionListener, KeyListener{
 	private CriaLabel cl = new CriaLabel();
 	private CriaPanel cp = new CriaPanel();
 	private CriaField cf = new CriaField();
 	private CriaButton cb = new CriaButton();
+	private FieldEmUpper fu = new FieldEmUpper();
 	private JLabel jlbTituloFrame;
-	private JPanel jpnCadEssencial, jpnCadEndereco, jpnCadUnica;
-	private JLabel jlbCadNome, jlbCadDataNascimento, jlbCadEmail, jlbCadCelular, jlbCadResidencial, jlbCadSexo, jlbCadEstadoCivil, jlbCadRua, jlbCadNumero, jlbCadComplemento, jlbCadBairro, jlbCadCidade, jlbCadUf, jlbCadCep;
-	private JTextField jtfCadNome, jtfCadDataNascimento, jtfCadEmail, jtfCadCelular, jtfCadResidencial, jtfCadSexo, jtfCadRua, jtfCadNumero, jtfCadComplemento, jtfCadBairro, jtfCadCidade, jtfCadUf, jtfCadCep;
-	private JButton jbtInfDataNascimento;
+	private JPanel jpnCadEssencial, jpnCadEndereco, jpnCadUnica, jpnOpcoes;
+	private JLabel jlbCadNome, jlbCadDataNascimento, jlbCadEmail, jlbCadCelular, jlbCadResidencial,
+		jlbCadSexo, jlbCadEstadoCivil, jlbCadRua, jlbCadNumero, jlbCadComplemento, jlbCadBairro, jlbCadCidade, 
+			jlbCadUf, jlbCadCep, jlbCadRg, jlbCadCpf, jlbOpcOpcoes;
+	private JTextField jtfCadNome, jtfCadDataNascimento, jtfCadEmail, jtfCadCelular, jtfCadResidencial, jtfCadSexo, 
+		jtfCadRua, jtfCadNumero, jtfCadComplemento, jtfCadBairro, jtfCadCidade, jtfCadUf, jtfCadCep, jtfCadRg, jtfCadCpf;
+	private JButton jbtInfDataNascimento, jbtSalvar, jbtLimpar, jbtCancelar;
 	private JComboBox<String> jcbCadEstadoCivil;
 	private Container tela;
 
@@ -41,9 +46,21 @@ public class TelaCadastraPessoa extends JFrame implements ActionListener, KeyLis
 		jlbTituloFrame = cl.criarTitulo("Cadastro de Pessoa Física", jlbTituloFrame, tela);
 		
 		criarCamposCadastrado();
+		
+		jlbOpcOpcoes = cl.criarParaPanelCenter("Opções", 360, 5, 80, 24, jlbOpcOpcoes, tela);
+		jbtLimpar = cb.criarBotao("Limpar", 600, 33, 100, 24, jbtLimpar, tela, this);
+		jbtSalvar = cb.criarBotao("Salvar", 300, 33, 100, 24, jbtSalvar, tela, this);
+		jbtCancelar = cb.criarBotao("Cancelar", 400, 33, 100, 24, jbtCancelar, tela, this);
+	
+		jpnOpcoes = cp.criarPanelSemTitulo(0, 377, 800, 90, jpnOpcoes, true, tela);
+		jpnOpcoes.add(jlbOpcOpcoes);
+		jpnOpcoes.add(jbtLimpar);
+		jpnOpcoes.add(jbtSalvar);
+		jpnOpcoes.add(jbtCancelar);
 
 		tela.setBackground(Color.white);
-		setSize(800, 600);
+		setSize(800, 495);
+		setResizable(false);
 		setVisible(true);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -125,6 +142,18 @@ public class TelaCadastraPessoa extends JFrame implements ActionListener, KeyLis
 		jpnCadEndereco.add(jtfCadCidade);
 		jpnCadEndereco.add(jtfCadUf);
 		jpnCadEndereco.add(jtfCadCep);
+		
+		jlbCadRg = cl.criarLabelParaPanel("RG:", 15, 15, 80, 24, jlbCadRg, tela);
+		jlbCadCpf = cl.criarLabelParaPanel("CPF:", 150, 15, 80, 24, jlbCadCpf, tela);
+		
+		jtfCadRg = cf.criarTextField(100, 15, 90, 24, jtfCadRg, tela, this);
+		jtfCadCpf = cf.criarTextField(240, 15, 120, 24, jtfCadCpf, tela, this);
+		
+		jpnCadUnica = cp.criarPanelSemTitulo(0, 322, 800, 55, jpnCadUnica, true, tela);
+		jpnCadUnica.add(jlbCadRg);
+		jpnCadUnica.add(jlbCadCpf);
+		jpnCadUnica.add(jtfCadRg);
+		jpnCadUnica.add(jtfCadCpf);
 	}
 
 	public static void main(String[] args) {
@@ -139,7 +168,16 @@ public class TelaCadastraPessoa extends JFrame implements ActionListener, KeyLis
 
 	@Override
 	public void keyReleased(KeyEvent e) {
-		// TODO Auto-generated method stub
+		if(e.getComponent() == jtfCadNome){
+			if(e.getSource() == jtfCadNome){
+				fu.transformar(jtfCadNome);
+			}
+		}
+		if(e.getComponent() == jtfCadSexo){
+			if(e.getSource() == jtfCadSexo){
+				fu.transformar(jtfCadSexo);
+			}
+		}
 		
 	}
 

@@ -60,7 +60,8 @@ public class TelaProcuraPessoa extends JFrame implements ActionListener, KeyList
 		criarOpcoesResultado();
 				
 		tela.setBackground(Color.white);
-		setSize(800, 600);
+		setSize(800, 587);
+		setResizable(false);
 		setVisible(true);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
