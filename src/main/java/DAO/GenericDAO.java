@@ -72,15 +72,11 @@ public class GenericDAO<T> {
 	
 	public ArrayList<?> listaQualquer(Class classe){
 		MongoCursor<?> cursor = (MongoCursor<?>) jongo.getCollection(classe.getName()).find().as(classe);
-
 		ArrayList array = new ArrayList<>();
-
 		cursor.forEach(retornado -> {
 			array.add(retornado);
 		});
-
 		return array;
-		
 	}
 	
 	public List<Object> todos(){
