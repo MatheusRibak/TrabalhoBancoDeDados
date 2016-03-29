@@ -62,7 +62,9 @@ public class TelaCadastraPessoa extends JFrame implements ActionListener, KeyLis
 	private static String titulo = "Cadastro Pessoa Física | ";
 	private ArrayList<JTextField> jtfsObrig, jtfsVazio;
 	private Map<JTextField, String> descricao;
-	Date dataNascVerificar = null;
+	private Date dataNascVerificar = null;
+	private Double salario, comissao;
+	
 
 	public TelaCadastraPessoa() {
 		tela = getContentPane();
@@ -395,8 +397,29 @@ public class TelaCadastraPessoa extends JFrame implements ActionListener, KeyLis
 			verificador.setCamposMostra(verificador.getCamposMostra() + "* Data de nascimento - Use o formato Mês/Dia/Ano - Ex: 12/25/15.");
 		}		
 		
+		Boolean valorSalarioCorreto = true;
+		Boolean valorComissaoCorretor = true;
+		salario = null;
+		comissao = null;
 		
-		if((todosPreenchidos) && (dataCorreta)){
+		//verifica salario
+		try {
+			salario = Double.valueOf(jtfCadVendSalario.getText());
+		} catch (Exception e) {
+			valorSalarioCorreto = false;
+			verificador.setCamposMostra(verificador.getCamposMostra() + "\n* REMOVA CARACTERES ESPECIAIS DO CAMPO SALÁRIO, EXEMPLO: , ! ? $ R$");
+		}
+		
+		//verifica comissao
+		try {
+			comissao = Double.valueOf(jtfCadVendComissao.getText());
+		} catch (Exception e) {
+			valorComissaoCorretor = false;
+			verificador.setCamposMostra(verificador.getCamposMostra() + "\n* REMOVA CARACTERES ESPECIAIS DO CAMPO COMISSÃO, EXEMPLO: , ! ? $ R$");
+		}
+	
+		
+		if((todosPreenchidos) && (dataCorreta) && (valorSalarioCorreto) && (valorComissaoCorretor)){
 			cadastrarVendedor();
 		}else{
 			JOptionPane.showMessageDialog(null, "Os campos a baixo são de preenchimento obrigatório:" + verificador.getCamposMostra());
@@ -407,8 +430,6 @@ public class TelaCadastraPessoa extends JFrame implements ActionListener, KeyLis
 
 	private void cadastrarVendedor() {
 		CadastroVendedor cadVendedor = new CadastroVendedor();
-		Double salario = Double.valueOf(jtfCadVendComissao.getText());
-		Double comissao = Double.valueOf(jtfCadVendSalario.getText());
 		Boolean cadastrou = cadVendedor.cadastrar(jtfCadRua.getText(), jtfCadNumero.getText(), jtfCadBairro.getText(), jtfCadCidade.getText(), jtfCadUf.getText(), jtfCadCep.getText(), jtfCadNome.getText(), jtfCadSexo.getText(), jcbCadEstadoCivil.getSelectedItem().toString(), jtfCadRg.getText(), jtfCadCpf.getText(), dataNascVerificar, jtfCadEmail.getText(), jtfCadCelular.getText(), jtfCadResidencial.getText(), comissao, salario, jtfCadVendUsuario.getText(), jtfCadVendSenha.getText(), jcbCadVendNivelAcesso.getSelectedIndex());
 		
 		EscolheMensagem escMensagem = new EscolheMensagem();
