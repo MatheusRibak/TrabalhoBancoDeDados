@@ -12,6 +12,7 @@ public class MensagemInformativa {
 		CORPO_MENSAGEM = "Não existem cadastros para serem exibidos!";
 		exibeMensagem(CORPO_MENSAGEM);
 	}
+	
 
 	private void exibeMensagem(String CORPO_MENSAGEM) {
 		JOptionPane.showMessageDialog(null, CORPO_MENSAGEM, TITULO_MENSAGEM,

@@ -6,7 +6,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -21,6 +25,8 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
+import metodos.SubstituiCamposVazios;
+import metodos.VerificaJtfObrigatorios;
 import Componentes.CriaButton;
 import Componentes.CriaField;
 import Componentes.CriaLabel;
@@ -50,6 +56,8 @@ public class TelaCadastraPessoa extends JFrame implements ActionListener, KeyLis
 	private JRadioButton jrbCliente, jrbVendedor;
 	private Container tela;
 	private static String titulo = "Cadastro Pessoa Física | ";
+	private ArrayList<JTextField> jtfsObrig, jtfsVazio;
+	private Map<JTextField, String> descricao;
 
 	public TelaCadastraPessoa() {
 		tela = getContentPane();
@@ -91,6 +99,7 @@ public class TelaCadastraPessoa extends JFrame implements ActionListener, KeyLis
 		jtfCadNome = cf.criarTextField(100, 15, 600, 24, jtfCadNome, tela, this);
 		jtfCadSexo = cf.criarTextField(100, 39, 80, 24, jtfCadSexo, tela, this);
 		jtfCadDataNascimento = cf.criarMaskFieldDate(570, 39, 80, 24, jtfCadDataNascimento, tela);
+		jtfCadDataNascimento.setColumns(6);
 		jtfCadCelular = cf.criarTextField(100, 63, 125, 24, jtfCadCelular, tela, this);
 		jtfCadResidencial = cf.criarTextField(530, 63, 170, 24, jtfCadResidencial, tela, this);
 		jtfCadEmail = cf.criarTextField(100, 87, 600, 24, jtfCadEmail, tela, this);	
@@ -250,7 +259,6 @@ public class TelaCadastraPessoa extends JFrame implements ActionListener, KeyLis
 
 	@Override
 	public void keyTyped(KeyEvent e) {
-		// TODO Auto-generated method stub
 		
 	}
 
@@ -323,31 +331,105 @@ public class TelaCadastraPessoa extends JFrame implements ActionListener, KeyLis
 		
 	}
 	
-	private void verificaCadastroVendedor() {
-		//POLETTO PAI DE TODOS MITANDO LOGO A BAIXO, VLWS FLWS
-		ArrayList<JTextField> jtfsObrig = new ArrayList<JTextField>();
+	private void camposObrigatoriosPadrao(){
+		jtfsObrig = new ArrayList<JTextField>();
 		jtfsObrig.add(jtfCadNome);
+		jtfsObrig.add(jtfCadRua);
+		jtfsObrig.add(jtfCadNumero);
+		jtfsObrig.add(jtfCadComplemento);
+		jtfsObrig.add(jtfCadBairro);
+		jtfsObrig.add(jtfCadCidade);
+		jtfsObrig.add(jtfCadUf);
+		jtfsObrig.add(jtfCadCep);
 		jtfsObrig.add(jtfCadRg);
 		jtfsObrig.add(jtfCadCpf);
 		
-		Map<JTextField, String> descricao = new HashMap<JTextField, String>();
-		descricao.put(jtfCadNome, "Nome");
-		descricao.put(jtfCadRg, "RG");
-		descricao.put(jtfCadCpf, "CPF");
+		jtfsVazio = new ArrayList<JTextField>();
+		jtfsVazio.add(jtfCadSexo);
+		jtfsVazio.add(jtfCadCelular);
+		jtfsVazio.add(jtfCadResidencial);
+		jtfsVazio.add(jtfCadEmail);
+		SubstituiCamposVazios sub = new SubstituiCamposVazios();
+		sub.substitui(jtfsVazio);
 		
-		String camposMostra = "\n";
-		for(JTextField jtf : jtfsObrig){
-			if(jtf.getText().length() > 0){
-			}else{
-				camposMostra = camposMostra + descricao.get(jtf) + "\n";
-			}
+		descricao = new HashMap<JTextField, String>();
+		descricao.put(jtfCadNome, "* Nome");
+		descricao.put(jtfCadRua, "* Rua");
+		descricao.put(jtfCadNumero, "* Número");
+		descricao.put(jtfCadComplemento, "* Complemento");
+		descricao.put(jtfCadBairro, "* Bairro");
+		descricao.put(jtfCadCidade, "* Cidade");
+		descricao.put(jtfCadUf, "* UF");
+		descricao.put(jtfCadCep, "* Cep");
+		descricao.put(jtfCadRg, "* RG");
+		descricao.put(jtfCadCpf, "* CPF");
+		descricao.put(jtfCadVendSalario, "* Salário");
+		descricao.put(jtfCadVendComissao, "* Comissão");
+		descricao.put(jtfCadVendUsuario, "* Usuário");
+		descricao.put(jtfCadVendSenha, "* Senha");
+	}
+	
+	private void verificaCadastroVendedor() {
+		camposObrigatoriosPadrao();
+		//adiciona campos obrigatorios de vendedor
+		jtfsObrig.add(jtfCadVendSalario);
+		jtfsObrig.add(jtfCadVendComissao);
+		jtfsObrig.add(jtfCadVendUsuario);
+		jtfsObrig.add(jtfCadVendSenha);
+		
+		VerificaJtfObrigatorios verificador = new VerificaJtfObrigatorios();
+		Boolean todosPreenchidos = verificador.verificaJtf(jtfsObrig, descricao);
+		
+		Boolean dataCorreta = true;
+		Date dataNascVerificar = null;
+		try {
+			DateFormat formatter = new SimpleDateFormat("MM/dd/yy");
+			dataNascVerificar = (Date)formatter.parse(jtfCadDataNascimento.getText().toString());
+		} catch (ParseException e) {
+			dataCorreta = false;
+			verificador.setCamposMostra(verificador.getCamposMostra() + "* Data de nascimento - Use o formato Mês/Dia/Ano - Ex: 12/25/15.");
+		}		
+		
+		
+		if((todosPreenchidos) && (dataCorreta)){
+			cadastrarVendedor();
+		}else{
+			JOptionPane.showMessageDialog(null, "Os campos a baixo são de preenchimento obrigatório:" + verificador.getCamposMostra());
 		}
-		JOptionPane.showMessageDialog(null, "Campos obrigatórios não foram preenchidos:" + camposMostra);
+		
+		
 	}
 
-	private void verificaCadastroCliente() {
+	private void cadastrarVendedor() {
+		
+	}
+
+	private void verificaCadastroCliente() {	
+		camposObrigatoriosPadrao();
+		VerificaJtfObrigatorios verificador = new VerificaJtfObrigatorios();
+		Boolean todosPreenchidos = verificador.verificaJtf(jtfsObrig, descricao);
+		
+		Boolean dataCorreta = true;
+		Date dataNascVerificar = null;
+		try {
+			DateFormat formatter = new SimpleDateFormat("MM/dd/yy");
+			dataNascVerificar = (Date)formatter.parse(jtfCadDataNascimento.getText().toString());
+		} catch (ParseException e) {
+			dataCorreta = false;
+			verificador.setCamposMostra(verificador.getCamposMostra() + "* Data de nascimento - Use o formato Mês/Dia/Ano - Ex: 12/25/15.");
+		}		
+		
+		if((todosPreenchidos) && (dataCorreta)){
+			cadastrarCliente();
+		}else{
+			JOptionPane.showMessageDialog(null, "Os campos a baixo são de preenchimento obrigatório:" + verificador.getCamposMostra());
+		}
 		
 		
+	}
+
+	private void cadastrarCliente() {
+				
 	}
 
 	private void limparCampos(){
