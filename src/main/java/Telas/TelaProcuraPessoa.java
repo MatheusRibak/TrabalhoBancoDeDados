@@ -62,11 +62,11 @@ public class TelaProcuraPessoa extends JFrame implements ActionListener, KeyList
 		criarTabela();
 		criarOpcoesResultado();
 		
-		jlbProRG.setVisible(false);
+		/*jlbProRG.setVisible(false);
 		jlbProTelefone.setVisible(false);
-		jlbProTipo.setVisible(false);
 		jtfProRG.setVisible(false);
-		jtfProTelefone.setVisible(false);
+		jtfProTelefone.setVisible(false);*/
+		jlbProTipo.setVisible(false);
 		jrbCliente.setVisible(false);
 		jrbTodos.setVisible(false);
 		jrbVendedor.setVisible(false);
