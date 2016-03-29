@@ -63,9 +63,9 @@ public class TelaProcuraPessoa extends JFrame implements ActionListener, KeyList
 		criarOpcoesResultado();
 		
 		/*jlbProRG.setVisible(false);
+		jtfProRG.setVisible(false);*/
 		jlbProTelefone.setVisible(false);
-		jtfProRG.setVisible(false);
-		jtfProTelefone.setVisible(false);*/
+		jtfProTelefone.setVisible(false);
 		jlbProTipo.setVisible(false);
 		jrbCliente.setVisible(false);
 		jrbTodos.setVisible(false);
@@ -147,7 +147,7 @@ public class TelaProcuraPessoa extends JFrame implements ActionListener, KeyList
 	public void actionPerformed(ActionEvent evt) {
 		if(evt.getSource() == jbtProcurar){
 			ListarPessoa lp = new ListarPessoa();
-			lp.listar(dtmPessoas, jtfProNome.getText());	
+			lp.listar(dtmPessoas, jtfProNome.getText(), jtfProRG.getText());	
 		}
 		
 	}

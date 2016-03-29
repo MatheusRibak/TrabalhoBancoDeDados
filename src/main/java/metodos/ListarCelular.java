@@ -25,22 +25,22 @@ public class ListarCelular {
 		}
 		
 		if(descricao.isEmpty()){
-			descricao = "$$94/^:D";
+			descricao = "Não procurar $_$-$30";
 		}else {
 			descricao = descricao;
 		}
 		if(modelo.isEmpty()){
-			modelo = "$$94/^:D";
+			modelo = "Não procurar $_$-$31";
 		}else {
 			modelo = modelo;
 		}
 		if(imei.isEmpty()){
-			imei = "$$94/^:D";
+			imei = "Não procurar $_$-$32";
 		}else {
 			imei = imei;
 		}
 		if(marca.isEmpty()){
-			marca = "$$94/^:D";
+			marca = "Não procurar $_$-$33";
 		}else {
 			marca = marca;
 		}
