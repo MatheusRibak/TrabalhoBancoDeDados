@@ -30,13 +30,13 @@ import metodos.CadastroCliente;
 import metodos.CadastroVendedor;
 import metodos.SubstituiCamposVazios;
 import metodos.VerificaJtfObrigatorios;
-import metodos.VerificaRgCpf;
 import Componentes.CriaButton;
 import Componentes.CriaField;
 import Componentes.CriaLabel;
 import Componentes.CriaPanel;
 import Componentes.CriaRadioButton;
 import Componentes.FieldEmUpper;
+import Model.Cliente;
 
 public class TelaCadastraPessoa extends JFrame implements ActionListener, KeyListener{
 	private CriaLabel cl = new CriaLabel();
@@ -434,7 +434,7 @@ public class TelaCadastraPessoa extends JFrame implements ActionListener, KeyLis
 		
 		EscolheMensagem escMensagem = new EscolheMensagem();
 		if(cadastrou){
-			escMensagem.mensagemInformativa("cadastro_cliente");
+			escMensagem.mensagemSucesso("cadastro_cliente");
 		}else{
 			escMensagem.mensagemErro("cadastro_cliente");
 		}
@@ -464,22 +464,14 @@ public class TelaCadastraPessoa extends JFrame implements ActionListener, KeyLis
 		
 	}
 
-	private void cadastrarCliente() {
-		VerificaRgCpf verRg = new VerificaRgCpf();
-		Boolean rgUnico = verRg.verificar(jtfCadRg.getText(), jtfCadCpf.getText());
-		
-		if(rgUnico){
-			CadastroCliente cadCliente = new CadastroCliente();
-			Boolean cadastrou = cadCliente.cadastrar(jtfCadRua.getText(), jtfCadNumero.getText(), jtfCadBairro.getText(), jtfCadCidade.getText(), jtfCadUf.getText(), jtfCadCep.getText(), jtfCadNome.getText(), jtfCadSexo.getText(), jcbCadEstadoCivil.getSelectedItem().toString(), jtfCadRg.getText(), jtfCadCpf.getText(), dataNascVerificar, jtfCadEmail.getText(), jtfCadCelular.getText(), jtfCadResidencial.getText());
-			EscolheMensagem escMensagem = new EscolheMensagem();
-			if(cadastrou){
-				System.out.println("cadastroou");
-				escMensagem.mensagemSucesso("cadastro_cliente");
-			}else{
-				escMensagem.mensagemErro("cadastro_cliente");
-			}
+	private void cadastrarCliente() {		
+		CadastroCliente cadCliente = new CadastroCliente();
+		Boolean cadastrou = cadCliente.cadastrar(jtfCadRua.getText(), jtfCadNumero.getText(), jtfCadBairro.getText(), jtfCadCidade.getText(), jtfCadUf.getText(), jtfCadCep.getText(), jtfCadNome.getText(), jtfCadSexo.getText(), jcbCadEstadoCivil.getSelectedItem().toString(), jtfCadRg.getText(), jtfCadCpf.getText(), dataNascVerificar, jtfCadEmail.getText(), jtfCadCelular.getText(), jtfCadResidencial.getText());
+		EscolheMensagem escMensagem = new EscolheMensagem();
+		if(cadastrou){
+			escMensagem.mensagemSucesso("cadastro_cliente");
 		}else{
-			JOptionPane.showMessageDialog(null, "RG ou CPF já existem.");
+			escMensagem.mensagemErro("cadastro_cliente");
 		}
 	
 	}
