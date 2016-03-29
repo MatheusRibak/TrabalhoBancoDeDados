@@ -81,7 +81,7 @@ public class TelaProcurarCelular extends JFrame implements ActionListener, KeyLi
 		ArrayList<String> colunas = new ArrayList<String>();
 		//colunas.add("ID");
 		colunas.add("MODELO");
-		colunas.add("MARCA");
+		colunas.add("EMPRESA");
 		colunas.add("IMEI");
 		
 		dtmCelulares = ct.criarTableImoveis(jtbCelulares, tela, dtmCelulares, colunas, 0, 170, 800, 300);		
@@ -123,7 +123,7 @@ public class TelaProcurarCelular extends JFrame implements ActionListener, KeyLi
 	public void actionPerformed(ActionEvent evt) {
 		if(evt.getSource() == jbtProcurar){
 			ListarCelular lc = new ListarCelular();
-			lc.listar(dtmCelulares);	
+			lc.listar(dtmCelulares, jtfProDescricao.getText(), jtfProModelo.getText(), jtfProImei.getText(), jtfProMarca.getText());	
 		}
 		
 	}
