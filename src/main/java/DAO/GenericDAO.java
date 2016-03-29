@@ -35,7 +35,7 @@ public class GenericDAO<T> {
 
 	public GenericDAO() {
 		MongoClient mongoClient = new MongoClient("localhost", 27017);
-		jongo = new Jongo(mongoClient.getDB("TrabalhoBancoDeDados"));
+		jongo = new Jongo(mongoClient.getDB("TrabalhoBancoDeDados2"));
 	}
 	
 	public void inserir(Object entidade){
