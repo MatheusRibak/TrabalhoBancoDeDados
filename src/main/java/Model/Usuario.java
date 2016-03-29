@@ -10,9 +10,10 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-
-
 public class Usuario {
+	
+	public final static String NOME_COLLECTION = Usuario.class.getSimpleName()
+			.toLowerCase();
 	private String login;
 	private String senha;
 	private Integer nivelAcesso; // nível = 1 (Vendedor) = 2 (Gestor)

@@ -161,7 +161,7 @@ public class TelaProcuraPessoa extends JFrame implements ActionListener, KeyList
 	public void keyReleased(KeyEvent e) {
 		if(e.getComponent() == jtfProNome){
 			if(e.getSource() == jtfProNome){
-				fu.transformar(jtfProNome);
+				//fu.transformar(jtfProNome);
 			}
 		}
 		

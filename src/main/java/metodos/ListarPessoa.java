@@ -15,12 +15,10 @@ public class ListarPessoa {
 
 	public void listar(DefaultTableModel dtm, String nome) {
 		GenericDAO dao = new GenericDAO();
-
+		//só funciona se tiver um, arrumar
 		Object objeto = dao.listaFiltro(Pessoa.class, "nome", nome);
 		Pessoa pessoa = new Pessoa();
-		pessoa = (Pessoa) objeto;
-		System.out.println(pessoa.getNome().toString());
-		
+		pessoa = (Pessoa) objeto;		
 		dtm.addRow(new String[] { pessoa.getNome(), pessoa.getRg(), pessoa.getTelefoneCelular()});
 		
 		

@@ -25,8 +25,12 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
+import utilitarios.EscolheMensagem;
+import metodos.CadastroCliente;
+import metodos.CadastroVendedor;
 import metodos.SubstituiCamposVazios;
 import metodos.VerificaJtfObrigatorios;
+import metodos.VerificaRgCpf;
 import Componentes.CriaButton;
 import Componentes.CriaField;
 import Componentes.CriaLabel;
@@ -58,6 +62,7 @@ public class TelaCadastraPessoa extends JFrame implements ActionListener, KeyLis
 	private static String titulo = "Cadastro Pessoa Física | ";
 	private ArrayList<JTextField> jtfsObrig, jtfsVazio;
 	private Map<JTextField, String> descricao;
+	Date dataNascVerificar = null;
 
 	public TelaCadastraPessoa() {
 		tela = getContentPane();
@@ -111,7 +116,7 @@ public class TelaCadastraPessoa extends JFrame implements ActionListener, KeyLis
 		jcbCadEstadoCivil.addItem("Divorciado(a)");
 		jcbCadEstadoCivil.addItem("Viúvo(a)");
 		jcbCadEstadoCivil.addItem("Separado(a) Judicialmente");
-		jcbCadEstadoCivil.setSelectedIndex(-1);
+		jcbCadEstadoCivil.setSelectedIndex(0);
 		
 		String MENSAGEM_DATA = "Use o formato Mês/Dia/Ano ao inserir datas. Exemplo: 12/29/97";
 		jbtInfDataNascimento = cb.criarBotaoAjuda(MENSAGEM_DATA, "?", 650, 39, 49, 24, jbtInfDataNascimento, tela, this);		
@@ -401,7 +406,18 @@ public class TelaCadastraPessoa extends JFrame implements ActionListener, KeyLis
 	}
 
 	private void cadastrarVendedor() {
+		CadastroVendedor cadVendedor = new CadastroVendedor();
+		Double salario = Double.valueOf(jtfCadVendComissao.getText());
+		Double comissao = Double.valueOf(jtfCadVendSalario.getText());
+		Boolean cadastrou = cadVendedor.cadastrar(jtfCadRua.getText(), jtfCadNumero.getText(), jtfCadBairro.getText(), jtfCadCidade.getText(), jtfCadUf.getText(), jtfCadCep.getText(), jtfCadNome.getText(), jtfCadSexo.getText(), jcbCadEstadoCivil.getSelectedItem().toString(), jtfCadRg.getText(), jtfCadCpf.getText(), dataNascVerificar, jtfCadEmail.getText(), jtfCadCelular.getText(), jtfCadResidencial.getText(), comissao, salario, jtfCadVendUsuario.getText(), jtfCadVendSenha.getText(), jcbCadVendNivelAcesso.getSelectedIndex());
 		
+		EscolheMensagem escMensagem = new EscolheMensagem();
+		if(cadastrou){
+			escMensagem.mensagemInformativa("cadastro_cliente");
+		}else{
+			escMensagem.mensagemErro("cadastro_cliente");
+		}
+	
 	}
 
 	private void verificaCadastroCliente() {	
@@ -410,7 +426,6 @@ public class TelaCadastraPessoa extends JFrame implements ActionListener, KeyLis
 		Boolean todosPreenchidos = verificador.verificaJtf(jtfsObrig, descricao);
 		
 		Boolean dataCorreta = true;
-		Date dataNascVerificar = null;
 		try {
 			DateFormat formatter = new SimpleDateFormat("MM/dd/yy");
 			dataNascVerificar = (Date)formatter.parse(jtfCadDataNascimento.getText().toString());
@@ -429,7 +444,27 @@ public class TelaCadastraPessoa extends JFrame implements ActionListener, KeyLis
 	}
 
 	private void cadastrarCliente() {
-				
+		System.out.println("estou em cadastro");
+		VerificaRgCpf verRg = new VerificaRgCpf();
+		Boolean rgUnico = verRg.verificar(jtfCadRg.getText(), jtfCadCpf.getText());
+		
+		if(rgUnico){
+			System.out.println("estou em rg unico");
+			CadastroCliente cadCliente = new CadastroCliente();
+			Boolean cadastrou = cadCliente.cadastrar(jtfCadRua.getText(), jtfCadNumero.getText(), jtfCadBairro.getText(), jtfCadCidade.getText(), jtfCadUf.getText(), jtfCadCep.getText(), jtfCadNome.getText(), jtfCadSexo.getText(), jcbCadEstadoCivil.getSelectedItem().toString(), jtfCadRg.getText(), jtfCadCpf.getText(), dataNascVerificar, jtfCadEmail.getText(), jtfCadCelular.getText(), jtfCadResidencial.getText());
+			System.out.println("chamou cadastro");
+			
+			EscolheMensagem escMensagem = new EscolheMensagem();
+			if(cadastrou){
+				System.out.println("cadastroou");
+				escMensagem.mensagemSucesso("cadastro_cliente");
+			}else{
+				escMensagem.mensagemErro("cadastro_cliente");
+			}
+		}else{
+			JOptionPane.showMessageDialog(null, "RG ou CPF já existem.");
+		}
+	
 	}
 
 	private void limparCampos(){
@@ -453,6 +488,6 @@ public class TelaCadastraPessoa extends JFrame implements ActionListener, KeyLis
 		jtfCadVendUsuario.setText("");
 		jtfCadVendSenha.setText("");
 		jcbCadVendNivelAcesso.setSelectedIndex(1);
-		jcbCadEstadoCivil.setSelectedIndex(-1);
+		jcbCadEstadoCivil.setSelectedIndex(0);
 	}
 }

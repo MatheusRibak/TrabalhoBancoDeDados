@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import lombok.Getter;
+
 import org.bson.Document;
 import org.jongo.Jongo;
 import org.jongo.MongoCollection;
@@ -16,6 +18,7 @@ import com.mongodb.MongoClient;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoDatabase;
 
+@Getter
 public class GenericDAO<T> {
 	
 	private static GenericDAO genericDao;
@@ -49,6 +52,7 @@ public class GenericDAO<T> {
 	}
 
 	public Object listaFiltro(Class classe, String campo, String consulta){
+		@SuppressWarnings("unchecked")
 		Object objeto = jongo.getCollection(classe.getName()).findOne("{" + campo + ":'" + consulta + "'}").as(classe);
 		return objeto;
 		

@@ -10,115 +10,45 @@ import menu.Opcoes;
 import DAO.GenericDAO;
 import Model.Endereco;
 import Model.Pessoa;
+import Model.Usuario;
 import Model.Vendedor;
 
 public class CadastroVendedor {
-	private Opcoes opcoes = new Opcoes();
-	private Scanner sc = new Scanner(System.in);
 
-	public CadastroVendedor() {
-		cadastrar();
+	public Boolean cadastrar(String rua, String numero, String bairro, String cidade,
+			String uf, String cep, String nome, String sexo, String estCivil, String rg, String cpf, Date dataNascimento,
+				String email, String telCelular, String telResidencial, Double comissao, Double salario,
+				 	String login, String senha, int nivelAcesso) {
+		Boolean cadastrou = false;
+		Endereco endereco = new Endereco();
+		endereco.setRua(rua);
+		endereco.setNumero(numero);
+		endereco.setBairro(bairro);
+		endereco.setCidade(cidade);
+		endereco.setUf(uf);
+		endereco.setCep(cep);
+		Pessoa pessoa = new Pessoa();
+		pessoa.setNome(nome);
+		pessoa.setSexo(sexo);
+		pessoa.setEstadoCivil(estCivil);
+		pessoa.setRg(rg);
+		pessoa.setCpf(cpf);
+		pessoa.setDataNascimento(dataNascimento);
+		pessoa.setEmail(email);
+		pessoa.setTelefoneCelular(telCelular);
+		pessoa.setEndereco(endereco);
+		Vendedor vendedor = new Vendedor();
+		vendedor.setPessoa(pessoa);
+		vendedor.setComissao(comissao);
+		vendedor.setSalario(salario);
+		Usuario usuario = new Usuario();
+		usuario.setVendedor(vendedor);
+		usuario.setNivelAcesso(nivelAcesso);
+		usuario.setLogin(login);
+		usuario.setSenha(senha);
+		GenericDAO dao = new GenericDAO();
+		dao.inserir(usuario);
+		return cadastrou = true;
 	}
-	
-	private void cadastrar(){
-		opcoes.limparConsole();
-		System.out.println("\t[CADASTRO DE VENDEDOR]");
-		System.out.print("Insira o nome: ");
-		String nome = sc.nextLine();
-		nome = sc.nextLine();
-		System.out.print("Insira o RG: ");
-		String rg = sc.nextLine();
-		System.out.print("Insira o CPF: ");
-		String cpf = sc.nextLine();
-		System.out.print("Insira a data de nascimento mo formato Mês/Dia/Ano(12/29/16): ");
-		String dataNascimento = sc.nextLine();
-		System.out.print("Insira o email: ");
-		String email = sc.nextLine();
-		System.out.print("Insira o telefone celular: ");
-		String telCelular = sc.nextLine();
-		System.out.print("\nInsira a rua: ");
-		String rua = sc.nextLine();
-		System.out.print("Insira o número: ");
-		String numero = sc.nextLine();
-		System.out.print("Insira o bairro: ");
-		String bairro = sc.nextLine();
-		System.out.print("Insira a cidade: ");
-		String cidade = sc.nextLine();
-		System.out.print("Insira a UF: ");
-		String uf = sc.nextLine();
-		System.out.print("Insira o CEP: ");
-		String cep = sc.nextLine();
-		System.out.print("\nInsira a comissão: ");
-		Double comissao = sc.nextDouble();
-		System.out.print("Insira o salário: R$");
-		Double salario = sc.nextDouble();
-		
-		System.out.println("\n\t[CONFIRME OS DADOS]");
-		System.out.println("Nome: " + nome);
-		System.out.println("RG: " + rg);
-		System.out.println("CPF: " + cpf);
-		System.out.println("Data de nascimento: " + dataNascimento);
-		System.out.println("Email: " + email);
-		System.out.println("Telefone: " + telCelular);
-		System.out.println("Rua: " + rua);
-		System.out.println("Número: " + numero);
-		System.out.println("Bairro: " + bairro);
-		System.out.println("Cidade: " + cidade);
-		System.out.println("UF: " + uf);
-		System.out.println("CEP: " + cep);
-		System.out.println("Comissão: " + comissao);
-		System.out.println("Salário: R$" + salario);
-		
-		System.out.print("\tDigite [S] para Salvar ou [C] para Cancelar... ");
-		String opcao = sc.nextLine();
-		opcao = sc.nextLine();
-		if(opcao.equalsIgnoreCase("s")){
-			// SALVA ENDEREÇO > PESSOA > VENDEDOR
-			Endereco endereco = new Endereco();
-			endereco.setRua(rua);
-			endereco.setNumero(numero);
-			endereco.setBairro(bairro);
-			endereco.setCidade(cidade);
-			endereco.setUf(uf);
-			endereco.setCep(cep);
-			Pessoa pessoa = new Pessoa();
-			pessoa.setNome(nome);
-			pessoa.setRg(rg);
-			pessoa.setCpf(cpf);
-			DateFormat formatter = new SimpleDateFormat("MM/dd/yy");
-			Date dataNasc = null;
-			try {
-				dataNasc = (Date)formatter.parse(dataNascimento);
-			} catch (ParseException e) {
-				System.out.println("Erro na conversão da data de nascimento!");
-				opcoes.limparConsole();
-				opcoes.voltarMenuPrincipal();
-			}
-			pessoa.setDataNascimento(dataNasc);
-			pessoa.setEmail(email);
-			pessoa.setTelefoneCelular(telCelular);
-			pessoa.setEndereco(endereco);
-			Vendedor vendedor = new Vendedor();
-			vendedor.setPessoa(pessoa);
-			vendedor.setComissao(comissao);
-			vendedor.setSalario(salario);
-			GenericDAO dao = new GenericDAO();
-			dao.inserir(vendedor);
-			System.out.println("Cadastro concluído com sucesso!\n");	
-			opcoes.voltarMenuPrincipal();
-			
-		}else{
-			//LIMPA CONSOLE - PODE COMEÇAR NOVO CADASTRO
-			opcoes.limparConsole();
-			System.out.println("\nDeseja começar um novo CADASTRO DE VENDEDOR?");
-			System.out.println("Digite [S] para Sim e [N] para não");
-			opcao = sc.nextLine();
-			if(opcao.equalsIgnoreCase("s")){
-				cadastrar();
-			}else{
-				opcoes.voltarMenuPrincipal();
-			}
-		}
-	}
-	
+
 }
