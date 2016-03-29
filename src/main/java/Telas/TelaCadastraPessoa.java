@@ -444,16 +444,12 @@ public class TelaCadastraPessoa extends JFrame implements ActionListener, KeyLis
 	}
 
 	private void cadastrarCliente() {
-		System.out.println("estou em cadastro");
 		VerificaRgCpf verRg = new VerificaRgCpf();
 		Boolean rgUnico = verRg.verificar(jtfCadRg.getText(), jtfCadCpf.getText());
 		
 		if(rgUnico){
-			System.out.println("estou em rg unico");
 			CadastroCliente cadCliente = new CadastroCliente();
 			Boolean cadastrou = cadCliente.cadastrar(jtfCadRua.getText(), jtfCadNumero.getText(), jtfCadBairro.getText(), jtfCadCidade.getText(), jtfCadUf.getText(), jtfCadCep.getText(), jtfCadNome.getText(), jtfCadSexo.getText(), jcbCadEstadoCivil.getSelectedItem().toString(), jtfCadRg.getText(), jtfCadCpf.getText(), dataNascVerificar, jtfCadEmail.getText(), jtfCadCelular.getText(), jtfCadResidencial.getText());
-			System.out.println("chamou cadastro");
-			
 			EscolheMensagem escMensagem = new EscolheMensagem();
 			if(cadastrou){
 				System.out.println("cadastroou");

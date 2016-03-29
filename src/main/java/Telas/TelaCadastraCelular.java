@@ -6,14 +6,23 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.text.StyledEditorKit.BoldAction;
 
+import utilitarios.EscolheMensagem;
+import metodos.CadastroCelular;
+import metodos.SubstituiCamposVazios;
+import metodos.VerificaJtfObrigatorios;
 import Componentes.CriaButton;
 import Componentes.CriaField;
 import Componentes.CriaLabel;
@@ -38,6 +47,9 @@ public class TelaCadastraCelular extends JFrame implements ActionListener, KeyLi
 	private JComboBox<String> jcbPossuiTV;
 	private JButton jbtInfCadValor, jbtSalvar, jbtLimpar, jbtCancelar;
 	private static String titulo = "Cadastro de Celular";
+	private ArrayList<JTextField> jtfsObrig, jtfsVazio;
+	private Map<JTextField, String> descricao;
+	private Double valor;
 	
 	public TelaCadastraCelular() {
 		tela = getContentPane();
@@ -170,7 +182,37 @@ public class TelaCadastraCelular extends JFrame implements ActionListener, KeyLi
 
 	@Override
 	public void keyReleased(KeyEvent e) {
-		// TODO Auto-generated method stub
+		if(e.getComponent() == jtfCadDescricao){
+			if(e.getSource() == jtfCadDescricao){
+				fu.transformar(jtfCadDescricao);
+			}
+		}
+		if(e.getComponent() == jtfCadCameraFrontal){
+			if(e.getSource() == jtfCadCameraFrontal){
+				fu.transformar(jtfCadCameraFrontal);
+			}
+		}
+		if(e.getComponent() == jtfCadCameraTraseira){
+			if(e.getSource() == jtfCadCameraTraseira){
+				fu.transformar(jtfCadCameraTraseira);
+			}
+		}
+		if(e.getComponent() == jtfCadMemInt){
+			if(e.getSource() == jtfCadMemInt){
+				fu.transformar(jtfCadMemInt);
+			}
+		}
+		if(e.getComponent() == jtfCadMemRam){
+			if(e.getSource() == jtfCadMemRam){
+				fu.transformar(jtfCadMemRam);
+			}
+		}
+		if(e.getComponent() == jtfCadGarantia){
+			if(e.getSource() == jtfCadGarantia){
+				fu.transformar(jtfCadGarantia);
+			}
+		}
+		
 		
 	}
 
@@ -182,8 +224,105 @@ public class TelaCadastraCelular extends JFrame implements ActionListener, KeyLi
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
+		if(e.getSource() == jbtSalvar){
+			verificaCadastroCelular();
+		}
+		if(e.getSource() == jbtCancelar){
+			this.dispose();
+		}
+		if(e.getSource() == jbtLimpar){
+			limparCampos();
+		}
+	}
+	
+	private void camposObrigatoriosPadrao(){
+		jtfsObrig = new ArrayList<JTextField>();
+		jtfsObrig.add(jtfCadDescricao);
+		jtfsObrig.add(jtfCadImei);
+		jtfsObrig.add(jtfCadModelo);
+		jtfsObrig.add(jtfCadEmpresa);
+		jtfsObrig.add(jtfCadValor);
+		
+		jtfsVazio = new ArrayList<JTextField>();
+		jtfsVazio.add(jtfCadCameraFrontal);
+		jtfsVazio.add(jtfCadCameraTraseira);
+		jtfsVazio.add(jtfCadMemInt);
+		jtfsVazio.add(jtfCadMemRam);
+		jtfsVazio.add(jtfCadQtdChips);
+		jtfsVazio.add(jtfCadTipoChip);
+		jtfsVazio.add(jtfCadTela);
+		jtfsVazio.add(jtfCadSistema);
+		jtfsVazio.add(jtfCadPeso);
+		jtfsVazio.add(jtfCadCor);
+		jtfsVazio.add(jtfCadConectividade);
+		jtfsVazio.add(jtfCadGarantia);
+
+		SubstituiCamposVazios sub = new SubstituiCamposVazios();
+		sub.substitui(jtfsVazio);
+		
+		descricao = new HashMap<JTextField, String>();
+		descricao.put(jtfCadDescricao, "* Descrição");
+		descricao.put(jtfCadImei, "* IMEI");
+		descricao.put(jtfCadModelo, "* Modelo");
+		descricao.put(jtfCadEmpresa, "* Empresa");
+		descricao.put(jtfCadValor, "* Valor(R$) - Entrada deve conter apenas números e ponto. Exemplo: 1.500");
+	}
+	
+	private void verificaCadastroCelular(){
+		camposObrigatoriosPadrao();
+		
+		VerificaJtfObrigatorios verificador = new VerificaJtfObrigatorios();
+		Boolean todosPreenchidos = verificador.verificaJtf(jtfsObrig, descricao);
+		
+		Boolean valorCorreto = true;
+		valor = null;
+		try {
+			valor = Double.valueOf(jtfCadValor.getText());
+		} catch (Exception e) {
+			valorCorreto = false;
+			verificador.setCamposMostra(verificador.getCamposMostra() + "* REMOVA CARACTERES ESPECIAIS DO CAMPO VALOR, EXEMPLO: , ! ? $ R$");
+		}
+		
+		if((todosPreenchidos) && (valorCorreto)){
+			cadastrarCelular();
+		}else{
+			JOptionPane.showMessageDialog(null, "Os campos a baixo são de preenchimento obrigatório:" + verificador.getCamposMostra());
+		}
 		
 	}
 
+	private void cadastrarCelular() {
+		CadastroCelular cadCelular = new CadastroCelular();
+		
+		Boolean cadastrou = cadCelular.cadastrar(jtfCadModelo.getText(), jtfCadEmpresa.getText(), jtfCadDescricao.getText(), jtfCadCameraTraseira.getText(), jtfCadMemRam.getText(), jtfCadMemInt.getText(), jtfCadQtdChips.getText(), valor, jtfCadImei.getText(), jtfCadTela.getText(), jtfCadSistema.getText(), jtfCadCameraFrontal.getText(), jtfCadTipoChip.getText(), jtfCadPeso.getText(), jtfCadGarantia.getText(), jtfCadCor.getText(), jcbPossuiTV.getSelectedItem().toString(), jtfCadConectividade.getText());
+		EscolheMensagem escMensagem = new EscolheMensagem();
+		if(cadastrou){
+			escMensagem.mensagemSucesso("cadastro_celular");
+		}else{
+			escMensagem.mensagemErro("cadastro_celular");
+		}
+	
+	}
+
+	private void limparCampos(){
+		jtfCadDescricao.setText("");
+		jtfCadImei.setText("");
+		jtfCadModelo.setText("");
+		jtfCadEmpresa.setText("");
+		jtfCadCameraFrontal.setText("");
+		jtfCadCameraTraseira.setText("");
+		jtfCadMemInt.setText("");
+		jtfCadMemRam.setText("");
+		jtfCadQtdChips.setText("");
+		jtfCadTipoChip.setText("");
+		jtfCadTela.setText("");
+		jtfCadSistema.setText("");
+		jtfCadPeso.setText("");
+		jtfCadCor.setText("");
+		jtfCadConectividade.setText("");
+		jtfCadGarantia.setText("");
+		jtfCadValor.setText("");
+		jcbPossuiTV.setSelectedIndex(0);
+	}
+	
 }
