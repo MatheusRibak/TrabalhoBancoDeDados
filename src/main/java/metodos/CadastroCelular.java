@@ -49,6 +49,8 @@ public class CadastroCelular {
 		String possuiTV = sc.nextLine();
 		System.out.print("Por favor informe a conectividade do aparelho:");
 		String conect = sc.nextLine();
+		System.out.print("Por favor informe o IMEI do aparelho:");
+		String imei = sc.nextLine();
 		System.out.print("\nInsira o valor: R$");
 		Double valor = sc.nextDouble();
 		
@@ -56,18 +58,19 @@ public class CadastroCelular {
 		System.out.println("Marca: " + marca);
 		System.out.println("Descrição: " + descricao);
 		System.out.println("Megapixel Câmera Traseira: " + cameraTraseira);
-		System.out.print("Megapixel Câmera Frontal:" +cameraTraseira);
+		System.out.println("Megapixel Câmera Frontal: " +cameraTraseira);
 		System.out.println("Memória: " + memoria);
 		System.out.println("Memória RAM: " + memoriaRAM);
-		System.out.print("Tipo de Chip:" +tipoChip);
+		System.out.println("Tipo de Chip:" +tipoChip);
 		System.out.println("Quantidade de Chips: " + quantidadeChips);
-		System.out.print("Tamanho da tela:" +tamanhoTela);
-		System.out.print("Sistema Operacional:"+sistemaOperacional);
-		System.out.print("Peso: "+peso);
-		System.out.print("Garantia:" +garantia);
-		System.out.print("Cor:"+cor);
-		System.out.print("Possui TV?"+possuiTV);
-		System.out.print("Tipo de conectividade:"+conect);
+		System.out.println("Tamanho da tela: " +tamanhoTela);
+		System.out.println("Sistema Operacional: "+sistemaOperacional);
+		System.out.println("Peso: "+peso);
+		System.out.println("Garantia: " +garantia);
+		System.out.println("Cor: "+cor);
+		System.out.println("Possui TV? "+possuiTV);
+		System.out.println("Tipo de conectividade :"+conect);
+		System.out.println("IMEI: "+imei);
 		System.out.println("Valor: R$" + valor);
 		
 		System.out.print("\tDigite [S] para Salvar ou [C] para Cancelar... ");
@@ -92,6 +95,7 @@ public class CadastroCelular {
 			celular.setCor(cor);
 			celular.setTV(possuiTV);
 			celular.setConectividade(conect);
+			celular.setIMEI(imei);
 			GenericDAO dao = new GenericDAO();
 			dao.inserir(celular);
 			System.out.println("Cadastro concluído com sucesso!\n");	
