@@ -6,6 +6,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
@@ -13,6 +16,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
@@ -320,8 +324,25 @@ public class TelaCadastraPessoa extends JFrame implements ActionListener, KeyLis
 	}
 	
 	private void verificaCadastroVendedor() {
+		//POLETTO PAI DE TODOS MITANDO LOGO A BAIXO, VLWS FLWS
+		ArrayList<JTextField> jtfsObrig = new ArrayList<JTextField>();
+		jtfsObrig.add(jtfCadNome);
+		jtfsObrig.add(jtfCadRg);
+		jtfsObrig.add(jtfCadCpf);
 		
+		Map<JTextField, String> descricao = new HashMap<JTextField, String>();
+		descricao.put(jtfCadNome, "Nome");
+		descricao.put(jtfCadRg, "RG");
+		descricao.put(jtfCadCpf, "CPF");
 		
+		String camposMostra = "\n";
+		for(JTextField jtf : jtfsObrig){
+			if(jtf.getText().length() > 0){
+			}else{
+				camposMostra = camposMostra + descricao.get(jtf) + "\n";
+			}
+		}
+		JOptionPane.showMessageDialog(null, "Campos obrigatórios não foram preenchidos:" + camposMostra);
 	}
 
 	private void verificaCadastroCliente() {
