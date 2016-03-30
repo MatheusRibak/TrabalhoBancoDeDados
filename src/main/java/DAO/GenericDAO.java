@@ -1,29 +1,21 @@
 package DAO;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 import lombok.Getter;
 
-import org.bson.Document;
 import org.jongo.Jongo;
 import org.jongo.MongoCollection;
 import org.jongo.MongoCursor;
 
-import Model.Celular;
-
-import com.mongodb.Block;
 import com.mongodb.MongoClient;
-import com.mongodb.client.FindIterable;
-import com.mongodb.client.MongoDatabase;
 
 @Getter
 public class GenericDAO<T> {
 	
 	private static GenericDAO genericDao;
 	private Jongo jongo;
-	private MongoDatabase db;
 
 	public static GenericDAO getDao() {
 		if (genericDao == null) {
@@ -31,7 +23,6 @@ public class GenericDAO<T> {
 		}
 		return genericDao;
 	}
-
 
 	public GenericDAO() {
 		MongoClient mongoClient = new MongoClient("localhost", 27017);
@@ -41,6 +32,7 @@ public class GenericDAO<T> {
 	public void inserir(Object entidade){
 		MongoCollection collection = jongo.getCollection(entidade.getClass().getName());
 		collection.insert(entidade);
+		
 	}
 
 	public void alterar(Class entidade){
@@ -64,7 +56,7 @@ public class GenericDAO<T> {
 		cursor.forEach(retornado -> {
 			array.add(retornado);
 		});
-		return array;
+		return array;	
 	}
 	
 	public List<Object> todos(){
