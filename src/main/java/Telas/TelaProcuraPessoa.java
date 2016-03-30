@@ -93,6 +93,7 @@ public class TelaProcuraPessoa extends JFrame implements ActionListener, KeyList
 
 	private void criarTabela() {
 		ArrayList<String> colunas = new ArrayList<String>();
+		colunas.add("ID");
 		colunas.add("Nome");
 		colunas.add("RG");
 		colunas.add("TEL. CELULAR");

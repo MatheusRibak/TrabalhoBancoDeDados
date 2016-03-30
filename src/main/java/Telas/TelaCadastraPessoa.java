@@ -434,9 +434,9 @@ public class TelaCadastraPessoa extends JFrame implements ActionListener, KeyLis
 		
 		EscolheMensagem escMensagem = new EscolheMensagem();
 		if(cadastrou){
-			escMensagem.mensagemSucesso("cadastro_cliente");
+			escMensagem.mensagemSucesso("cadastro_vendedor");
 		}else{
-			escMensagem.mensagemErro("cadastro_cliente");
+			escMensagem.mensagemErro("cadastro_vendedor");
 		}
 	
 	}

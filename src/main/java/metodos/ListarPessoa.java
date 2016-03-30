@@ -23,7 +23,7 @@ public class ListarPessoa {
 
 		for (Cliente cliente : clientes) {
 			if ((nome.isEmpty()) && (rg.isEmpty())) {
-				dtm.addRow(new String[] { cliente.getPessoa().getNome(),
+				dtm.addRow(new String[] {cliente.get_id(),cliente.getPessoa().getNome(),
 						cliente.getPessoa().getRg(),
 						cliente.getPessoa().getTelefoneCelular(), "CLIENTE" });
 			}
@@ -45,7 +45,7 @@ public class ListarPessoa {
 		for (Cliente cliente : clientes) {
 			if (cliente.getPessoa().getNome().contains(nome.toUpperCase())
 					|| (cliente.getPessoa().getRg().contains(rg.toUpperCase()))) {
-				dtm.addRow(new String[] { cliente.getPessoa().getNome(),
+				dtm.addRow(new String[] { cliente.getPessoa().get_id(), cliente.getPessoa().getNome(),
 						cliente.getPessoa().getRg(),
 						cliente.getPessoa().getTelefoneCelular(), "CLIENTE" });
 			}
@@ -64,7 +64,7 @@ public class ListarPessoa {
 
 		for (Usuario usuario : usuarios) {
 			if ((nomeBk.isEmpty()) && rgbk.isEmpty()) {
-				dtm.addRow(new String[] {
+				dtm.addRow(new String[] {usuario.getVendedor().getPessoa().get_id(),
 						usuario.getVendedor().getPessoa().getNome(),
 						usuario.getVendedor().getPessoa().getRg(),
 						usuario.getVendedor().getPessoa().getTelefoneCelular(),
@@ -77,7 +77,7 @@ public class ListarPessoa {
 					.toUpperCase()))
 					|| usuario.getVendedor().getPessoa().getRg()
 							.contains(rgbk.toUpperCase())) {
-				dtm.addRow(new String[] {
+				dtm.addRow(new String[] {usuario.getVendedor().getPessoa().get_id(),
 						usuario.getVendedor().getPessoa().getNome(),
 						usuario.getVendedor().getPessoa().getRg(),
 						usuario.getVendedor().getPessoa().getTelefoneCelular(),
