@@ -8,6 +8,8 @@ import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 
+import Telas.TelaProcuraPessoa;
+
 public class CriaTabela {
 
 	public DefaultTableModel criarTableImoveis(JTable table, Container tela,
@@ -29,6 +31,8 @@ public class CriaTabela {
 		jsp.setBounds(col, lin, larg, alt);
 		jsp.setVisible(true);
 		tela.add(jsp);
+		
+		
 				
 		return dtmodel;
 	}

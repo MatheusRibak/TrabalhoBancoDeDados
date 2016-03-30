@@ -47,7 +47,8 @@ public class TelaLogin extends JFrame implements ActionListener, KeyListener{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 
-	public static void main(String args[]) {
+	public static void main(String args[]) throws ClassNotFoundException, InstantiationException, IllegalAccessException, UnsupportedLookAndFeelException {
+		UIManager.setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");
 		TelaLogin app = new TelaLogin();
 	}
 

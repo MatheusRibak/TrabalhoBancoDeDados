@@ -20,11 +20,19 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.table.DefaultTableModel;
 
+import lombok.Getter;
+import lombok.Setter;
 import metodos.ListarPessoa;
+import metodos.ProcurarCliente;
+import metodos.ProcurarUsuario;
 import Componentes.CriaButton;
 import Componentes.CriaField;
 import Componentes.CriaLabel;
@@ -32,7 +40,12 @@ import Componentes.CriaPanel;
 import Componentes.CriaRadioButton;
 import Componentes.CriaTabela;
 import Componentes.FieldEmUpper;
+import DAO.GenericDAO;
+import Model.Cliente;
+import Model.Pessoa;
+import Model.Usuario;
 
+@Getter @Setter
 public class TelaProcuraPessoa extends JFrame implements ActionListener, KeyListener{
 	private static final long serialVersionUID = -9172268853152388303L;
 	private JLabel jlbTituloFrame, jlbProNome, jlbProRG, jlbProTelefone, jlbProTipo, jlbOpcOpcoes;
@@ -49,8 +62,9 @@ public class TelaProcuraPessoa extends JFrame implements ActionListener, KeyList
 	private JButton jbtProcurar, jbtNovo, jbtExcluir, jbtAlterar;
 	private ButtonGroup btnProGrupo;
 	private Container tela;
-	private JTable jtbPessoas;
+	private JTable jtbPessoas = new JTable();
 	private DefaultTableModel dtmPessoas = new DefaultTableModel();
+	private GenericDAO dao = new GenericDAO();
 	
 	public TelaProcuraPessoa() {
 		tela = getContentPane();
@@ -98,8 +112,20 @@ public class TelaProcuraPessoa extends JFrame implements ActionListener, KeyList
 		colunas.add("RG");
 		colunas.add("TEL. CELULAR");
 		colunas.add("TIPO");
-		
-		dtmPessoas = ct.criarTableImoveis(jtbPessoas, tela, dtmPessoas, colunas, 0, 170, 800, 300);		
+
+		jtbPessoas = new JTable();
+		tela.add(jtbPessoas);
+		dtmPessoas = new DefaultTableModel();
+		for (String colNome : colunas) {
+			dtmPessoas.addColumn(colNome);
+		}
+		jtbPessoas.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		jtbPessoas.setModel(dtmPessoas);
+		JScrollPane jsp = new JScrollPane(jtbPessoas);
+		jsp.setBounds(0, 170, 800, 300);
+		jsp.setVisible(true);
+		tela.add(jsp);
+			
 	}
 
 	private void criarCamposBusca() {
@@ -140,7 +166,8 @@ public class TelaProcuraPessoa extends JFrame implements ActionListener, KeyList
 		
 	}
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws ClassNotFoundException, InstantiationException, IllegalAccessException, UnsupportedLookAndFeelException {
+		UIManager.setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");
 		new TelaProcuraPessoa();
 	}
 
@@ -149,6 +176,30 @@ public class TelaProcuraPessoa extends JFrame implements ActionListener, KeyList
 		if(evt.getSource() == jbtProcurar){
 			ListarPessoa lp = new ListarPessoa();
 			lp.listar(dtmPessoas, jtfProNome.getText(), jtfProRG.getText());	
+		}
+		if(evt.getSource() == jbtAlterar){
+			String id = String.valueOf(dtmPessoas.getValueAt(jtbPessoas.getSelectedRow(), 0));
+			String tipo = String.valueOf(dtmPessoas.getValueAt(jtbPessoas.getSelectedRow(), 4));
+			Object objeto;
+			TelaAlterarPessoa tlAlterar;
+			
+			switch (tipo) {
+			case "CLIENTE":
+				ProcurarCliente pc = new ProcurarCliente();
+				Cliente cliente = pc.procurar(id);
+				tlAlterar = new TelaAlterarPessoa();
+				tlAlterar.popularCliente(cliente);
+				break;
+			case "VENDEDOR":
+				ProcurarUsuario pu = new ProcurarUsuario();
+				Usuario usuario = pu.procurar(id);
+				tlAlterar = new TelaAlterarPessoa();
+				tlAlterar.popularUsuario(usuario);
+				break;
+			default:
+				break;
+			}
+			
 		}
 		
 	}

@@ -51,6 +51,16 @@ public class ListarPessoa {
 			}
 		}
 		
+		for (Usuario usuario : usuarios) {
+			if ((nomeBk.isEmpty()) && rgbk.isEmpty()) {
+				dtm.addRow(new String[] {usuario.get_id(),
+						usuario.getVendedor().getPessoa().getNome(),
+						usuario.getVendedor().getPessoa().getRg(),
+						usuario.getVendedor().getPessoa().getTelefoneCelular(),
+						"VENDEDOR" });
+			}
+		}
+		
 		if (nomeBk.isEmpty()) {
 			nomeBk = "Não procurar $_$-$31";
 		} else {
@@ -63,21 +73,11 @@ public class ListarPessoa {
 		}
 
 		for (Usuario usuario : usuarios) {
-			if ((nomeBk.isEmpty()) && rgbk.isEmpty()) {
-				dtm.addRow(new String[] {usuario.getVendedor().getPessoa().get_id(),
-						usuario.getVendedor().getPessoa().getNome(),
-						usuario.getVendedor().getPessoa().getRg(),
-						usuario.getVendedor().getPessoa().getTelefoneCelular(),
-						"VENDEDOR" });
-			}
-		}
-
-		for (Usuario usuario : usuarios) {
 			if ((usuario.getVendedor().getPessoa().getNome().contains(nomeBk
 					.toUpperCase()))
 					|| usuario.getVendedor().getPessoa().getRg()
 							.contains(rgbk.toUpperCase())) {
-				dtm.addRow(new String[] {usuario.getVendedor().getPessoa().get_id(),
+				dtm.addRow(new String[] {usuario.get_id(),
 						usuario.getVendedor().getPessoa().getNome(),
 						usuario.getVendedor().getPessoa().getRg(),
 						usuario.getVendedor().getPessoa().getTelefoneCelular(),

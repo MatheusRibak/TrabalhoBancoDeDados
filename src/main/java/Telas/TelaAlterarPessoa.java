@@ -18,6 +18,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 
 import Componentes.CriaButton;
 import Componentes.CriaField;
@@ -25,6 +27,8 @@ import Componentes.CriaLabel;
 import Componentes.CriaPanel;
 import Componentes.CriaRadioButton;
 import Componentes.FieldEmUpper;
+import Model.Cliente;
+import Model.Usuario;
 
 public class TelaAlterarPessoa extends JFrame implements ActionListener, KeyListener{
 	private CriaLabel cl = new CriaLabel();
@@ -187,7 +191,8 @@ public class TelaAlterarPessoa extends JFrame implements ActionListener, KeyList
 		jtfCadVendSalario = cf.criarTextField(100, 63, 90, 24, jtfCadVendUsuario, tela, this);
 		jtfCadVendComissao = cf.criarTextField(280, 63, 80, 24, jtfCadVendComissao, tela, this);
 		jtfCadVendUsuario = cf.criarTextField(100, 87, 120, 24, jtfCadVendUsuario, tela, this);
-		jtfCadVendSenha = cf.criarPasswordField(280, 87, 110, 24, jtfCadVendSenha, tela);
+		//jtfCadVendSenha = cf.criarPasswordField(280, 87, 110, 24, jtfCadVendSenha, tela);
+		jtfCadVendSenha = cf.criarTextField(280, 87, 110, 24, jtfCadVendSenha, tela, this);
 		
 		jcbCadVendNivelAcesso = new JComboBox<>();
 		jcbCadVendNivelAcesso.setBounds(530, 87, 140, 24);
@@ -226,7 +231,8 @@ public class TelaAlterarPessoa extends JFrame implements ActionListener, KeyList
 		jcbCadVendNivelAcesso.setVisible(false);
 	}
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws ClassNotFoundException, InstantiationException, IllegalAccessException, UnsupportedLookAndFeelException {
+		UIManager.setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");
 		new TelaAlterarPessoa();
 	}
 
@@ -253,5 +259,106 @@ public class TelaAlterarPessoa extends JFrame implements ActionListener, KeyList
 		// TODO Auto-generated method stub
 		
 	}
+	
+	public void popularCliente(Cliente cliente){
+		jpnCadUnica.setBounds(0, 322, 800, 80);
+		jpnOpcoes.setBounds(0, 400, 800, 90);
 		
+		jlbOpcOpcoes.setLocation(360, 5);
+		jbtSalvar.setLocation(300, 33);
+		jbtCancelar.setLocation(400, 33);
+		jbtLimpar.setLocation(600, 33);
+		
+		jlbTituloFrame.setText(titulo + "CLIENTE");
+		
+		jlbCadVendUsuario.setVisible(false);
+		jlbCadVendSenha.setVisible(false);
+		jlbCadVendComissao.setVisible(false);
+		jlbCadVendSalario.setVisible(false);
+		jlbCadVendNivelAcesso.setVisible(false);
+		jtfCadVendUsuario.setVisible(false);
+		jtfCadVendSenha.setVisible(false);
+		jtfCadVendSalario.setVisible(false);
+		jtfCadVendComissao.setVisible(false);
+		jcbCadVendNivelAcesso.setVisible(false);		
+		
+		jtfCadDataNascimento.setVisible(false);
+		jlbCadDataNascimento.setVisible(false);
+		jbtInfDataNascimento.setVisible(false);
+		jtfCadNome.setText(cliente.getPessoa().getNome());
+		jtfCadSexo.setText(cliente.getPessoa().getSexo());
+		jtfCadCelular.setText(cliente.getPessoa().getTelefoneCelular());
+		jtfCadEmail.setText(cliente.getPessoa().getEmail());
+		
+		jtfCadRua.setText(cliente.getPessoa().getEndereco().getRua());
+		jtfCadNumero.setText(cliente.getPessoa().getEndereco().getNumero());
+		jtfCadComplemento.setText(cliente.getPessoa().getEndereco().getComplemento());
+		jtfCadBairro.setText(cliente.getPessoa().getEndereco().getBairro());
+		jtfCadCidade.setText(cliente.getPessoa().getEndereco().getCidade());
+		jtfCadUf.setText(cliente.getPessoa().getEndereco().getUf());
+		jtfCadCep.setText(cliente.getPessoa().getEndereco().getCep());
+		
+		jrbCliente.setSelected(true);
+		jtfCadRg.setText(cliente.getPessoa().getRg());
+		jtfCadCpf.setText(cliente.getPessoa().getCpf());
+		
+		jrbCliente.setEnabled(false);
+		jrbVendedor.setEnabled(false);
+		
+		jcbCadEstadoCivil.setSelectedItem(cliente.getPessoa().getEstadoCivil());
+	}
+		
+	public void popularUsuario(Usuario usuario){
+		jpnCadUnica.setBounds(0, 322, 675, 143);
+		jpnOpcoes.setBounds(670, 322, 123, 143);
+		
+		jlbOpcOpcoes.setLocation(10, 15);
+		jbtSalvar.setLocation(10, 39);
+		jbtCancelar.setLocation(10, 63);
+		jbtLimpar.setLocation(10, 87);
+		
+		jlbTituloFrame.setText(titulo + "VENDEDOR");
+		
+		jlbCadVendUsuario.setVisible(true);
+		jlbCadVendSenha.setVisible(true);
+		jlbCadVendComissao.setVisible(true);
+		jlbCadVendSalario.setVisible(true);
+		jlbCadVendNivelAcesso.setVisible(true);
+		jtfCadVendUsuario.setVisible(true);
+		jtfCadVendSenha.setVisible(true);
+		jtfCadVendSalario.setVisible(true);
+		jtfCadVendComissao.setVisible(true);
+		jcbCadVendNivelAcesso.setVisible(true);
+		
+		jtfCadDataNascimento.setVisible(false);
+		jlbCadDataNascimento.setVisible(false);
+		jbtInfDataNascimento.setVisible(false);
+		jtfCadNome.setText(usuario.getVendedor().getPessoa().getNome());
+		jtfCadSexo.setText(usuario.getVendedor().getPessoa().getSexo());
+		jtfCadCelular.setText(usuario.getVendedor().getPessoa().getTelefoneCelular());
+		jtfCadEmail.setText(usuario.getVendedor().getPessoa().getEmail());
+		
+		jtfCadRua.setText(usuario.getVendedor().getPessoa().getEndereco().getRua());
+		jtfCadNumero.setText(usuario.getVendedor().getPessoa().getEndereco().getNumero());
+		jtfCadComplemento.setText(usuario.getVendedor().getPessoa().getEndereco().getComplemento());
+		jtfCadBairro.setText(usuario.getVendedor().getPessoa().getEndereco().getBairro());
+		jtfCadCidade.setText(usuario.getVendedor().getPessoa().getEndereco().getCidade());
+		jtfCadUf.setText(usuario.getVendedor().getPessoa().getEndereco().getUf());
+		jtfCadCep.setText(usuario.getVendedor().getPessoa().getEndereco().getCep());
+		
+		jtfCadRg.setText(usuario.getVendedor().getPessoa().getRg());
+		jtfCadCpf.setText(usuario.getVendedor().getPessoa().getCpf());
+		
+		jrbVendedor.setSelected(true);
+		jtfCadVendSalario.setText(usuario.getVendedor().getSalario().toString());
+		jtfCadVendComissao.setText(usuario.getVendedor().getComissao().toString());
+		jtfCadVendUsuario.setText(usuario.getLogin());
+		jtfCadVendSenha.setText(usuario.getSenha());
+		
+		jcbCadEstadoCivil.setSelectedItem(usuario.getVendedor().getPessoa().getEstadoCivil());
+		jcbCadVendNivelAcesso.setSelectedIndex(usuario.getNivelAcesso());
+		
+		jrbCliente.setEnabled(false);
+		jrbVendedor.setEnabled(false);
+	}
 }
