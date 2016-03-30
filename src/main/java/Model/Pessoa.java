@@ -3,6 +3,7 @@ package Model;
 import java.util.Date;
 
 import org.bson.types.ObjectId;
+import org.jongo.marshall.jackson.oid.MongoObjectId;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -17,7 +18,8 @@ public class Pessoa {
 
 	public final static String NOME_COLLECTION = Pessoa.class.getSimpleName()
 			.toLowerCase();
-	private ObjectId _id;
+	@MongoObjectId
+	private String _id;
 	private String nome;
 	private String rg;
 	private String cpf;
