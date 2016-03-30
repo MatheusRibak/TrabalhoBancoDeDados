@@ -27,6 +27,7 @@ import Componentes.CriaLabel;
 import Componentes.CriaPanel;
 import Componentes.CriaRadioButton;
 import Componentes.FieldEmUpper;
+import DAO.GenericDAO;
 import Model.Cliente;
 import Model.Usuario;
 
@@ -56,6 +57,8 @@ public class TelaAlterarPessoa extends JFrame implements ActionListener, KeyList
 	private Map<JTextField, String> descricao;
 	private Date dataNascVerificar = null;
 	private Double salario, comissao;
+	private Usuario usuarioAlterar = null;
+	private Cliente clienteAlterar = null;
 	
 
 	public TelaAlterarPessoa() {
@@ -69,7 +72,7 @@ public class TelaAlterarPessoa extends JFrame implements ActionListener, KeyList
 		
 		jlbOpcOpcoes = cl.criarParaPanelCenter("Opções", 360, 5, 80, 24, jlbOpcOpcoes, tela);
 		jbtLimpar = cb.criarBotao("Limpar", 600, 33, 100, 24, jbtLimpar, tela, this);
-		jbtSalvar = cb.criarBotao("Salvar", 300, 33, 100, 24, jbtSalvar, tela, this);
+		jbtSalvar = cb.criarBotao("Alterar", 300, 33, 100, 24, jbtSalvar, tela, this);
 		jbtCancelar = cb.criarBotao("Cancelar", 400, 33, 100, 24, jbtCancelar, tela, this);
 	
 		jpnOpcoes = cp.criarPanelSemTitulo(0, 400, 800, 90, jpnOpcoes, true, tela);
@@ -256,11 +259,42 @@ public class TelaAlterarPessoa extends JFrame implements ActionListener, KeyList
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
+		if(e.getSource() == jbtSalvar){
+			if(jrbCliente.isSelected()){
+				//altera cliente
+				//alterarCliente();
+				GenericDAO dao = new GenericDAO();
+				dao.alterar(clienteAlterar.getPessoa(), "telefoneCelular", jtfCadCelular.getText());
+				System.out.println("alterou?");
+			}
+			if(jrbVendedor.isSelected()){
+				//GenericDAO dao = new GenericDAO();
+				//ao.al
+				//System.out.println("alterou?");
+			}
+		}
 		
 	}
 	
+	private void alterarCliente(){
+		clienteAlterar.getPessoa().setNome(jtfCadNome.getText());
+		clienteAlterar.getPessoa().setSexo(jtfCadSexo.getText());
+		clienteAlterar.getPessoa().setTelefoneCelular(jtfCadCelular.getText());
+		clienteAlterar.getPessoa().setTelefoneResidencial(jtfCadResidencial.getText());
+		clienteAlterar.getPessoa().getEndereco().setRua(jtfCadRua.getText());
+		clienteAlterar.getPessoa().getEndereco().setNumero(jtfCadNumero.getText());
+		clienteAlterar.getPessoa().getEndereco().setComplemento(jtfCadComplemento.getText());
+		clienteAlterar.getPessoa().getEndereco().setBairro(jtfCadBairro.getText());
+		clienteAlterar.getPessoa().getEndereco().setCidade(jtfCadCidade.getText());
+		clienteAlterar.getPessoa().getEndereco().setUf(jtfCadUf.getText());
+		clienteAlterar.getPessoa().getEndereco().setCep(jtfCadCep.getText());
+		
+		clienteAlterar.getPessoa().setRg(jtfCadRg.getText());
+		clienteAlterar.getPessoa().setCpf(jtfCadCpf.getText());
+	}
+	
 	public void popularCliente(Cliente cliente){
+		clienteAlterar = cliente;
 		jpnCadUnica.setBounds(0, 322, 800, 80);
 		jpnOpcoes.setBounds(0, 400, 800, 90);
 		
@@ -309,6 +343,7 @@ public class TelaAlterarPessoa extends JFrame implements ActionListener, KeyList
 	}
 		
 	public void popularUsuario(Usuario usuario){
+		usuarioAlterar = usuario;
 		jpnCadUnica.setBounds(0, 322, 675, 143);
 		jpnOpcoes.setBounds(670, 322, 123, 143);
 		

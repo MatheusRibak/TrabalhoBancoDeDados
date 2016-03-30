@@ -9,6 +9,8 @@ import org.jongo.Jongo;
 import org.jongo.MongoCollection;
 import org.jongo.MongoCursor;
 
+import Model.Cliente;
+
 import com.mongodb.MongoClient;
 
 @Getter
@@ -35,8 +37,9 @@ public class GenericDAO<T> {
 		
 	}
 
-	public void alterar(Class entidade){
-		
+	public void alterar(Object objeto, String campo, String consulta){
+		MongoCollection collection = jongo.getCollection(objeto.getClass().getName());
+		collection.update("{"+campo+":'"+consulta+"'}").with(objeto);
 	}
 
 	public void excluir(Class entidade){

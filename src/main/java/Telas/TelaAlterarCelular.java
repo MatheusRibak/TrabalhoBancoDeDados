@@ -21,6 +21,7 @@ import Componentes.CriaField;
 import Componentes.CriaLabel;
 import Componentes.CriaPanel;
 import Componentes.FieldEmUpper;
+import Model.Celular;
 
 public class TelaAlterarCelular extends JFrame implements ActionListener, KeyListener{
 	private CriaLabel cl = new CriaLabel();
@@ -188,6 +189,10 @@ public class TelaAlterarCelular extends JFrame implements ActionListener, KeyLis
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
+		
+	}
+	
+	public void popularCampos(Celular celular){
 		
 	}
 
