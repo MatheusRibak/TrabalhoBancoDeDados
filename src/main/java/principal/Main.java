@@ -37,7 +37,7 @@ public class Main {
 		}		
 		
 		Endereco endereco1 = new Endereco("aaa", "aaa", "aaa", "aaaa", "aaaaa", "aaaa", "aaaa");
-		Pessoa pessoa = new Pessoa("teste", "1212", "121212", dataNasc, "mtotom@", endereco1, "aaa", "aa", "312313", "111221");
+		Pessoa pessoa = new Pessoa(null,"teste", "1212", "121212", dataNasc, "mtotom@", endereco1, "aaa", "aa", "312313", "111221");
 		
 		//Cliente cliente1 = new Cliente(pessoa);
 		//Vendedor vendedor1 = new Vendedor(pessoa, 1500.0, 10.0);

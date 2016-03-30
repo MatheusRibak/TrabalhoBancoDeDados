@@ -17,6 +17,7 @@ public class ListarVenda {
 		for (Venda venda : vendas) {
 			dtm.addRow(new String[] { venda.getData().toString(),
 					venda.getVendedor().getPessoa().getNome(), venda.getCelular().getValor().toString()});
+			
 		}
 		if(dtm.getRowCount() == 0){
 			EscolheMensagem escolhe = new EscolheMensagem();

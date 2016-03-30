@@ -2,6 +2,8 @@ package Model;
 
 import java.util.Date;
 
+import org.bson.types.ObjectId;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,6 +17,7 @@ public class Pessoa {
 
 	public final static String NOME_COLLECTION = Pessoa.class.getSimpleName()
 			.toLowerCase();
+	private ObjectId _id;
 	private String nome;
 	private String rg;
 	private String cpf;
