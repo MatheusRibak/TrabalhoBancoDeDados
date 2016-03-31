@@ -33,6 +33,7 @@ import Componentes.CriaPanel;
 import Componentes.CriaRadioButton;
 import Componentes.CriaTabela;
 import Componentes.FieldEmUpper;
+import DAO.GenericDAO;
 import Model.Cliente;
 import Model.Usuario;
 
@@ -199,6 +200,25 @@ public class TelaProcuraPessoa extends JInternalFrame implements ActionListener,
 				break;
 			}
 			
+		}
+		if(evt.getSource() == jbtExcluir){
+			String id = String.valueOf(dtmPessoas.getValueAt(jtbPessoas.getSelectedRow(), 0));
+			String tipo = String.valueOf(dtmPessoas.getValueAt(jtbPessoas.getSelectedRow(), 4));
+			switch (tipo) {
+			case "CLIENTE":
+				ProcurarCliente pc = new ProcurarCliente();
+				Cliente cliente = pc.procurar(id);
+				Object objeto = cliente;
+				TelaInicial.getTlInicial().getDao().getDao().remove(objeto, cliente.get_id());
+				break;
+			case "VENDEDOR":
+				ProcurarUsuario pu = new ProcurarUsuario();
+				Usuario usuario = pu.procurar(id);
+				//TelaInicial.getTlInicial().getDao().getDao().remove(usuario, "_id", id);
+				break;
+			default:
+				break;
+			}
 		}
 		
 	}

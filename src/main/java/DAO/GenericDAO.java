@@ -5,13 +5,17 @@ import java.util.List;
 
 import lombok.Getter;
 
+import org.bson.types.ObjectId;
 import org.jongo.Jongo;
 import org.jongo.MongoCollection;
 import org.jongo.MongoCursor;
 
 import Model.Cliente;
+import Model.Entidade;
+import Model.Usuario;
 
 import com.mongodb.MongoClient;
+
 
 @Getter
 public class GenericDAO<T> {
@@ -44,11 +48,7 @@ public class GenericDAO<T> {
 		/*
 		 * IFNOTANSWERMAKESEARCHALL-REMOVE-ADDAGAIN
 		 */
-	}
-
-	public void excluir(Class entidade){
-		
-	}
+	}	
 
 	public Object listaFiltro(Class classe, String campo, String consulta){
 		@SuppressWarnings("unchecked")

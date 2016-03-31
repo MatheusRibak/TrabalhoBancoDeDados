@@ -12,7 +12,7 @@ public class ProcurarCliente {
 		ArrayList<Cliente> clientes = dao.getDao().listaQualquer(Cliente.class);
 		Cliente clienteRetorno = null;
 		for(Cliente cliente:clientes){
-			if(cliente.get_id().equals(id)){
+			if(cliente.get_id().toString().equals(id)){
 				clienteRetorno = cliente; 
 			}
 		}

@@ -1,6 +1,6 @@
 package Model;
 
-import org.jongo.marshall.jackson.oid.MongoObjectId;
+import org.bson.types.ObjectId;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -11,12 +11,13 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Cliente {
+public class Cliente{
 
 	public final static String NOME_COLLECTION = Cliente.class.getSimpleName()
 			.toLowerCase();
 	private Pessoa pessoa;
-	@MongoObjectId
-	private String _id;
+	//@MongoObjectId
+	//private String _id;
+	private ObjectId _id;
 
 }

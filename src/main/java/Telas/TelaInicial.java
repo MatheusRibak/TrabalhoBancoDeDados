@@ -21,6 +21,7 @@ import Componentes.CriaButton;
 import Componentes.CriaField;
 import Componentes.CriaLabel;
 import Componentes.CriaMenu;
+import DAO.GenericDAO;
 
 @Getter @Setter
 public class TelaInicial extends JFrame implements ActionListener{
@@ -42,6 +43,7 @@ public class TelaInicial extends JFrame implements ActionListener{
 	private TelaProcurarCelular tlProcurarCelular = new TelaProcurarCelular();
 	private TelaAlterarCelular tlAlterarCelular = new TelaAlterarCelular();
 	private ArrayList<JInternalFrame> listaInternalFrame = new ArrayList<>();
+	private GenericDAO dao = new GenericDAO();
 
 	public TelaInicial() {
 		tela = getContentPane();
