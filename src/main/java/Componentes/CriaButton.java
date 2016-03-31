@@ -33,4 +33,17 @@ public class CriaButton {
 
 	}
 	
+	public JButton criarBotaoProcurar(String texto, Integer col, Integer lin, Integer lar, Integer alt, JButton button, Container tela, ActionListener action) {
+		button = new JButton(texto.toUpperCase());
+		button.setBounds(col, lin, lar, alt);
+		button.setVisible(true);
+		button.setFocusable(false);
+		button.addActionListener(action);
+		button.setForeground(Color.BLACK);
+		button.setBackground(Color.WHITE);
+		tela.add(button);
+		return button;
+
+	}
+	
 }
