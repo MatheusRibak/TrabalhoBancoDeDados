@@ -29,10 +29,12 @@ public class TelaCadastraVenda extends JFrame implements ActionListener, KeyList
 	private Container tela;
 	private JLabel jlbTituloFrame, jlbCadData, jlbCadCliente, jlbCadVendedor, jlbCadCelular,
 				jlbCelImei, jlbCelModelo, jlbCelEmpresa, jlbCelValor,
-				jlbCliNome, jlbCliRG, jlbCliCpf, jlbCliCidade;
+				jlbCliNome, jlbCliRG, jlbCliCpf, jlbCliCidade,
+				jlbUsuNome, jlbUsuLogin, jlbUsuRg, jlbUsuCpf;
 	private JTextField jtfCadData, jtfCadCliente, jtfCadVendedor, jtfCadCelular,
 				jtfCelImei, jtfCelModelo, jtfCelEmpresa, jtfCelValor,
-				jtfCliNome, jtfCliRg, jtfCliCpf, jtfCliCidade;
+				jtfCliNome, jtfCliRg, jtfCliCpf, jtfCliCidade,
+				jtfUsuNome, jtfUsuLogin, jtfUsuRg, jtfUsuCpf;
 	private JButton jbtProCelular, jbtProCliente, jbtProVendedor;
 	private JButton jbtInfoData;
 	private CriaLabel cl = new CriaLabel();
@@ -157,6 +159,34 @@ public class TelaCadastraVenda extends JFrame implements ActionListener, KeyList
 		jpnCliInfo.add(jtfCliRg);	
 		jpnCliInfo.add(jtfCliCpf);	
 		jpnCliInfo.add(jtfCliCidade);	
+		
+		jlbUsuNome = cl.criarLabelParaPanel("Nome:", 15, 25, 80, 24, jlbUsuNome, tela);
+		jlbUsuLogin = cl.criarLabelParaPanel("Usuário:", 255, 25, 80, 24, jlbUsuLogin, tela);
+		jlbUsuRg = cl.criarLabelParaPanel("RG:", 410, 25, 80, 24, jlbUsuRg, tela);
+		jlbUsuCpf = cl.criarLabelParaPanel("CPF:", 585, 25, 80, 24, jlbUsuCpf, tela);
+		
+		jtfUsuNome = cf.criarTextField(100, 25, 160, 24, jtfUsuNome, tela, this);
+		jtfUsuNome.setText("Selecione o vendedor.");
+		jtfUsuNome.setEnabled(false);
+		jtfUsuLogin= cf.criarTextField(340, 25, 100, 24, jtfUsuLogin, tela, this);
+		jtfUsuLogin.setText("Selecione o vendedor.");
+		jtfUsuLogin.setEnabled(false);
+		jtfUsuRg = cf.criarTextField(495, 25, 100, 24, jtfUsuRg, tela, this);
+		jtfUsuRg.setText("Selecione o vendedor.");
+		jtfUsuRg.setEnabled(false);
+		jtfUsuCpf = cf.criarTextField(670, 25, 98, 24, jtfUsuCpf, tela, this);
+		jtfUsuCpf.setText("Selecione o vendedor.");
+		jtfUsuCpf.setEnabled(false);
+		
+		jpnCliInfo = cp.criarPanel("Informações do vendedor", 0, 285, 788, 65, jpnCliInfo, true, tela);
+		jpnCliInfo.add(jlbUsuNome);
+		jpnCliInfo.add(jlbUsuLogin);	
+		jpnCliInfo.add(jlbUsuRg);
+		jpnCliInfo.add(jlbUsuCpf);
+		jpnCliInfo.add(jtfUsuNome);
+		jpnCliInfo.add(jtfUsuLogin);	
+		jpnCliInfo.add(jtfUsuRg);	
+		jpnCliInfo.add(jtfUsuCpf);	
 		
 	}
 	
