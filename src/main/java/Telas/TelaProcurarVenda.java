@@ -11,6 +11,7 @@ import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -21,30 +22,32 @@ import javax.swing.table.DefaultTableModel;
 
 import metodos.ListarCelular;
 import metodos.ListarVenda;
+import metodos.ProcurarCelular;
+import metodos.ProcurarVenda;
 import Componentes.CriaButton;
 import Componentes.CriaField;
 import Componentes.CriaLabel;
 import Componentes.CriaPanel;
 import Componentes.CriaTabela;
 import Componentes.FieldEmUpper;
+import Model.Celular;
+import Model.Venda;
 
-public class TelaProcurarVenda extends JFrame implements ActionListener, KeyListener{
+public class TelaProcurarVenda extends JInternalFrame implements ActionListener, KeyListener{
 	private static final long serialVersionUID = -9172268853152388303L;
-	private JLabel jlbTituloFrame, jlbProCliente, jlbProData, jlbProVendedor, jlbProCodNF, jlbOpcOpcoes;
+	private JLabel jlbTituloFrame, jlbProCliente, jlbProVendedor, jlbOpcOpcoes;
 	private JPanel jpnCamposBusca, jpnOpcoes;
 	private CriaLabel cl = new CriaLabel();
 	private CriaPanel cp = new CriaPanel();
 	private CriaField cf = new CriaField();
 	private CriaButton cb = new CriaButton();
-	private CriaTabela ct = new CriaTabela();
 	FieldEmUpper fu = new FieldEmUpper();
-	private JTextField jtfProCliente, jtfProData, jtfProVendedor, jtfProCodNF;
-	private JButton jbtProcurar, jbtNovo, jbtExcluir, jbtAlterar;
+	private JTextField jtfProCliente, jtfProVendedor;
+	private JButton jbtProcurar, jbtNovo, jbtExcluir;
 	private Container tela;
-	private JTable jtbCelulares;
-	private DefaultTableModel dtmCelulares = new DefaultTableModel();
+	private JTable jtbVendas;
+	private DefaultTableModel dtmVendas = new DefaultTableModel();
 	private static String titulo = "Procurar por venda";
-	private JButton jbtInfData;
 	
 	public TelaProcurarVenda() {
 		tela = getContentPane();
@@ -60,18 +63,17 @@ public class TelaProcurarVenda extends JFrame implements ActionListener, KeyList
 		setSize(800, 587);
 		setResizable(false);
 		setVisible(true);
-		setLocationRelativeTo(null);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setClosable(true);
 	}
 	
 	private void criarOpcoesResultado() {
 		jlbOpcOpcoes = cl.criarParaPanelCenter("Opções", 360, 5, 80, 24, jlbOpcOpcoes, tela);
-		jbtAlterar = cb.criarBotao("Alterar", 300, 33, 100, 24, jbtAlterar, tela, this);
-		jbtExcluir = cb.criarBotao("Excluir", 400, 33, 100, 24, jbtExcluir, tela, this);
+		//jbtAlterar = cb.criarBotao("Alterar", 300, 33, 100, 24, jbtAlterar, tela, this);
+		jbtExcluir = cb.criarBotao("Excluir", 350, 33, 100, 24, jbtExcluir, tela, this);
 		
 		jpnOpcoes = cp.criarPanelSemTitulo(0, 470, 800, 90, jpnOpcoes, true, tela);
 		jpnOpcoes.add(jlbOpcOpcoes);
-		jpnOpcoes.add(jbtAlterar);
+		//jpnOpcoes.add(jbtAlterar);
 		jpnOpcoes.add(jbtExcluir);
 		
 	}
@@ -83,15 +85,15 @@ public class TelaProcurarVenda extends JFrame implements ActionListener, KeyList
 		colunas.add("VENDEDOR");
 		colunas.add("VALOR(R$)");
 		
-		jtbCelulares = new JTable();
-		tela.add(jtbCelulares);
-		dtmCelulares = new DefaultTableModel();
+		jtbVendas = new JTable();
+		tela.add(jtbVendas);
+		dtmVendas = new DefaultTableModel();
 		for (String colNome : colunas) {
-			dtmCelulares.addColumn(colNome);
+			dtmVendas.addColumn(colNome);
 		}
-		jtbCelulares.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		jtbCelulares.setModel(dtmCelulares);
-		JScrollPane jsp = new JScrollPane(jtbCelulares);
+		jtbVendas.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		jtbVendas.setModel(dtmVendas);
+		JScrollPane jsp = new JScrollPane(jtbVendas);
 		jsp.setBounds(0, 170, 800, 300);
 		jsp.setVisible(true);
 		tela.add(jsp);	
@@ -128,23 +130,10 @@ public class TelaProcurarVenda extends JFrame implements ActionListener, KeyList
 		jpnCamposBusca.add(jbtProcurar);
 		
 	}
-
-	public static void main(String[] args) {
-		new TelaProcurarVenda();
-	}
-
-	@Override
-	public void actionPerformed(ActionEvent evt) {
-		if(evt.getSource() == jbtProcurar){
-			ListarVenda lv = new ListarVenda();
-			lv.listar(dtmCelulares);	
-		}
-		
-	}
+	
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-		// TODO Auto-generated method stub
 		
 	}
 
@@ -160,7 +149,6 @@ public class TelaProcurarVenda extends JFrame implements ActionListener, KeyList
 				fu.transformar(jtfProVendedor);
 			}
 		}
-		
 	}
 
 	@Override
@@ -168,5 +156,27 @@ public class TelaProcurarVenda extends JFrame implements ActionListener, KeyList
 		
 	}
 
+	@Override
+	public void actionPerformed(ActionEvent evt) {
+		if(evt.getSource() == jbtProcurar){
+			ListarVenda lv = new ListarVenda();
+			lv.listar(dtmVendas, jtfProCliente.getText(), jtfProVendedor.getText());	
+		}
+		if(evt.getSource() == jbtExcluir){
+			String id = String.valueOf(dtmVendas.getValueAt(jtbVendas.getSelectedRow(), 0));
+			ProcurarVenda pv = new ProcurarVenda();
+			Venda venda = pv.procurar(id);
+			Object objetoVenda = venda;
+			TelaInicial.getTlInicial().getDao().getDao().remove(objetoVenda, venda.get_id());
+		}
+		if(evt.getSource() == jbtNovo){
+			TelaInicial.getTlInicial().esconderTelas();
+			TelaInicial.getTlInicial().getTlCadastrarVenda().setVisible(true);
+		}
+		
+	}
 	
+	public static void main(String[] args) {
+		new TelaProcurarVenda();
+	}
 }

@@ -39,6 +39,8 @@ public class TelaInicial extends JFrame implements ActionListener{
 	private TelaCadastraCelular tlCadastraCelular = new TelaCadastraCelular();
 	private TelaProcurarCelular tlProcurarCelular = new TelaProcurarCelular();
 	private TelaAlterarCelular tlAlterarCelular = new TelaAlterarCelular();
+	private TelaProcurarVenda tlProcurarVenda = new TelaProcurarVenda();
+	private TelaCadastraVenda tlCadastrarVenda = new TelaCadastraVenda();
 	private ArrayList<JInternalFrame> listaInternalFrame = new ArrayList<>();
 	private GenericDAO dao;
 
@@ -69,6 +71,8 @@ public class TelaInicial extends JFrame implements ActionListener{
 		listaInternalFrame.add(tlCadastraCelular);
 		listaInternalFrame.add(tlProcurarCelular);
 		listaInternalFrame.add(tlAlterarCelular);
+		listaInternalFrame.add(tlProcurarVenda);
+		listaInternalFrame.add(tlCadastrarVenda);
 		
 		posicionaFrames(listaInternalFrame);
 		jmnBar = new JMenuBar();
@@ -139,6 +143,14 @@ public class TelaInicial extends JFrame implements ActionListener{
 		if(e.getSource() == jmiProCelular){
 			esconderTelas();
 			tlProcurarCelular.setVisible(true);
+		}
+		if(e.getSource() == jmiProVenda){
+			esconderTelas();
+			tlProcurarVenda.setVisible(true);
+		}
+		if(e.getSource() == jmiCadVenda){
+			esconderTelas();
+			tlCadastrarVenda.setVisible(true);
 		}
 	}
 	

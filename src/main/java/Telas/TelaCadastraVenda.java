@@ -11,6 +11,7 @@ import java.awt.event.KeyListener;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -25,7 +26,7 @@ import Componentes.CriaLabel;
 import Componentes.CriaPanel;
 
 @Getter @Setter
-public class TelaCadastraVenda extends JFrame implements ActionListener, KeyListener {
+public class TelaCadastraVenda extends JInternalFrame implements ActionListener, KeyListener {
 	private static final long serialVersionUID = 6196565311877436918L;
 	private Container tela;
 	private JLabel jlbTituloFrame, jlbCadData, jlbCadCliente, jlbCadVendedor, jlbCadCelular,
@@ -70,7 +71,7 @@ public class TelaCadastraVenda extends JFrame implements ActionListener, KeyList
 		setSize(800, 470);
 		setResizable(false);
 		setVisible(true);
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setClosable(true);
 	}
 	
 	private void criarCamposCadastrado() {
@@ -223,8 +224,8 @@ public class TelaCadastraVenda extends JFrame implements ActionListener, KeyList
 		
 	}
 	
-	public static void main(String[] args) throws ClassNotFoundException, InstantiationException, IllegalAccessException, UnsupportedLookAndFeelException {
-		UIManager.setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");
+	public static void main(String[] args) {
+		
 		new TelaCadastraVenda();
 	}
 
