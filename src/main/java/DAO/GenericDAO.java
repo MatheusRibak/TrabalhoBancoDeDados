@@ -11,7 +11,6 @@ import org.jongo.MongoCollection;
 import org.jongo.MongoCursor;
 
 import Model.Cliente;
-import Model.Entidade;
 import Model.Usuario;
 
 import com.mongodb.MongoClient;
@@ -35,6 +34,17 @@ public class GenericDAO<T> {
 		jongo = new Jongo(mongoClient.getDB("TrabalhoBancoDeDados2"));
 	}
 	
+	
+	public void remove(Object objeto, ObjectId id){
+		MongoCollection collection = jongo.getCollection(objeto.getClass().getName());
+		collection.remove("{_id: #}", id);
+	}
+	
+	public void alterar(Object objeto, ObjectId id){
+		MongoCollection collection = jongo.getCollection(objeto.getClass().getName());
+		collection.update("{_id: #}", id).with(objeto);
+	}
+	
 	public void inserir(Object entidade){
 		MongoCollection collection = jongo.getCollection(entidade.getClass().getName());
 		collection.insert(entidade);
@@ -56,21 +66,5 @@ public class GenericDAO<T> {
 			array.add(retornado);
 		});
 		return array;	
-	}
-	
-	public List<Object> todos(){
-		
-		return null;
-	}
-	
-	public void remove(Object objeto, ObjectId id){
-		MongoCollection collection = jongo.getCollection(objeto.getClass().getName());
-		collection.remove("{_id: #}", id);
-	}
-	
-	public void alterar(Object objeto, ObjectId id){
-		MongoCollection collection = jongo.getCollection(objeto.getClass().getName());
-		collection.update("{_id: #}", id).with(objeto);
-		//https://www.youtube.com/watch?v=9CuH8lHFGsA
 	}
 }

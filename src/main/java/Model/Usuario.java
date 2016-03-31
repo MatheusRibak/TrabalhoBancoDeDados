@@ -1,6 +1,6 @@
 package Model;
 
-import org.jongo.marshall.jackson.oid.MongoObjectId;
+import org.bson.types.ObjectId;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -16,8 +16,7 @@ public class Usuario {
 	
 	public final static String NOME_COLLECTION = Usuario.class.getSimpleName()
 			.toLowerCase();
-	@MongoObjectId
-	private String _id;
+	private ObjectId _id;
 	private String login;
 	private String senha;
 	private Integer nivelAcesso; // nível = 1 (Vendedor) = 2 (Gestor)

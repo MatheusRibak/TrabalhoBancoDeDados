@@ -232,6 +232,7 @@ public class TelaAlterarCelular extends JInternalFrame implements ActionListener
 		
 	public void popularCampos(Celular celular){
 		celularAlterar = celular;
+		celularAlterar.set_id(celular.get_id());
 		jtfCadDescricao.setText(celular.getDescricao());
 		jtfCadImei.setText(celular.getIMEI());
 		jtfCadModelo.setText(celular.getModelo());
@@ -337,7 +338,7 @@ public class TelaAlterarCelular extends JInternalFrame implements ActionListener
 			if((todosPreenchidos) && (valorCorreto)){
 				alterarCelular();
 				GenericDAO dao = new GenericDAO();
-				//dao.alterar(celularAlterar.getCameraFrontal(), "cameraFrontal", jtfCadCameraFrontal.getText());
+				dao.alterar(celularAlterar, celularAlterar.get_id());
 				EscolheMensagem escMensagem = new EscolheMensagem();
 				escMensagem.mensagemSucesso("alterar_celular");
 			}else{

@@ -18,8 +18,6 @@ public class Pessoa {
 
 	public final static String NOME_COLLECTION = Pessoa.class.getSimpleName()
 			.toLowerCase();
-	@MongoObjectId
-	private String _id;
 	private String nome;
 	private String rg;
 	private String cpf;

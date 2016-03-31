@@ -1,12 +1,8 @@
 package metodos;
 
 import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Scanner;
-
-import menu.Opcoes;
 import DAO.GenericDAO;
 import Model.Cliente;
 import Model.Endereco;

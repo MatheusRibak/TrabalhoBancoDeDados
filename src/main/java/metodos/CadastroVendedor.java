@@ -6,7 +6,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
 
-import menu.Opcoes;
 import DAO.GenericDAO;
 import Model.Endereco;
 import Model.Pessoa;

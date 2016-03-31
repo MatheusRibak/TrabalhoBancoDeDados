@@ -53,7 +53,7 @@ public class ListarPessoa {
 		
 		for (Usuario usuario : usuarios) {
 			if ((nomeBk.isEmpty()) && rgbk.isEmpty()) {
-				dtm.addRow(new String[] {usuario.get_id(),
+				dtm.addRow(new String[] {usuario.get_id().toString(),
 						usuario.getVendedor().getPessoa().getNome(),
 						usuario.getVendedor().getPessoa().getRg(),
 						usuario.getVendedor().getPessoa().getTelefoneCelular(),
@@ -77,7 +77,7 @@ public class ListarPessoa {
 					.toUpperCase()))
 					|| usuario.getVendedor().getPessoa().getRg()
 							.contains(rgbk.toUpperCase())) {
-				dtm.addRow(new String[] {usuario.get_id(),
+				dtm.addRow(new String[] {usuario.get_id().toString(),
 						usuario.getVendedor().getPessoa().getNome(),
 						usuario.getVendedor().getPessoa().getRg(),
 						usuario.getVendedor().getPessoa().getTelefoneCelular(),

@@ -16,8 +16,6 @@ public class Cliente{
 	public final static String NOME_COLLECTION = Cliente.class.getSimpleName()
 			.toLowerCase();
 	private Pessoa pessoa;
-	//@MongoObjectId
-	//private String _id;
 	private ObjectId _id;
 
 }

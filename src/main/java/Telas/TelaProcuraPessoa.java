@@ -208,13 +208,14 @@ public class TelaProcuraPessoa extends JInternalFrame implements ActionListener,
 			case "CLIENTE":
 				ProcurarCliente pc = new ProcurarCliente();
 				Cliente cliente = pc.procurar(id);
-				Object objeto = cliente;
-				TelaInicial.getTlInicial().getDao().getDao().remove(objeto, cliente.get_id());
+				Object objetoCliente = cliente;
+				TelaInicial.getTlInicial().getDao().getDao().remove(objetoCliente, cliente.get_id());
 				break;
 			case "VENDEDOR":
 				ProcurarUsuario pu = new ProcurarUsuario();
 				Usuario usuario = pu.procurar(id);
-				//TelaInicial.getTlInicial().getDao().getDao().remove(usuario, "_id", id);
+				Object objetoUsuario = usuario;
+				TelaInicial.getTlInicial().getDao().getDao().remove(objetoUsuario, usuario.get_id());
 				break;
 			default:
 				break;
