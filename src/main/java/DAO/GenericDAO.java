@@ -70,5 +70,10 @@ public class GenericDAO<T> {
 		
 		return null;
 	}
+	
+	public void remove(Object objeto, ObjectId id){
+		MongoCollection collection = jongo.getCollection(objeto.getClass().getName());
+		collection.remove("{_id: #}", id);
+	}
 
 }
