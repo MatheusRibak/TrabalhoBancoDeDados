@@ -29,7 +29,7 @@ public class EscolheMensagem {
 			menSucesso.sucessoAlterarCliente();
 			break;	
 		case "alterar_vendedor":
-			menSucesso.sucessoAlterarCliente();
+			menSucesso.sucessoAlterarVendedor();
 			break;	
 		case "alterar_celular":
 			menSucesso.sucessoAlterarCelular();
