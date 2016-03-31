@@ -7,10 +7,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -18,22 +16,28 @@ import javax.swing.JTextField;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
+import lombok.Getter;
+import lombok.Setter;
 import Componentes.CriaButton;
 import Componentes.CriaField;
 import Componentes.CriaLabel;
 import Componentes.CriaPanel;
 
+@Getter @Setter
 public class TelaCadastraVenda extends JFrame implements ActionListener, KeyListener {
+	private static final long serialVersionUID = 6196565311877436918L;
 	private Container tela;
-	private JLabel jlbTituloFrame, jlbCadData, jlbCadCliente, jlbCadVendedor, jlbCadCelular;
-	private JTextField jtfCadData, jtfCadCliente, jtfCadVendedor, jtfCadCelular;
+	private JLabel jlbTituloFrame, jlbCadData, jlbCadCliente, jlbCadVendedor, jlbCadCelular,
+				jlbCelImei, jlbCelModelo, jlbCelEmpresa, jlbCelValor;
+	private JTextField jtfCadData, jtfCadCliente, jtfCadVendedor, jtfCadCelular,
+				jtfCelImei, jtfCelModelo, jtfCelEmpresa, jtfCelValor;
 	private JButton jbtProCelular, jbtProCliente, jbtProVendedor;
 	private JButton jbtInfoData;
 	private CriaLabel cl = new CriaLabel();
 	private CriaField cf = new CriaField();
 	private CriaButton cb = new CriaButton();
 	private CriaPanel cp = new CriaPanel();
-	private JPanel jpnCadEssencial;
+	private JPanel jpnCadEssencial, jpnCelInfo;
 	private static String titulo = "Cadastro de venda";
 	
 	public TelaCadastraVenda() {
@@ -95,6 +99,35 @@ public class TelaCadastraVenda extends JFrame implements ActionListener, KeyList
 		jpnCadEssencial.add(jbtProCelular);
 		jpnCadEssencial.add(jbtProCliente);
 		jpnCadEssencial.add(jbtProVendedor);
+		
+		jlbCelImei = cl.criarLabelParaPanel("IMEI:", 15, 25, 80, 24, jlbCelImei, tela);
+		jlbCelModelo = cl.criarLabelParaPanel("Modelo:", 220, 25, 80, 24, jlbCelModelo, tela);
+		jlbCelEmpresa = cl.criarLabelParaPanel("Empresa:", 410, 25, 80, 24, jlbCelEmpresa, tela);
+		jlbCelValor = cl.criarLabelParaPanel("Valor (R$):", 605, 25, 85, 24, jlbCelValor, tela);
+		
+		jtfCelImei = cf.criarTextField(100, 25, 120, 24, jtfCelImei, tela, this);
+		jtfCelImei.setText("Selecione o celular.");
+		jtfCelImei.setEnabled(false);
+		jtfCelModelo = cf.criarTextField(305, 25, 100, 24, jtfCelModelo, tela, this);
+		jtfCelModelo.setText("Selecione o celular.");
+		jtfCelModelo.setEnabled(false);
+		jtfCelEmpresa = cf.criarTextField(495, 25, 100, 24, jtfCelEmpresa, tela, this);
+		jtfCelEmpresa.setText("Selecione o celular.");
+		jtfCelEmpresa.setEnabled(false);
+		jtfCelValor = cf.criarTextField(695, 25, 70, 24, jtfCelValor, tela, this);
+		jtfCelValor.setText("Selecione o celular.");
+		jtfCelValor.setEnabled(false);
+		
+		jpnCelInfo = cp.criarPanel("Informações do celular", 0, 155, 788, 65, jpnCelInfo, true, tela);
+		jpnCelInfo.add(jlbCelImei);
+		jpnCelInfo.add(jlbCelModelo);	
+		jpnCelInfo.add(jlbCelEmpresa);
+		jpnCelInfo.add(jlbCelValor);
+		jpnCelInfo.add(jtfCelImei);
+		jpnCelInfo.add(jtfCelModelo);	
+		jpnCelInfo.add(jtfCelEmpresa);	
+		jpnCelInfo.add(jtfCelValor);	
+		
 	}
 	
 	@Override
