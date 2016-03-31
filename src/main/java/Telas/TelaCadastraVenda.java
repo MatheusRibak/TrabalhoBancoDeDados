@@ -24,6 +24,9 @@ import Componentes.CriaButton;
 import Componentes.CriaField;
 import Componentes.CriaLabel;
 import Componentes.CriaPanel;
+import Model.Celular;
+import Model.Cliente;
+import Model.Vendedor;
 
 @Getter @Setter
 public class TelaCadastraVenda extends JInternalFrame implements ActionListener, KeyListener {
@@ -46,6 +49,9 @@ public class TelaCadastraVenda extends JInternalFrame implements ActionListener,
 	private JPanel jpnCadEssencial, jpnCelInfo, jpnCliInfo, jpnOpcoes;
 	private static String titulo = "Cadastro de venda";
 	private JLabel jlbOpcOpcoes;
+	private Celular celularCadastrar;
+	private Cliente clienteCadastrar;
+	private Vendedor vendedorCadastrar;
 	
 	public TelaCadastraVenda() {
 		tela = getContentPane();
@@ -203,12 +209,16 @@ public class TelaCadastraVenda extends JInternalFrame implements ActionListener,
 		jpnCliInfo.add(jtfUsuCpf);	
 		
 	}
-	
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		
-	}
 
+	public void popularCelular(Celular celular){
+		celularCadastrar = celular;
+		celularCadastrar.set_id(celular.get_id());
+		jtfCelImei.setText(celular.getIMEI());
+		jtfCelModelo.setText(celular.getModelo());
+		jtfCelEmpresa.setText(celular.getEmpresa());
+		jtfCelValor.setText(celular.getValor().toString());
+	}
+	
 	@Override
 	public void keyPressed(KeyEvent e) {
 		
@@ -222,6 +232,13 @@ public class TelaCadastraVenda extends JInternalFrame implements ActionListener,
 	@Override
 	public void keyTyped(KeyEvent e) {
 		
+	}
+	
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if(e.getSource() == jbtProCelular){
+			TelaInicial.getTlInicial().getTlSelecionarCelular().setVisible(true);
+		}
 	}
 	
 	public static void main(String[] args) {
