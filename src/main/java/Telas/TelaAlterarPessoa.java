@@ -264,7 +264,7 @@ public class TelaAlterarPessoa extends JFrame implements ActionListener, KeyList
 				//altera cliente
 				//alterarCliente();
 				GenericDAO dao = new GenericDAO();
-				dao.alterar(clienteAlterar.getPessoa(), "telefoneCelular", jtfCadCelular.getText());
+				dao.alterar(clienteAlterar.getPessoa(), "pessoa.telefoneCelular", jtfCadCelular.getText());
 				System.out.println("alterou?");
 			}
 			if(jrbVendedor.isSelected()){

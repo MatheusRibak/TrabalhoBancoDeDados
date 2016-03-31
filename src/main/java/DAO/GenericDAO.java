@@ -40,6 +40,10 @@ public class GenericDAO<T> {
 	public void alterar(Object objeto, String campo, String consulta){
 		MongoCollection collection = jongo.getCollection(objeto.getClass().getName());
 		collection.update("{"+campo+":'"+consulta+"'}").with(objeto);
+		
+		/*
+		 * IFNOTANSWERMAKESEARCHALL-REMOVE-ADDAGAIN
+		 */
 	}
 
 	public void excluir(Class entidade){

@@ -37,6 +37,16 @@ public class CriaLabel {
 		return label;
 	}
 	
+	public JLabel criarParaPanelLogin(String texto, Integer col, Integer lin, Integer lar, Integer alt, JLabel label, Container container) {
+		label = new JLabel(texto.toUpperCase(), SwingConstants.CENTER);
+		label.setFont(new Font("ARIAL", Font.PLAIN, 14));
+		label.setForeground(Color.BLACK);
+		label.setBounds(col, lin, lar, alt);
+		label.setVisible(true);
+		container.add(label);
+		return label;
+	}
+	
 	public JLabel criarTitulo(String texto, JLabel label, Container container) {
 		label = new JLabel(texto.toUpperCase(), SwingConstants.CENTER);
 		label.setFont(new Font("ARIAL", Font.PLAIN, 18));
