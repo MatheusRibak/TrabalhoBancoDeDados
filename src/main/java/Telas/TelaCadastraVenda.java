@@ -2,6 +2,7 @@ package Telas;
 
 import java.awt.Color;
 import java.awt.Container;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -35,14 +36,15 @@ public class TelaCadastraVenda extends JFrame implements ActionListener, KeyList
 				jtfCelImei, jtfCelModelo, jtfCelEmpresa, jtfCelValor,
 				jtfCliNome, jtfCliRg, jtfCliCpf, jtfCliCidade,
 				jtfUsuNome, jtfUsuLogin, jtfUsuRg, jtfUsuCpf;
-	private JButton jbtProCelular, jbtProCliente, jbtProVendedor;
+	private JButton jbtProCelular, jbtProCliente, jbtProVendedor, jbtLimpar, jbtSalvar, jbtCancelar;
 	private JButton jbtInfoData;
 	private CriaLabel cl = new CriaLabel();
 	private CriaField cf = new CriaField();
 	private CriaButton cb = new CriaButton();
 	private CriaPanel cp = new CriaPanel();
-	private JPanel jpnCadEssencial, jpnCelInfo, jpnCliInfo;
+	private JPanel jpnCadEssencial, jpnCelInfo, jpnCliInfo, jpnOpcoes;
 	private static String titulo = "Cadastro de venda";
+	private JLabel jlbOpcOpcoes;
 	
 	public TelaCadastraVenda() {
 		tela = getContentPane();
@@ -53,8 +55,19 @@ public class TelaCadastraVenda extends JFrame implements ActionListener, KeyList
 		
 		criarCamposCadastrado();
 		
+		jlbOpcOpcoes = cl.criarParaPanelCenter("Opções", 360, 5, 80, 24, jlbOpcOpcoes, tela);
+		jbtLimpar = cb.criarBotao("Limpar", 600, 33, 100, 24, jbtLimpar, tela, this);
+		jbtSalvar = cb.criarBotao("Salvar", 300, 33, 100, 24, jbtSalvar, tela, this);
+		jbtCancelar = cb.criarBotao("Cancelar", 400, 33, 100, 24, jbtCancelar, tela, this);
+	
+		jpnOpcoes = cp.criarPanelSemTitulo(0, 350, 788, 90, jpnOpcoes, true, tela);
+		jpnOpcoes.add(jlbOpcOpcoes);
+		jpnOpcoes.add(jbtLimpar);
+		jpnOpcoes.add(jbtSalvar);
+		jpnOpcoes.add(jbtCancelar);
+		
 		tela.setBackground(Color.white);
-		setSize(800, 495);
+		setSize(800, 470);
 		setResizable(false);
 		setVisible(true);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
