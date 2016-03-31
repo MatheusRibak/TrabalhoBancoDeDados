@@ -317,6 +317,7 @@ public class TelaAlterarPessoa extends JInternalFrame implements ActionListener,
 	
 	public void popularCliente(Cliente cliente){
 		clienteAlterar = cliente;
+		clienteAlterar.set_id(cliente.get_id());
 		jpnCadUnica.setBounds(0, 322, 800, 80);
 		jpnOpcoes.setBounds(0, 400, 800, 90);
 		
@@ -469,7 +470,8 @@ public class TelaAlterarPessoa extends JInternalFrame implements ActionListener,
 				if(todosPreenchidos){
 					alterarCliente();
 					GenericDAO dao = new GenericDAO();
-					dao.alterar(clienteAlterar.getPessoa(), "pessoa.telefoneCelular", jtfCadCelular.getText());
+					//dao.alterar(clienteAlterar.getPessoa(), "pessoa.telefoneCelular", jtfCadCelular.getText());
+					dao.alterar(clienteAlterar, clienteAlterar.get_id());
 					EscolheMensagem escMensagem = new EscolheMensagem();
 					escMensagem.mensagemSucesso("alterar_cliente");
 				}else{
@@ -510,7 +512,7 @@ public class TelaAlterarPessoa extends JInternalFrame implements ActionListener,
 				if((todosPreenchidos) && (valorSalarioCorreto) && (valorComissaoCorretor)){
 					usuarioAlterar();
 					GenericDAO dao = new GenericDAO();
-					dao.alterar(clienteAlterar.getPessoa(), "pessoa.telefoneCelular", jtfCadCelular.getText());
+					//dao.alterar(clienteAlterar.getPessoa(), "pessoa.telefoneCelular", jtfCadCelular.getText());
 					EscolheMensagem escMensagem = new EscolheMensagem();
 					escMensagem.mensagemSucesso("alterar_vendedor");
 				}else{
