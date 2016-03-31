@@ -28,16 +28,18 @@ public class TelaCadastraVenda extends JFrame implements ActionListener, KeyList
 	private static final long serialVersionUID = 6196565311877436918L;
 	private Container tela;
 	private JLabel jlbTituloFrame, jlbCadData, jlbCadCliente, jlbCadVendedor, jlbCadCelular,
-				jlbCelImei, jlbCelModelo, jlbCelEmpresa, jlbCelValor;
+				jlbCelImei, jlbCelModelo, jlbCelEmpresa, jlbCelValor,
+				jlbCliNome, jlbCliRG, jlbCliCpf, jlbCliCidade;
 	private JTextField jtfCadData, jtfCadCliente, jtfCadVendedor, jtfCadCelular,
-				jtfCelImei, jtfCelModelo, jtfCelEmpresa, jtfCelValor;
+				jtfCelImei, jtfCelModelo, jtfCelEmpresa, jtfCelValor,
+				jtfCliNome, jtfCliRg, jtfCliCpf, jtfCliCidade;
 	private JButton jbtProCelular, jbtProCliente, jbtProVendedor;
 	private JButton jbtInfoData;
 	private CriaLabel cl = new CriaLabel();
 	private CriaField cf = new CriaField();
 	private CriaButton cb = new CriaButton();
 	private CriaPanel cp = new CriaPanel();
-	private JPanel jpnCadEssencial, jpnCelInfo;
+	private JPanel jpnCadEssencial, jpnCelInfo, jpnCliInfo;
 	private static String titulo = "Cadastro de venda";
 	
 	public TelaCadastraVenda() {
@@ -128,29 +130,53 @@ public class TelaCadastraVenda extends JFrame implements ActionListener, KeyList
 		jpnCelInfo.add(jtfCelEmpresa);	
 		jpnCelInfo.add(jtfCelValor);	
 		
+		jlbCliNome = cl.criarLabelParaPanel("Nome:", 15, 25, 80, 24, jlbCliNome, tela);
+		jlbCliRG = cl.criarLabelParaPanel("RG:", 220, 25, 80, 24, jlbCliRG, tela);
+		jlbCliCpf = cl.criarLabelParaPanel("CPF:", 410, 25, 80, 24, jlbCliCpf, tela);
+		jlbCliCidade = cl.criarLabelParaPanel("Cidade:", 585, 25, 80, 24, jlbCliCidade, tela);
+		
+		jtfCliNome = cf.criarTextField(100, 25, 160, 24, jtfCliNome, tela, this);
+		jtfCliNome.setText("Selecione o cliente.");
+		jtfCliNome.setEnabled(false);
+		jtfCliRg= cf.criarTextField(305, 25, 100, 24, jtfCliRg, tela, this);
+		jtfCliRg.setText("Selecione o cliente.");
+		jtfCliRg.setEnabled(false);
+		jtfCliCpf = cf.criarTextField(495, 25, 100, 24, jtfCliCpf, tela, this);
+		jtfCliCpf.setText("Selecione o cliente.");
+		jtfCliCpf.setEnabled(false);
+		jtfCliCidade = cf.criarTextField(670, 25, 98, 24, jtfCliCidade, tela, this);
+		jtfCliCidade.setText("Selecione o cliente.");
+		jtfCliCidade.setEnabled(false);
+		
+		jpnCliInfo = cp.criarPanel("Informações do cliente", 0, 220, 788, 65, jpnCliInfo, true, tela);
+		jpnCliInfo.add(jlbCliNome);
+		jpnCliInfo.add(jlbCliRG);	
+		jpnCliInfo.add(jlbCliCpf);
+		jpnCliInfo.add(jlbCliCidade);
+		jpnCliInfo.add(jtfCliNome);
+		jpnCliInfo.add(jtfCliRg);	
+		jpnCliInfo.add(jtfCliCpf);	
+		jpnCliInfo.add(jtfCliCidade);	
+		
 	}
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void keyReleased(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void keyTyped(KeyEvent e) {
-		// TODO Auto-generated method stub
 		
 	}
 	
