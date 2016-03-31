@@ -41,40 +41,8 @@ public class TelaLogin extends JFrame implements ActionListener, KeyListener{
 	
 	public TelaLogin() {
 		Container tela = getContentPane();
-		setTitle("Celulares - Login");
+		setTitle("M&M Celulares - Tela de login");
 		setLayout(null);
-
-		/* LOGIN LADO A LADO
-		jlbIcon = cl.criarParaPanelLogin("", 21, 21, 64, 64, jlbIcon, tela);
-		jlbIcon.setIcon(new ImageIcon(TelaLogin.class.getClass().getResource("/resource/social.png")));
-		
-		jlblogin = cl.criarParaPanelLogin("Login:", 125, 15, 100, 24, jlblogin, tela);
-		jlblogin.setOpaque(true);
-		jlblogin.setBackground(Color.white);
-		jlblogin.setForeground(Color.black);
-		jlbsenha = cl.criarParaPanelLogin("Senha:", 125, 40, 100, 24, jlbsenha, tela);
-		jlbsenha.setOpaque(true);
-		jlbsenha.setBackground(Color.white);
-		jlbsenha.setForeground(Color.black);
-		jtflogin = cf.criarTextField(225, 15, 100, 24, jtflogin, tela, this);
-		jtfSenha = cf.criarPasswordField(225, 40, 100, 24, jtfSenha, tela);
-		btnlogin = cb.criarBotao("Entrar", 250, 65, 75, 24, btnlogin, tela, this);
-		
-		jpnLogin = new JPanel();
-		jpnLogin.setLayout(null);
-		jpnLogin.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
-		//jpnLogin.setBackground(new Color(0,0,0,0));
-		jpnLogin.setBounds(200, 200, 450, 105);
-		jpnLogin.setVisible(true);
-		tela.add(jpnLogin);
-
-		jpnLogin.add(jlbIcon);
-		jpnLogin.add(jlblogin);
-		jpnLogin.add(jlbsenha);
-		jpnLogin.add(jtflogin);
-		jpnLogin.add(jtfSenha);
-		jpnLogin.add(btnlogin);
-		*/
 		
 		jlbIcon = cl.criarParaPanelLogin("", 193, 21, 64, 64, jlbIcon, tela);
 		jlbIcon.setIcon(new ImageIcon(TelaLogin.class.getClass().getResource("/resource/social.png")));
@@ -96,11 +64,9 @@ public class TelaLogin extends JFrame implements ActionListener, KeyListener{
 		jpnLogin = new JPanel();
 		jpnLogin.setLayout(null);
 		jpnLogin.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
-		//jpnLogin.setBorder(BorderFactory.createCompoundBorder(new EtchedBorder(), new LineBorder(Color.white)));
 		jpnLogin.setBackground(Color.white);
 		jpnLogin.setBounds(10, 10, 450, 300);
 		jpnLogin.setVisible(true);
-		//tela.add(jpnLogin);
 
 		jpnLogin.add(jlbIcon);
 		jpnLogin.add(jlblogin);
@@ -131,19 +97,16 @@ public class TelaLogin extends JFrame implements ActionListener, KeyListener{
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void keyReleased(KeyEvent e) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void keyTyped(KeyEvent e) {
-		// TODO Auto-generated method stub
 		
 	}
 
@@ -164,7 +127,7 @@ public class TelaLogin extends JFrame implements ActionListener, KeyListener{
 			}
 			
 			if (usuarioCorreto) {
-				TelaInicial tlInicial = new TelaInicial();
+				TelaInicial.getTlInicial();
 				this.dispose();
 			}else{
 				JOptionPane.showMessageDialog(null, "Usuário ou senha incorretos!", "Falha para autenticar", JOptionPane.WARNING_MESSAGE);

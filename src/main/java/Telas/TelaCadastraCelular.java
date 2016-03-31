@@ -46,14 +46,14 @@ public class TelaCadastraCelular extends JInternalFrame implements ActionListene
 	private Container tela;
 	private JComboBox<String> jcbPossuiTV;
 	private JButton jbtInfCadValor, jbtSalvar, jbtLimpar, jbtCancelar;
-	private static String titulo = "Cadastro de Celular";
+	private static String titulo = "Cadastro de celular";
 	private ArrayList<JTextField> jtfsObrig, jtfsVazio;
 	private Map<JTextField, String> descricao;
 	private Double valor;
 	
 	public TelaCadastraCelular() {
 		tela = getContentPane();
-		setTitle("Celulares - Cadastro de Celular");
+		setTitle("M&M Celulares - Cadastro de Celular");
 		setLayout(null);
 
 		jlbTituloFrame = cl.criarTitulo(titulo, jlbTituloFrame, tela);

@@ -51,7 +51,7 @@ public class TelaAlterarCelular extends JInternalFrame implements ActionListener
 	private Container tela;
 	private JComboBox<String> jcbPossuiTV;
 	private JButton jbtInfCadValor, jbtSalvar, jbtLimpar, jbtCancelar;
-	private static String titulo = "Alteração de Celular";
+	private static String titulo = "Alterar celular";
 	private ArrayList<JTextField> jtfsObrig, jtfsVazio;
 	private Map<JTextField, String> descricao;
 	private Double valor;
@@ -59,7 +59,7 @@ public class TelaAlterarCelular extends JInternalFrame implements ActionListener
 	
 	public TelaAlterarCelular() {
 		tela = getContentPane();
-		setTitle("Celulares - Alteração de Celular");
+		setTitle("M&M Celulares - Alterar de celular");
 		setLayout(null);
 
 		jlbTituloFrame = cl.criarTitulo(titulo, jlbTituloFrame, tela);
@@ -82,7 +82,6 @@ public class TelaAlterarCelular extends JInternalFrame implements ActionListener
 		setResizable(false);
 		setVisible(true);
 		setClosable(true);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 	
 	private void limparCampos(){

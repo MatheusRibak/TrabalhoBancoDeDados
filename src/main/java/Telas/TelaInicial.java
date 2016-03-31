@@ -45,9 +45,16 @@ public class TelaInicial extends JFrame implements ActionListener{
 	private ArrayList<JInternalFrame> listaInternalFrame = new ArrayList<>();
 	private GenericDAO dao = new GenericDAO();
 
+	public static TelaInicial getTlInicial(){
+		if(tlInicial == null){
+			tlInicial = new TelaInicial();
+		}
+		return tlInicial;
+	}
+	
 	public TelaInicial() {
 		tela = getContentPane();
-		setTitle("Celulares - Inicial");
+		setTitle("M&M Celulares - Tela inicial");
 		setLayout(null);
 
 		criarBarra();
@@ -71,18 +78,12 @@ public class TelaInicial extends JFrame implements ActionListener{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 	
-	public static TelaInicial getTlInicial(){
-		if(tlInicial == null){
-			tlInicial = new TelaInicial();
-		}
-		return tlInicial;
-	}
-	
 	private void posicionaFrames(List<JInternalFrame> frames) {
 		for (JInternalFrame fr : frames) {
 			fr.setLocation((super.getWidth() / 2) - fr.getWidth() / 2,
 					((super.getHeight() / 2) - fr.getHeight() / 2) - 50);
 			getContentPane().add(fr);
+			fr.setClosable(true);
 			fr.setVisible(false);
 		}
 	}

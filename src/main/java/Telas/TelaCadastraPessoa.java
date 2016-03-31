@@ -59,7 +59,7 @@ public class TelaCadastraPessoa extends JInternalFrame implements ActionListener
 	private ButtonGroup btnProGrupo;
 	private JRadioButton jrbCliente, jrbVendedor;
 	private Container tela;
-	private static String titulo = "Cadastro Pessoa Física | ";
+	private static String titulo = "Cadastro pessoa física | ";
 	private ArrayList<JTextField> jtfsObrig, jtfsVazio;
 	private Map<JTextField, String> descricao;
 	private Date dataNascVerificar = null;
@@ -67,7 +67,7 @@ public class TelaCadastraPessoa extends JInternalFrame implements ActionListener
 	
 	public TelaCadastraPessoa() {
 		tela = getContentPane();
-		setTitle("Celulares - Cadastro Pessoa Física");
+		setTitle("M&M Celulares - Cadastro pessoa física");
 		setLayout(null);
 
 		jlbTituloFrame = cl.criarTitulo(titulo + "CLIENTE", jlbTituloFrame, tela);
@@ -90,7 +90,6 @@ public class TelaCadastraPessoa extends JInternalFrame implements ActionListener
 		setResizable(false);
 		setVisible(true);
 		setClosable(true);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 
 	private void criarCamposCadastrado() {

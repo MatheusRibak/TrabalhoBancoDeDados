@@ -55,7 +55,7 @@ public class TelaAlterarPessoa extends JInternalFrame implements ActionListener,
 	private ButtonGroup btnProGrupo;
 	private JRadioButton jrbCliente, jrbVendedor;
 	private Container tela;
-	private static String titulo = "Alterar Pessoa Física | ";
+	private static String titulo = "Alterar pessoa física | ";
 	private ArrayList<JTextField> jtfsObrig, jtfsVazio;
 	private Map<JTextField, String> descricao;
 	private Date dataNascVerificar = null;
@@ -66,7 +66,7 @@ public class TelaAlterarPessoa extends JInternalFrame implements ActionListener,
 
 	public TelaAlterarPessoa() {
 		tela = getContentPane();
-		setTitle("Celulares - Alteração de Pessoa Física");
+		setTitle("M&M Celulares - Alterar pessoa física");
 		setLayout(null);
 
 		jlbTituloFrame = cl.criarTitulo(titulo + "CLIENTE", jlbTituloFrame, tela);
@@ -89,7 +89,6 @@ public class TelaAlterarPessoa extends JInternalFrame implements ActionListener,
 		setResizable(false);
 		setVisible(true);
 		setClosable(true);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 
 	private void criarCamposCadastrado() {

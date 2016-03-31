@@ -16,10 +16,10 @@ public class Usuario {
 	
 	public final static String NOME_COLLECTION = Usuario.class.getSimpleName()
 			.toLowerCase();
-	private ObjectId _id;
 	private String login;
 	private String senha;
 	private Integer nivelAcesso; // nível = 1 (Vendedor) = 2 (Gestor)
 	private Vendedor vendedor;
+	private ObjectId _id;
 
 }

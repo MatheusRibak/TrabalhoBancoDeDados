@@ -21,9 +21,11 @@ import javax.swing.table.DefaultTableModel;
 
 import Model.Celular;
 import Model.Cliente;
+import Model.Usuario;
 import metodos.ListarCelular;
 import metodos.ProcurarCelular;
 import metodos.ProcurarCliente;
+import metodos.ProcurarUsuario;
 import Componentes.CriaButton;
 import Componentes.CriaField;
 import Componentes.CriaLabel;
@@ -45,11 +47,11 @@ public class TelaProcurarCelular extends JInternalFrame implements ActionListene
 	private Container tela;
 	private JTable jtbCelulares;
 	private DefaultTableModel dtmCelulares = new DefaultTableModel();
-	private static String titulo = "Procurar por Celular";
+	private static String titulo = "Procurar por celular";
 	
 	public TelaProcurarCelular() {
 		tela = getContentPane();
-		setTitle("Celulares - Procurar celular");
+		setTitle("M&M Celulares - Procurar celular");
 		setLayout(null);
 		
 		jlbTituloFrame = cl.criarTitulo(titulo, jlbTituloFrame, tela);
@@ -62,7 +64,6 @@ public class TelaProcurarCelular extends JInternalFrame implements ActionListene
 		setResizable(false);
 		setVisible(true);
 		setClosable(true);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 	
 	private void criarOpcoesResultado() {
@@ -160,7 +161,17 @@ public class TelaProcurarCelular extends JInternalFrame implements ActionListene
 			TelaInicial.getTlInicial().getTlAlterarCelular().popularCampos(celular);
 			TelaInicial.getTlInicial().getTlProcurarCelular().setVisible(false);
 		}
-		
+		if(evt.getSource() == jbtExcluir){
+			String id = String.valueOf(dtmCelulares.getValueAt(jtbCelulares.getSelectedRow(), 0));
+			ProcurarCelular pc = new ProcurarCelular();
+			Celular celular = pc.procurar(id);
+			Object objetoCelular = celular;
+			TelaInicial.getTlInicial().getDao().getDao().remove(objetoCelular, celular.get_id());
+		}
+		if(evt.getSource() == jbtNovo){
+			TelaInicial.getTlInicial().esconderTelas();
+			TelaInicial.getTlInicial().getTlCadastraCelular().setVisible(true);
+		}
 	}
 
 	public static void main(String[] args) {

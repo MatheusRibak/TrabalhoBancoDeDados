@@ -13,7 +13,7 @@ public class ProcurarUsuario {
 		ArrayList<Usuario> usuarios = dao.getDao().listaQualquer(Usuario.class);
 		Usuario usuarioRetorno = null;
 		for(Usuario usuario:usuarios){
-			if(usuario.get_id().equals(id)){
+			if(usuario.get_id().toString().equals(id)){
 				usuarioRetorno = usuario; 
 			}
 		}

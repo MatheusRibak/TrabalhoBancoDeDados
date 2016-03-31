@@ -33,7 +33,6 @@ import Componentes.CriaPanel;
 import Componentes.CriaRadioButton;
 import Componentes.CriaTabela;
 import Componentes.FieldEmUpper;
-import DAO.GenericDAO;
 import Model.Cliente;
 import Model.Usuario;
 
@@ -56,13 +55,14 @@ public class TelaProcuraPessoa extends JInternalFrame implements ActionListener,
 	private Container tela;
 	private JTable jtbPessoas = new JTable();
 	private DefaultTableModel dtmPessoas = new DefaultTableModel();
+	private static String titulo = "Procurar por pessoa";
 	
 	public TelaProcuraPessoa() {
 		tela = getContentPane();
-		setTitle("Celulares - Procurar pessoa");
+		setTitle("M&M Celulares - Procurar pessoa");
 		setLayout(null);
 		
-		jlbTituloFrame = cl.criarTitulo("Procurar por pessoa", jlbTituloFrame, tela);
+		jlbTituloFrame = cl.criarTitulo(titulo, jlbTituloFrame, tela);
 		criarCamposBusca();
 		criarTabela();
 		criarOpcoesResultado();
@@ -79,7 +79,6 @@ public class TelaProcuraPessoa extends JInternalFrame implements ActionListener,
 		setResizable(false);
 		setVisible(true);
 		setClosable(true);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 	
 	private void criarOpcoesResultado() {
@@ -178,6 +177,10 @@ public class TelaProcuraPessoa extends JInternalFrame implements ActionListener,
 			ListarPessoa lp = new ListarPessoa();
 			lp.listar(dtmPessoas, jtfProNome.getText(), jtfProRG.getText());	
 		}
+		if(evt.getSource() == jbtNovo){
+			TelaInicial.getTlInicial().esconderTelas();
+			TelaInicial.getTlInicial().getTlCadastrarPessoa().setVisible(true);
+		}
 		if(evt.getSource() == jbtAlterar){
 			String id = String.valueOf(dtmPessoas.getValueAt(jtbPessoas.getSelectedRow(), 0));
 			String tipo = String.valueOf(dtmPessoas.getValueAt(jtbPessoas.getSelectedRow(), 4));
@@ -204,18 +207,21 @@ public class TelaProcuraPessoa extends JInternalFrame implements ActionListener,
 		if(evt.getSource() == jbtExcluir){
 			String id = String.valueOf(dtmPessoas.getValueAt(jtbPessoas.getSelectedRow(), 0));
 			String tipo = String.valueOf(dtmPessoas.getValueAt(jtbPessoas.getSelectedRow(), 4));
+			ListarPessoa lp = new ListarPessoa();
 			switch (tipo) {
 			case "CLIENTE":
 				ProcurarCliente pc = new ProcurarCliente();
 				Cliente cliente = pc.procurar(id);
 				Object objetoCliente = cliente;
 				TelaInicial.getTlInicial().getDao().getDao().remove(objetoCliente, cliente.get_id());
+				lp.listar(dtmPessoas, jtfProNome.getText(), jtfProRG.getText());	
 				break;
 			case "VENDEDOR":
 				ProcurarUsuario pu = new ProcurarUsuario();
 				Usuario usuario = pu.procurar(id);
 				Object objetoUsuario = usuario;
 				TelaInicial.getTlInicial().getDao().getDao().remove(objetoUsuario, usuario.get_id());
+				lp.listar(dtmPessoas, jtfProNome.getText(), jtfProRG.getText());	
 				break;
 			default:
 				break;

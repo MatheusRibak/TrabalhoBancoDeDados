@@ -41,12 +41,12 @@ public class TelaProcurarVenda extends JFrame implements ActionListener, KeyList
 	private Container tela;
 	private JTable jtbCelulares;
 	private DefaultTableModel dtmCelulares = new DefaultTableModel();
-	private static String titulo = "Procurar por Venda";
+	private static String titulo = "Procurar por venda";
 	private JButton jbtInfData;
 	
 	public TelaProcurarVenda() {
 		tela = getContentPane();
-		setTitle("Celulares - Procurar venda");
+		setTitle("M&M Celulares - Procurar venda");
 		setLayout(null);
 		
 		jlbTituloFrame = cl.criarTitulo(titulo, jlbTituloFrame, tela);
