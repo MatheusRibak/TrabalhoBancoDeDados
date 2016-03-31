@@ -12,12 +12,11 @@ import java.util.Map;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.JFrame;
+import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.text.StyledEditorKit.BoldAction;
 
 import utilitarios.EscolheMensagem;
 import metodos.CadastroCelular;
@@ -29,7 +28,8 @@ import Componentes.CriaLabel;
 import Componentes.CriaPanel;
 import Componentes.FieldEmUpper;
 
-public class TelaCadastraCelular extends JFrame implements ActionListener, KeyListener{
+public class TelaCadastraCelular extends JInternalFrame implements ActionListener, KeyListener{
+	private static final long serialVersionUID = 3783256735809599593L;
 	private CriaLabel cl = new CriaLabel();
 	private CriaPanel cp = new CriaPanel();
 	private CriaField cf = new CriaField();
@@ -75,8 +75,7 @@ public class TelaCadastraCelular extends JFrame implements ActionListener, KeyLi
 		setSize(800, 495);
 		setResizable(false);
 		setVisible(true);
-		setLocationRelativeTo(null);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setClosable(true);
 	}
 	
 	private void criarCamposCadastrado() {
@@ -169,71 +168,6 @@ public class TelaCadastraCelular extends JFrame implements ActionListener, KeyLi
 		jpnCadAdj.add(jcbPossuiTV);
 		jpnCadAdj.add(jbtInfCadValor);
 	}
-
-	public static void main(String[] args) {
-		new TelaCadastraCelular();
-	}
-	
-	@Override
-	public void keyPressed(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void keyReleased(KeyEvent e) {
-		if(e.getComponent() == jtfCadDescricao){
-			if(e.getSource() == jtfCadDescricao){
-				fu.transformar(jtfCadDescricao);
-			}
-		}
-		if(e.getComponent() == jtfCadCameraFrontal){
-			if(e.getSource() == jtfCadCameraFrontal){
-				fu.transformar(jtfCadCameraFrontal);
-			}
-		}
-		if(e.getComponent() == jtfCadCameraTraseira){
-			if(e.getSource() == jtfCadCameraTraseira){
-				fu.transformar(jtfCadCameraTraseira);
-			}
-		}
-		if(e.getComponent() == jtfCadMemInt){
-			if(e.getSource() == jtfCadMemInt){
-				fu.transformar(jtfCadMemInt);
-			}
-		}
-		if(e.getComponent() == jtfCadMemRam){
-			if(e.getSource() == jtfCadMemRam){
-				fu.transformar(jtfCadMemRam);
-			}
-		}
-		if(e.getComponent() == jtfCadGarantia){
-			if(e.getSource() == jtfCadGarantia){
-				fu.transformar(jtfCadGarantia);
-			}
-		}
-		
-		
-	}
-
-	@Override
-	public void keyTyped(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		if(e.getSource() == jbtSalvar){
-			verificaCadastroCelular();
-		}
-		if(e.getSource() == jbtCancelar){
-			this.dispose();
-		}
-		if(e.getSource() == jbtLimpar){
-			limparCampos();
-		}
-	}
 	
 	private void camposObrigatoriosPadrao(){
 		jtfsObrig = new ArrayList<JTextField>();
@@ -323,6 +257,67 @@ public class TelaCadastraCelular extends JFrame implements ActionListener, KeyLi
 		jtfCadGarantia.setText("");
 		jtfCadValor.setText("");
 		jcbPossuiTV.setSelectedIndex(0);
+	}
+	
+	@Override
+	public void keyPressed(KeyEvent e) {
+		
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		if(e.getComponent() == jtfCadDescricao){
+			if(e.getSource() == jtfCadDescricao){
+				fu.transformar(jtfCadDescricao);
+			}
+		}
+		if(e.getComponent() == jtfCadCameraFrontal){
+			if(e.getSource() == jtfCadCameraFrontal){
+				fu.transformar(jtfCadCameraFrontal);
+			}
+		}
+		if(e.getComponent() == jtfCadCameraTraseira){
+			if(e.getSource() == jtfCadCameraTraseira){
+				fu.transformar(jtfCadCameraTraseira);
+			}
+		}
+		if(e.getComponent() == jtfCadMemInt){
+			if(e.getSource() == jtfCadMemInt){
+				fu.transformar(jtfCadMemInt);
+			}
+		}
+		if(e.getComponent() == jtfCadMemRam){
+			if(e.getSource() == jtfCadMemRam){
+				fu.transformar(jtfCadMemRam);
+			}
+		}
+		if(e.getComponent() == jtfCadGarantia){
+			if(e.getSource() == jtfCadGarantia){
+				fu.transformar(jtfCadGarantia);
+			}
+		}
+	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+		
+	}
+	
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if(e.getSource() == jbtSalvar){
+			verificaCadastroCelular();
+		}
+		if(e.getSource() == jbtCancelar){
+			this.dispose();
+		}
+		if(e.getSource() == jbtLimpar){
+			limparCampos();
+		}
+	}
+	
+	public static void main(String[] args) {
+		new TelaCadastraCelular();
 	}
 	
 }
