@@ -1,5 +1,7 @@
 package Model;
 
+import org.jongo.marshall.jackson.oid.MongoObjectId;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,6 +15,8 @@ public class Celular {
 
 	public final static String NOME_COLLECTION = Celular.class.getSimpleName()
 			.toLowerCase();
+	@MongoObjectId
+	private String _id;
 	private String modelo; // Exemplos: Nokia xxx, iPhone5s, Sansung s7
 	private String empresa; //Nokia, Apple, entre outros. 
 	private String descricao;

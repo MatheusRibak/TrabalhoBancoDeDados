@@ -23,6 +23,11 @@ public class MensagemSucesso {
 		CORPO_MENSAGEM = "Cliente alterado com sucesso!";
 		exibeMensagem(CORPO_MENSAGEM);
 	}
+	
+	public void sucessoAlterarVendedor() {
+		CORPO_MENSAGEM = "Vendedor alterado com sucesso!";
+		exibeMensagem(CORPO_MENSAGEM);
+	}
 
 	private void exibeMensagem(String CORPO_MENSAGEM) {
 		JOptionPane.showMessageDialog(null, CORPO_MENSAGEM, TITULO_MENSAGEM,

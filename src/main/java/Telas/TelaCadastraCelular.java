@@ -309,10 +309,14 @@ public class TelaCadastraCelular extends JInternalFrame implements ActionListene
 			verificaCadastroCelular();
 		}
 		if(e.getSource() == jbtCancelar){
+			limparCampos();
 			this.dispose();
 		}
 		if(e.getSource() == jbtLimpar){
-			limparCampos();
+			int confirmacao = JOptionPane.showConfirmDialog(null, "Deseja realmente limpar todos os campos do formulário?", "Confirmação", JOptionPane.WARNING_MESSAGE);
+			if(confirmacao == 0){
+				limparCampos();
+			}
 		}
 	}
 	

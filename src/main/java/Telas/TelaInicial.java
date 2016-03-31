@@ -35,6 +35,9 @@ public class TelaInicial extends JFrame implements ActionListener{
 	private JMenuItem jmiProCelular, jmiProVenda, jmiProPessoa;
 	private Container tela;
 	private static TelaInicial tlInicial;
+	private TelaCadastraPessoa tlCadastrarPessoa = new TelaCadastraPessoa();
+	private TelaProcuraPessoa tlProcurarPessoa = new TelaProcuraPessoa();
+	private TelaAlterarPessoa tlAlterarPessoa = new TelaAlterarPessoa();
 	private TelaCadastraCelular tlCadastraCelular = new TelaCadastraCelular();
 	private ArrayList<JInternalFrame> listaInternalFrame = new ArrayList<>();
 
@@ -45,6 +48,9 @@ public class TelaInicial extends JFrame implements ActionListener{
 
 		criarBarra();
 		
+		listaInternalFrame.add(tlCadastrarPessoa);
+		listaInternalFrame.add(tlProcurarPessoa);
+		listaInternalFrame.add(tlAlterarPessoa);
 		listaInternalFrame.add(tlCadastraCelular);
 		
 		posicionaFrames(listaInternalFrame);
@@ -82,19 +88,24 @@ public class TelaInicial extends JFrame implements ActionListener{
 
 	private void criarBarra() {
 		jmnCadastro = new JMenu("Cadastro |");
-		jmiCadPessoa = cm.criarMenuItem(jmiCadPessoa, "Pessoa física", jmnCadastro, this);
+		jmiCadPessoa = cm.criarMenuItem(jmiCadPessoa, "Pessoa física", jmnCadastro);
+		jmiCadPessoa.addActionListener(this);
 		jmnCadastro.add(new JSeparator());
-		jmiCadCelular = cm.criarMenuItem(jmiCadCelular, "Celular", jmnCadastro, this);
+		jmiCadCelular = cm.criarMenuItem(jmiCadCelular, "Celular", jmnCadastro);
 		jmiCadCelular.addActionListener(this);
 		jmnCadastro.add(new JSeparator());
-		jmiCadVenda = cm.criarMenuItem(jmiCadVenda, "Venda", jmnCadastro, this);
+		jmiCadVenda = cm.criarMenuItem(jmiCadVenda, "Venda", jmnCadastro);
+		jmiCadVenda.addActionListener(this);
 		
 		jmnProcurar = new JMenu("Procurar");
-		jmiProPessoa = cm.criarMenuItem(jmiProPessoa, "Pessoa Física", jmnProcurar, this);
+		jmiProPessoa = cm.criarMenuItem(jmiProPessoa, "Pessoa Física", jmnProcurar);
+		jmiProPessoa.addActionListener(this);
 		jmnProcurar.add(new JSeparator());
-		jmiProCelular = cm.criarMenuItem(jmiProCelular, "Celular", jmnProcurar, this);
+		jmiProCelular = cm.criarMenuItem(jmiProCelular, "Celular", jmnProcurar);
+		jmiProCelular.addActionListener(this);
 		jmnProcurar.add(new JSeparator());
-		jmiProVenda = cm.criarMenuItem(jmiProVenda, "Venda", jmnProcurar, this);
+		jmiProVenda = cm.criarMenuItem(jmiProVenda, "Venda", jmnProcurar);
+		jmiProVenda.addActionListener(this);
 		
 	}
 
@@ -104,7 +115,14 @@ public class TelaInicial extends JFrame implements ActionListener{
 			esconderTelas();
 			tlCadastraCelular.setVisible(true);;
 		}
-		
+		if(e.getSource() == jmiCadPessoa){
+			esconderTelas();
+			tlCadastrarPessoa.setVisible(true);;
+		}	
+		if(e.getSource() == jmiProPessoa){
+			esconderTelas();
+			tlProcurarPessoa.setVisible(true);
+		}
 	}
 	
 	public static void main(String[] args) throws ClassNotFoundException, InstantiationException, 

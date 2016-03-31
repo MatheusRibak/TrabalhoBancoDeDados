@@ -8,27 +8,25 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
 
-import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JRadioButton;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 
+import Model.Cliente;
 import metodos.ListarCelular;
-import metodos.ListarPessoa;
+import metodos.ProcurarCliente;
 import Componentes.CriaButton;
 import Componentes.CriaField;
 import Componentes.CriaLabel;
 import Componentes.CriaPanel;
-import Componentes.CriaRadioButton;
 import Componentes.CriaTabela;
 import Componentes.FieldEmUpper;
-import DAO.GenericDAO;
-import Model.Celular;
 
 public class TelaProcurarCelular extends JFrame implements ActionListener, KeyListener {
 	private static final long serialVersionUID = -9172268853152388303L;
@@ -79,12 +77,23 @@ public class TelaProcurarCelular extends JFrame implements ActionListener, KeyLi
 
 	private void criarTabela() {
 		ArrayList<String> colunas = new ArrayList<String>();
-		//colunas.add("ID");
+		colunas.add("ID");
 		colunas.add("MODELO");
 		colunas.add("EMPRESA");
 		colunas.add("IMEI");
 		
-		dtmCelulares = ct.criarTableImoveis(jtbCelulares, tela, dtmCelulares, colunas, 0, 170, 800, 300);		
+		jtbCelulares = new JTable();
+		tela.add(jtbCelulares);
+		dtmCelulares = new DefaultTableModel();
+		for (String colNome : colunas) {
+			dtmCelulares.addColumn(colNome);
+		}
+		jtbCelulares.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		jtbCelulares.setModel(dtmCelulares);
+		JScrollPane jsp = new JScrollPane(jtbCelulares);
+		jsp.setBounds(0, 170, 800, 300);
+		jsp.setVisible(true);
+		tela.add(jsp);	
 	}
 
 	private void criarCamposBusca() {
@@ -115,22 +124,8 @@ public class TelaProcurarCelular extends JFrame implements ActionListener, KeyLi
 		
 	}
 
-	public static void main(String[] args) {
-		new TelaProcurarCelular();
-	}
-
-	@Override
-	public void actionPerformed(ActionEvent evt) {
-		if(evt.getSource() == jbtProcurar){
-			ListarCelular lc = new ListarCelular();
-			lc.listar(dtmCelulares, jtfProDescricao.getText(), jtfProModelo.getText(), jtfProImei.getText(), jtfProMarca.getText());	
-		}
-		
-	}
-
 	@Override
 	public void keyPressed(KeyEvent e) {
-		// TODO Auto-generated method stub
 		
 	}
 
@@ -148,6 +143,25 @@ public class TelaProcurarCelular extends JFrame implements ActionListener, KeyLi
 	public void keyTyped(KeyEvent e) {
 		
 	}
-
 	
+	@Override
+	public void actionPerformed(ActionEvent evt) {
+		if(evt.getSource() == jbtProcurar){
+			ListarCelular lc = new ListarCelular();
+			lc.listar(dtmCelulares, jtfProDescricao.getText(), jtfProModelo.getText(), jtfProImei.getText(), jtfProMarca.getText());	
+		}
+		if(evt.getSource() == jbtAlterar){
+			String id = String.valueOf(dtmCelulares.getValueAt(jtbCelulares.getSelectedRow(), 0));
+			procurar pc = new ProcurarCliente();
+			Cliente cliente = pc.procurar(id);
+			TelaInicial.getTlInicial().getTlAlterarPessoa().setVisible(true);
+			TelaInicial.getTlInicial().getTlAlterarPessoa().popularCliente(cliente);
+			TelaInicial.getTlInicial().getTlProcurarPessoa().setVisible(false);
+		}
+		
+	}
+
+	public static void main(String[] args) {
+		new TelaProcurarCelular();
+	}
 }

@@ -1,31 +1,24 @@
 package Telas;
 
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.util.ArrayList;
-import java.util.List;
 
 import javax.swing.ButtonGroup;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
-import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.table.DefaultTableModel;
 
 import lombok.Getter;
@@ -40,13 +33,11 @@ import Componentes.CriaPanel;
 import Componentes.CriaRadioButton;
 import Componentes.CriaTabela;
 import Componentes.FieldEmUpper;
-import DAO.GenericDAO;
 import Model.Cliente;
-import Model.Pessoa;
 import Model.Usuario;
 
 @Getter @Setter
-public class TelaProcuraPessoa extends JFrame implements ActionListener, KeyListener{
+public class TelaProcuraPessoa extends JInternalFrame implements ActionListener, KeyListener{
 	private static final long serialVersionUID = -9172268853152388303L;
 	private JLabel jlbTituloFrame, jlbProNome, jlbProRG, jlbProTelefone, jlbProTipo, jlbOpcOpcoes;
 	private JPanel jpnCamposBusca, jpnOpcoes;
@@ -55,7 +46,7 @@ public class TelaProcuraPessoa extends JFrame implements ActionListener, KeyList
 	private CriaField cf = new CriaField();
 	private CriaButton cb = new CriaButton();
 	private CriaTabela ct = new CriaTabela();
-	FieldEmUpper fu = new FieldEmUpper();
+	private FieldEmUpper fu = new FieldEmUpper();
 	private CriaRadioButton crb = new CriaRadioButton();
 	private JTextField jtfProNome, jtfProRG, jtfProTelefone;
 	private JRadioButton jrbCliente, jrbVendedor, jrbTodos;
@@ -64,7 +55,6 @@ public class TelaProcuraPessoa extends JFrame implements ActionListener, KeyList
 	private Container tela;
 	private JTable jtbPessoas = new JTable();
 	private DefaultTableModel dtmPessoas = new DefaultTableModel();
-	private GenericDAO dao = new GenericDAO();
 	
 	public TelaProcuraPessoa() {
 		tela = getContentPane();
@@ -75,9 +65,7 @@ public class TelaProcuraPessoa extends JFrame implements ActionListener, KeyList
 		criarCamposBusca();
 		criarTabela();
 		criarOpcoesResultado();
-		
-		/*jlbProRG.setVisible(false);
-		jtfProRG.setVisible(false);*/
+
 		jlbProTelefone.setVisible(false);
 		jtfProTelefone.setVisible(false);
 		jlbProTipo.setVisible(false);
@@ -89,7 +77,7 @@ public class TelaProcuraPessoa extends JFrame implements ActionListener, KeyList
 		setSize(800, 587);
 		setResizable(false);
 		setVisible(true);
-		setLocationRelativeTo(null);
+		setClosable(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 	
@@ -101,8 +89,7 @@ public class TelaProcuraPessoa extends JFrame implements ActionListener, KeyList
 		jpnOpcoes = cp.criarPanelSemTitulo(0, 470, 800, 90, jpnOpcoes, true, tela);
 		jpnOpcoes.add(jlbOpcOpcoes);
 		jpnOpcoes.add(jbtAlterar);
-		jpnOpcoes.add(jbtExcluir);
-		
+		jpnOpcoes.add(jbtExcluir);	
 	}
 
 	private void criarTabela() {
@@ -124,8 +111,7 @@ public class TelaProcuraPessoa extends JFrame implements ActionListener, KeyList
 		JScrollPane jsp = new JScrollPane(jtbPessoas);
 		jsp.setBounds(0, 170, 800, 300);
 		jsp.setVisible(true);
-		tela.add(jsp);
-			
+		tela.add(jsp);	
 	}
 
 	private void criarCamposBusca() {
@@ -163,50 +149,10 @@ public class TelaProcuraPessoa extends JFrame implements ActionListener, KeyList
 		jpnCamposBusca.add(jrbTodos);
 		jpnCamposBusca.add(jbtNovo);
 		jpnCamposBusca.add(jbtProcurar);
-		
-	}
-
-	public static void main(String[] args) throws ClassNotFoundException, InstantiationException, IllegalAccessException, UnsupportedLookAndFeelException {
-		UIManager.setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");
-		new TelaProcuraPessoa();
-	}
-
-	@Override
-	public void actionPerformed(ActionEvent evt) {
-		if(evt.getSource() == jbtProcurar){
-			ListarPessoa lp = new ListarPessoa();
-			lp.listar(dtmPessoas, jtfProNome.getText(), jtfProRG.getText());	
-		}
-		if(evt.getSource() == jbtAlterar){
-			String id = String.valueOf(dtmPessoas.getValueAt(jtbPessoas.getSelectedRow(), 0));
-			String tipo = String.valueOf(dtmPessoas.getValueAt(jtbPessoas.getSelectedRow(), 4));
-			Object objeto;
-			TelaAlterarPessoa tlAlterar;
-			
-			switch (tipo) {
-			case "CLIENTE":
-				ProcurarCliente pc = new ProcurarCliente();
-				Cliente cliente = pc.procurar(id);
-				tlAlterar = new TelaAlterarPessoa();
-				tlAlterar.popularCliente(cliente);
-				break;
-			case "VENDEDOR":
-				ProcurarUsuario pu = new ProcurarUsuario();
-				Usuario usuario = pu.procurar(id);
-				tlAlterar = new TelaAlterarPessoa();
-				tlAlterar.popularUsuario(usuario);
-				break;
-			default:
-				break;
-			}
-			
-		}
-		
 	}
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-		// TODO Auto-generated method stub
 		
 	}
 
@@ -214,7 +160,7 @@ public class TelaProcuraPessoa extends JFrame implements ActionListener, KeyList
 	public void keyReleased(KeyEvent e) {
 		if(e.getComponent() == jtfProNome){
 			if(e.getSource() == jtfProNome){
-				//fu.transformar(jtfProNome);
+				fu.transformar(jtfProNome);
 			}
 		}
 		
@@ -224,6 +170,40 @@ public class TelaProcuraPessoa extends JFrame implements ActionListener, KeyList
 	public void keyTyped(KeyEvent e) {
 		
 	}
-
 	
+	@Override
+	public void actionPerformed(ActionEvent evt) {
+		if(evt.getSource() == jbtProcurar){
+			ListarPessoa lp = new ListarPessoa();
+			lp.listar(dtmPessoas, jtfProNome.getText(), jtfProRG.getText());	
+		}
+		if(evt.getSource() == jbtAlterar){
+			String id = String.valueOf(dtmPessoas.getValueAt(jtbPessoas.getSelectedRow(), 0));
+			String tipo = String.valueOf(dtmPessoas.getValueAt(jtbPessoas.getSelectedRow(), 4));
+			switch (tipo) {
+			case "CLIENTE":
+				ProcurarCliente pc = new ProcurarCliente();
+				Cliente cliente = pc.procurar(id);
+				TelaInicial.getTlInicial().getTlAlterarPessoa().setVisible(true);
+				TelaInicial.getTlInicial().getTlAlterarPessoa().popularCliente(cliente);
+				TelaInicial.getTlInicial().getTlProcurarPessoa().setVisible(false);
+				break;
+			case "VENDEDOR":
+				ProcurarUsuario pu = new ProcurarUsuario();
+				Usuario usuario = pu.procurar(id);
+				TelaInicial.getTlInicial().getTlAlterarPessoa().setVisible(true);
+				TelaInicial.getTlInicial().getTlAlterarPessoa().popularUsuario(usuario);
+				TelaInicial.getTlInicial().getTlProcurarPessoa().setVisible(false);
+				break;
+			default:
+				break;
+			}
+			
+		}
+		
+	}
+	
+	public static void main(String[] args){
+		new TelaProcuraPessoa();
+	}
 }

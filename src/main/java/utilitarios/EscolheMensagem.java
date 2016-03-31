@@ -24,7 +24,13 @@ public class EscolheMensagem {
 			break;
 		case "cadastro_celular":
 			menSucesso.sucessoCadastrarCelular();
-			break;			
+			break;	
+		case "alterar_cliente":
+			menSucesso.sucessoAlterarCliente();
+			break;	
+		case "alterar_vendedor":
+			menSucesso.sucessoAlterarCliente();
+			break;	
 		default:
 			break;
 		}

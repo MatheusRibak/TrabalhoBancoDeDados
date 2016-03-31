@@ -8,35 +8,38 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
+import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
-import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
 
+import utilitarios.EscolheMensagem;
+import metodos.SubstituiCamposVazios;
+import metodos.VerificaJtfObrigatorios;
 import Componentes.CriaButton;
 import Componentes.CriaField;
 import Componentes.CriaLabel;
 import Componentes.CriaPanel;
 import Componentes.CriaRadioButton;
-import Componentes.FieldEmUpper;
 import DAO.GenericDAO;
 import Model.Cliente;
 import Model.Usuario;
 
-public class TelaAlterarPessoa extends JFrame implements ActionListener, KeyListener{
+public class TelaAlterarPessoa extends JInternalFrame implements ActionListener, KeyListener{
+	private static final long serialVersionUID = 2503016552788031157L;
 	private CriaLabel cl = new CriaLabel();
 	private CriaPanel cp = new CriaPanel();
 	private CriaField cf = new CriaField();
 	private CriaButton cb = new CriaButton();
-	private FieldEmUpper fu = new FieldEmUpper();
 	private CriaRadioButton crb = new CriaRadioButton();
 	private JLabel jlbTituloFrame, jlbProTipo;
 	private JPanel jpnCadEssencial, jpnCadEndereco, jpnCadUnica, jpnOpcoes;
@@ -85,7 +88,7 @@ public class TelaAlterarPessoa extends JFrame implements ActionListener, KeyList
 		setSize(800, 495);
 		setResizable(false);
 		setVisible(true);
-		setLocationRelativeTo(null);
+		setClosable(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 
@@ -234,46 +237,42 @@ public class TelaAlterarPessoa extends JFrame implements ActionListener, KeyList
 		jcbCadVendNivelAcesso.setVisible(false);
 	}
 	
-	public static void main(String[] args) throws ClassNotFoundException, InstantiationException, IllegalAccessException, UnsupportedLookAndFeelException {
-		UIManager.setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");
-		new TelaAlterarPessoa();
-	}
-
-	@Override
-	public void keyPressed(KeyEvent e) {
-		// TODO Auto-generated method stub
+	private void camposObrigatoriosPadrao(){
+		jtfsObrig = new ArrayList<JTextField>();
+		jtfsObrig.add(jtfCadNome);
+		jtfsObrig.add(jtfCadRua);
+		jtfsObrig.add(jtfCadNumero);
+		jtfsObrig.add(jtfCadComplemento);
+		jtfsObrig.add(jtfCadBairro);
+		jtfsObrig.add(jtfCadCidade);
+		jtfsObrig.add(jtfCadUf);
+		jtfsObrig.add(jtfCadCep);
+		jtfsObrig.add(jtfCadRg);
+		jtfsObrig.add(jtfCadCpf);
 		
-	}
-
-	@Override
-	public void keyReleased(KeyEvent e) {
-		// TODO Auto-generated method stub
+		jtfsVazio = new ArrayList<JTextField>();
+		jtfsVazio.add(jtfCadSexo);
+		jtfsVazio.add(jtfCadCelular);
+		jtfsVazio.add(jtfCadResidencial);
+		jtfsVazio.add(jtfCadEmail);
+		SubstituiCamposVazios sub = new SubstituiCamposVazios();
+		sub.substitui(jtfsVazio);
 		
-	}
-
-	@Override
-	public void keyTyped(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		if(e.getSource() == jbtSalvar){
-			if(jrbCliente.isSelected()){
-				//altera cliente
-				//alterarCliente();
-				GenericDAO dao = new GenericDAO();
-				dao.alterar(clienteAlterar.getPessoa(), "pessoa.telefoneCelular", jtfCadCelular.getText());
-				System.out.println("alterou?");
-			}
-			if(jrbVendedor.isSelected()){
-				//GenericDAO dao = new GenericDAO();
-				//ao.al
-				//System.out.println("alterou?");
-			}
-		}
-		
+		descricao = new HashMap<JTextField, String>();
+		descricao.put(jtfCadNome, "* Nome");
+		descricao.put(jtfCadRua, "* Rua");
+		descricao.put(jtfCadNumero, "* Número");
+		descricao.put(jtfCadComplemento, "* Complemento");
+		descricao.put(jtfCadBairro, "* Bairro");
+		descricao.put(jtfCadCidade, "* Cidade");
+		descricao.put(jtfCadUf, "* UF");
+		descricao.put(jtfCadCep, "* Cep");
+		descricao.put(jtfCadRg, "* RG");
+		descricao.put(jtfCadCpf, "* CPF");
+		descricao.put(jtfCadVendSalario, "* Salário");
+		descricao.put(jtfCadVendComissao, "* Comissão");
+		descricao.put(jtfCadVendUsuario, "* Usuário");
+		descricao.put(jtfCadVendSenha, "* Senha");
 	}
 	
 	private void alterarCliente(){
@@ -291,6 +290,29 @@ public class TelaAlterarPessoa extends JFrame implements ActionListener, KeyList
 		
 		clienteAlterar.getPessoa().setRg(jtfCadRg.getText());
 		clienteAlterar.getPessoa().setCpf(jtfCadCpf.getText());
+	}
+	
+	private void usuarioAlterar(){
+		usuarioAlterar.getVendedor().getPessoa().setNome(jtfCadNome.getText());
+		usuarioAlterar.getVendedor().getPessoa().setSexo(jtfCadSexo.getText());
+		usuarioAlterar.getVendedor().getPessoa().setTelefoneCelular(jtfCadCelular.getText());
+		usuarioAlterar.getVendedor().getPessoa().setTelefoneResidencial(jtfCadResidencial.getText());
+		usuarioAlterar.getVendedor().getPessoa().getEndereco().setRua(jtfCadRua.getText());
+		usuarioAlterar.getVendedor().getPessoa().getEndereco().setNumero(jtfCadNumero.getText());
+		usuarioAlterar.getVendedor().getPessoa().getEndereco().setComplemento(jtfCadComplemento.getText());
+		usuarioAlterar.getVendedor().getPessoa().getEndereco().setBairro(jtfCadBairro.getText());
+		usuarioAlterar.getVendedor().getPessoa().getEndereco().setCidade(jtfCadCidade.getText());
+		usuarioAlterar.getVendedor().getPessoa().getEndereco().setUf(jtfCadUf.getText());
+		usuarioAlterar.getVendedor().getPessoa().getEndereco().setCep(jtfCadCep.getText());
+		
+		usuarioAlterar.getVendedor().getPessoa().setRg(jtfCadRg.getText());
+		usuarioAlterar.getVendedor().getPessoa().setCpf(jtfCadCpf.getText());
+		
+		usuarioAlterar.getVendedor().setSalario(Double.valueOf(jtfCadVendSalario.getText()));
+		usuarioAlterar.getVendedor().setComissao(Double.valueOf(jtfCadVendComissao.getText()));
+		usuarioAlterar.setLogin(jtfCadVendUsuario.getText());
+		usuarioAlterar.setSenha(jtfCadVendSenha.getText());
+		usuarioAlterar.setNivelAcesso(jcbCadVendNivelAcesso.getSelectedIndex());
 	}
 	
 	public void popularCliente(Cliente cliente){
@@ -395,5 +417,121 @@ public class TelaAlterarPessoa extends JFrame implements ActionListener, KeyList
 		
 		jrbCliente.setEnabled(false);
 		jrbVendedor.setEnabled(false);
+	}
+	
+	private void limparCampos(){
+		jtfCadNome.setText("");
+		jtfCadSexo.setText("");
+		jtfCadDataNascimento.setText("");
+		jtfCadCelular.setText("");
+		jtfCadResidencial.setText("");
+		jtfCadEmail.setText("");
+		jtfCadRua.setText("");
+		jtfCadBairro.setText("");
+		jtfCadComplemento.setText("");
+		jtfCadNumero.setText("");
+		jtfCadCidade.setText("");
+		jtfCadUf.setText("");
+		jtfCadCep.setText("");
+		jtfCadRg.setText("");
+		jtfCadCpf.setText("");
+		jtfCadVendSalario.setText("");
+		jtfCadVendComissao.setText("");
+		jtfCadVendUsuario.setText("");
+		jtfCadVendSenha.setText("");
+		jcbCadVendNivelAcesso.setSelectedIndex(1);
+		jcbCadEstadoCivil.setSelectedIndex(0);
+	}
+	
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		
+	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+		
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if(e.getSource() == jbtSalvar){
+			if(jrbCliente.isSelected()){
+				camposObrigatoriosPadrao();
+				VerificaJtfObrigatorios verificador = new VerificaJtfObrigatorios();
+				Boolean todosPreenchidos = verificador.verificaJtf(jtfsObrig, descricao);
+				if(todosPreenchidos){
+					alterarCliente();
+					GenericDAO dao = new GenericDAO();
+					dao.alterar(clienteAlterar.getPessoa(), "pessoa.telefoneCelular", jtfCadCelular.getText());
+					EscolheMensagem escMensagem = new EscolheMensagem();
+					escMensagem.mensagemSucesso("alterar_cliente");
+				}else{
+					JOptionPane.showMessageDialog(null, "Os campos a baixo são de preenchimento obrigatório:" + verificador.getCamposMostra());
+				}
+			}
+			if(jrbVendedor.isSelected()){
+				camposObrigatoriosPadrao();
+				jtfsObrig.add(jtfCadVendSalario);
+				jtfsObrig.add(jtfCadVendComissao);
+				jtfsObrig.add(jtfCadVendUsuario);
+				jtfsObrig.add(jtfCadVendSenha);
+				
+				VerificaJtfObrigatorios verificador = new VerificaJtfObrigatorios();
+				Boolean todosPreenchidos = verificador.verificaJtf(jtfsObrig, descricao);
+				
+				Boolean valorSalarioCorreto = true;
+				Boolean valorComissaoCorretor = true;
+				salario = null;
+				comissao = null;
+				
+				//verifica salario
+				try {
+					salario = Double.valueOf(jtfCadVendSalario.getText());
+				} catch (Exception a) {
+					valorSalarioCorreto = false;
+					verificador.setCamposMostra(verificador.getCamposMostra() + "\n* REMOVA CARACTERES ESPECIAIS DO CAMPO SALÁRIO, EXEMPLO: , ! ? $ R$");
+				}
+				
+				//verifica comissao
+				try {
+					comissao = Double.valueOf(jtfCadVendComissao.getText());
+				} catch (Exception f) {
+					valorComissaoCorretor = false;
+					verificador.setCamposMostra(verificador.getCamposMostra() + "\n* REMOVA CARACTERES ESPECIAIS DO CAMPO COMISSÃO, EXEMPLO: , ! ? $ R$");
+				}
+				
+				if((todosPreenchidos) && (valorSalarioCorreto) && (valorComissaoCorretor)){
+					usuarioAlterar();
+					GenericDAO dao = new GenericDAO();
+					dao.alterar(clienteAlterar.getPessoa(), "pessoa.telefoneCelular", jtfCadCelular.getText());
+					EscolheMensagem escMensagem = new EscolheMensagem();
+					escMensagem.mensagemSucesso("alterar_vendedor");
+				}else{
+					JOptionPane.showMessageDialog(null, "Os campos a baixo são de preenchimento obrigatório:" + verificador.getCamposMostra());
+				}
+			}
+		}
+			if(e.getSource() == jbtLimpar){
+				int confirmacao = JOptionPane.showConfirmDialog(null, "Deseja realmente limpar todos os campos do formulário?", "Confirmação", JOptionPane.WARNING_MESSAGE);
+				if(confirmacao == 0){
+					limparCampos();
+				}
+			}
+			if(e.getSource() == jbtCancelar){
+				limparCampos();
+				this.dispose();
+			}
+			
+	}
+	
+	public static void main(String[] args){
+		new TelaAlterarPessoa();
 	}
 }

@@ -15,17 +15,15 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.swing.ButtonGroup;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
+import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
-import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
 
 import utilitarios.EscolheMensagem;
 import metodos.CadastroCliente;
@@ -38,9 +36,9 @@ import Componentes.CriaLabel;
 import Componentes.CriaPanel;
 import Componentes.CriaRadioButton;
 import Componentes.FieldEmUpper;
-import Model.Cliente;
 
-public class TelaCadastraPessoa extends JFrame implements ActionListener, KeyListener{
+public class TelaCadastraPessoa extends JInternalFrame implements ActionListener, KeyListener{
+	private static final long serialVersionUID = -3191541361736422777L;
 	private CriaLabel cl = new CriaLabel();
 	private CriaPanel cp = new CriaPanel();
 	private CriaField cf = new CriaField();
@@ -67,7 +65,6 @@ public class TelaCadastraPessoa extends JFrame implements ActionListener, KeyLis
 	private Date dataNascVerificar = null;
 	private Double salario, comissao;
 	
-
 	public TelaCadastraPessoa() {
 		tela = getContentPane();
 		setTitle("Celulares - Cadastro Pessoa Física");
@@ -82,7 +79,7 @@ public class TelaCadastraPessoa extends JFrame implements ActionListener, KeyLis
 		jbtSalvar = cb.criarBotao("Salvar", 300, 33, 100, 24, jbtSalvar, tela, this);
 		jbtCancelar = cb.criarBotao("Cancelar", 400, 33, 100, 24, jbtCancelar, tela, this);
 	
-		jpnOpcoes = cp.criarPanelSemTitulo(0, 400, 800, 90, jpnOpcoes, true, tela);
+		jpnOpcoes = cp.criarPanelSemTitulo(0, 400, 788, 65, jpnOpcoes, true, tela);
 		jpnOpcoes.add(jlbOpcOpcoes);
 		jpnOpcoes.add(jbtLimpar);
 		jpnOpcoes.add(jbtSalvar);
@@ -92,7 +89,7 @@ public class TelaCadastraPessoa extends JFrame implements ActionListener, KeyLis
 		setSize(800, 495);
 		setResizable(false);
 		setVisible(true);
-		setLocationRelativeTo(null);
+		setClosable(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 
@@ -125,7 +122,7 @@ public class TelaCadastraPessoa extends JFrame implements ActionListener, KeyLis
 		String MENSAGEM_DATA = "Use o formato Mês/Dia/Ano ao inserir datas. Exemplo: 12/29/97";
 		jbtInfDataNascimento = cb.criarBotaoAjuda(MENSAGEM_DATA, "?", 650, 39, 49, 24, jbtInfDataNascimento, tela, this);		
 		
-		jpnCadEssencial = cp.criarPanelSemTitulo(0, 70, 800, 125, jpnCadEssencial, true, tela);
+		jpnCadEssencial = cp.criarPanelSemTitulo(0, 70, 788, 125, jpnCadEssencial, true, tela);
 		jpnCadEssencial.add(jlbCadNome);
 		jpnCadEssencial.add(jlbCadEmail);
 		jpnCadEssencial.add(jlbCadDataNascimento);	
@@ -158,7 +155,7 @@ public class TelaCadastraPessoa extends JFrame implements ActionListener, KeyLis
 		jtfCadUf = cf.criarTextField(425, 87, 50, 24, jtfCadUf, tela, this);
 		jtfCadCep = cf.criarTextField(590, 87, 110, 24, jtfCadCep, tela, this);
 				
-		jpnCadEndereco = cp.criarPanelSemTitulo(0, 195, 800, 127, jpnCadEndereco, true, tela);
+		jpnCadEndereco = cp.criarPanelSemTitulo(0, 195, 788, 127, jpnCadEndereco, true, tela);
 		jpnCadEndereco.add(jlbCadRua);
 		jpnCadEndereco.add(jlbCadNumero);
 		jpnCadEndereco.add(jlbCadComplemento);
@@ -209,7 +206,7 @@ public class TelaCadastraPessoa extends JFrame implements ActionListener, KeyLis
 		jcbCadVendNivelAcesso.addItem("Administrador do Sistema");
 		jcbCadVendNivelAcesso.setSelectedIndex(1);
 		
-		jpnCadUnica = cp.criarPanelSemTitulo(0, 322, 800, 80, jpnCadUnica, true, tela);
+		jpnCadUnica = cp.criarPanelSemTitulo(0, 322, 788, 80, jpnCadUnica, true, tela);
 		jpnCadUnica.add(jlbCadRg);
 		jpnCadUnica.add(jlbCadCpf);
 		jpnCadUnica.add(jtfCadRg);
@@ -238,106 +235,6 @@ public class TelaCadastraPessoa extends JFrame implements ActionListener, KeyLis
 		jtfCadVendSalario.setVisible(false);
 		jtfCadVendComissao.setVisible(false);
 		jcbCadVendNivelAcesso.setVisible(false);
-		
-	}
-
-	public static void main(String[] args) throws ClassNotFoundException, InstantiationException, IllegalAccessException, UnsupportedLookAndFeelException {
-		UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
-		new TelaCadastraPessoa();
-	}
-
-	@Override
-	public void keyPressed(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void keyReleased(KeyEvent e) {
-		if(e.getComponent() == jtfCadNome){
-			if(e.getSource() == jtfCadNome){
-				fu.transformar(jtfCadNome);
-			}
-		}
-		if(e.getComponent() == jtfCadSexo){
-			if(e.getSource() == jtfCadSexo){
-				fu.transformar(jtfCadSexo);
-			}
-		}
-		
-	}
-
-	@Override
-	public void keyTyped(KeyEvent e) {
-		
-	}
-
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		if(e.getSource() == jrbCliente){
-			jpnCadUnica.setBounds(0, 322, 800, 80);
-			jpnOpcoes.setBounds(0, 400, 800, 90);
-			
-			jlbOpcOpcoes.setLocation(360, 5);
-			jbtSalvar.setLocation(300, 33);
-			jbtCancelar.setLocation(400, 33);
-			jbtLimpar.setLocation(600, 33);
-			
-			jlbTituloFrame.setText(titulo + "CLIENTE");
-			
-			jlbCadVendUsuario.setVisible(false);
-			jlbCadVendSenha.setVisible(false);
-			jlbCadVendComissao.setVisible(false);
-			jlbCadVendSalario.setVisible(false);
-			jlbCadVendNivelAcesso.setVisible(false);
-			jtfCadVendUsuario.setVisible(false);
-			jtfCadVendSenha.setVisible(false);
-			jtfCadVendSalario.setVisible(false);
-			jtfCadVendComissao.setVisible(false);
-			jcbCadVendNivelAcesso.setVisible(false);
-		}
-		
-		if(e.getSource() == jrbVendedor){
-			jpnCadUnica.setBounds(0, 322, 675, 143);
-			jpnOpcoes.setBounds(670, 322, 123, 143);
-			
-			jlbOpcOpcoes.setLocation(10, 15);
-			jbtSalvar.setLocation(10, 39);
-			jbtCancelar.setLocation(10, 63);
-			jbtLimpar.setLocation(10, 87);
-			
-			jlbTituloFrame.setText(titulo + "VENDEDOR");
-			
-			jlbCadVendUsuario.setVisible(true);
-			jlbCadVendSenha.setVisible(true);
-			jlbCadVendComissao.setVisible(true);
-			jlbCadVendSalario.setVisible(true);
-			jlbCadVendNivelAcesso.setVisible(true);
-			jtfCadVendUsuario.setVisible(true);
-			jtfCadVendSenha.setVisible(true);
-			jtfCadVendSalario.setVisible(true);
-			jtfCadVendComissao.setVisible(true);
-			jcbCadVendNivelAcesso.setVisible(true);
-		}
-		
-		if(e.getSource() == jbtLimpar){
-			limparCampos();
-		}
-		
-		if(e.getSource() == jbtCancelar){
-			this.dispose();
-		}
-		
-		if(e.getSource() == jbtSalvar){
-			if(jrbCliente.isSelected()){
-				verificaCadastroCliente();
-			}
-			
-			if(jrbVendedor.isSelected()){
-				verificaCadastroVendedor();
-			}
-			
-		}
 		
 	}
 	
@@ -391,7 +288,6 @@ public class TelaCadastraPessoa extends JFrame implements ActionListener, KeyLis
 		Boolean todosPreenchidos = verificador.verificaJtf(jtfsObrig, descricao);
 		
 		Boolean dataCorreta = true;
-		Date dataNascVerificar = null;
 		try {
 			DateFormat formatter = new SimpleDateFormat("MM/dd/yy");
 			dataNascVerificar = (Date)formatter.parse(jtfCadDataNascimento.getText().toString());
@@ -501,5 +397,100 @@ public class TelaCadastraPessoa extends JFrame implements ActionListener, KeyLis
 		jtfCadVendSenha.setText("");
 		jcbCadVendNivelAcesso.setSelectedIndex(1);
 		jcbCadEstadoCivil.setSelectedIndex(0);
+	}
+	
+	@Override
+	public void keyPressed(KeyEvent e) {
+
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		if(e.getComponent() == jtfCadNome){
+			if(e.getSource() == jtfCadNome){
+				fu.transformar(jtfCadNome);
+			}
+		}
+		if(e.getComponent() == jtfCadSexo){
+			if(e.getSource() == jtfCadSexo){
+				fu.transformar(jtfCadSexo);
+			}
+		}	
+	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+		
+	}
+	
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if(e.getSource() == jrbCliente){
+			jpnCadUnica.setBounds(0, 322, 788, 80);
+			jpnOpcoes.setBounds(0, 400, 788, 65);
+			
+			jlbOpcOpcoes.setLocation(360, 5);
+			jbtSalvar.setLocation(300, 33);
+			jbtCancelar.setLocation(400, 33);
+			jbtLimpar.setLocation(600, 33);
+			
+			jlbTituloFrame.setText(titulo + "CLIENTE");
+			
+			jlbCadVendUsuario.setVisible(false);
+			jlbCadVendSenha.setVisible(false);
+			jlbCadVendComissao.setVisible(false);
+			jlbCadVendSalario.setVisible(false);
+			jlbCadVendNivelAcesso.setVisible(false);
+			jtfCadVendUsuario.setVisible(false);
+			jtfCadVendSenha.setVisible(false);
+			jtfCadVendSalario.setVisible(false);
+			jtfCadVendComissao.setVisible(false);
+			jcbCadVendNivelAcesso.setVisible(false);
+		}
+		if(e.getSource() == jrbVendedor){
+			jpnCadUnica.setBounds(0, 322, 675, 143);
+			jpnOpcoes.setBounds(670, 322, 118, 143);
+			
+			jlbOpcOpcoes.setLocation(10, 15);
+			jbtSalvar.setLocation(10, 39);
+			jbtCancelar.setLocation(10, 63);
+			jbtLimpar.setLocation(10, 87);
+			
+			jlbTituloFrame.setText(titulo + "VENDEDOR");
+			
+			jlbCadVendUsuario.setVisible(true);
+			jlbCadVendSenha.setVisible(true);
+			jlbCadVendComissao.setVisible(true);
+			jlbCadVendSalario.setVisible(true);
+			jlbCadVendNivelAcesso.setVisible(true);
+			jtfCadVendUsuario.setVisible(true);
+			jtfCadVendSenha.setVisible(true);
+			jtfCadVendSalario.setVisible(true);
+			jtfCadVendComissao.setVisible(true);
+			jcbCadVendNivelAcesso.setVisible(true);
+		}
+		if(e.getSource() == jbtLimpar){
+			int confirmacao = JOptionPane.showConfirmDialog(null, "Deseja realmente limpar todos os campos do formulário?", "Confirmação", JOptionPane.WARNING_MESSAGE);
+			if(confirmacao == 0){
+				limparCampos();
+			}
+		}
+		if(e.getSource() == jbtCancelar){
+			limparCampos();
+			this.dispose();
+		}
+		if(e.getSource() == jbtSalvar){
+			if(jrbCliente.isSelected()){
+				verificaCadastroCliente();
+			}
+			
+			if(jrbVendedor.isSelected()){
+				verificaCadastroVendedor();
+			}
+		}
+	}
+	
+	public static void main(String[] args){
+		new TelaCadastraPessoa();
 	}
 }

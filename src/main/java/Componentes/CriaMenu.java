@@ -7,10 +7,9 @@ import javax.swing.JMenuItem;
 
 public class CriaMenu {
 
-	public JMenuItem criarMenuItem(JMenuItem jmi, String titulo, JMenu jm, ActionListener action) {
+	public JMenuItem criarMenuItem(JMenuItem jmi, String titulo, JMenu jm) {
 		jmi = new JMenuItem(titulo);
 		jm.add(jmi);
-		jm.addActionListener(action);
 		return jmi;
 	}
 
