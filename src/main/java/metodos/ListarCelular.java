@@ -1,21 +1,16 @@
 package metodos;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import javax.swing.table.DefaultTableModel;
 
-import utilitarios.EscolheMensagem;
-import DAO.GenericDAO;
 import Model.Celular;
-import Model.Pessoa;
+import Telas.TelaInicial;
 
 public class ListarCelular {
 
 	public void listar(DefaultTableModel dtm, String descricao, String modelo, String imei, String marca) {
-		GenericDAO dao = new GenericDAO();
-
-		ArrayList<Celular> celulares = dao.listaQualquer(Celular.class);
+		ArrayList<Celular> celulares = TelaInicial.getTlInicial().getDao().listaQualquer(Celular.class);
 		dtm.setRowCount(0);
 		
 		for(Celular celular : celulares){
@@ -46,7 +41,7 @@ public class ListarCelular {
 		}
 		
 		for(Celular celular : celulares){
-				if((celular.getDescricao().contains(descricao.toUpperCase()) 
+				if((celular.getDescricao().toUpperCase().contains(descricao.toUpperCase()) 
 						|| (celular.getModelo().toUpperCase().contains(modelo.toUpperCase()))
 							|| (celular.getIMEI().toUpperCase().contains(imei.toUpperCase()))
 								|| (celular.getEmpresa().toUpperCase().contains(marca.toUpperCase())))){

@@ -328,7 +328,7 @@ public class TelaCadastraPessoa extends JInternalFrame implements ActionListener
 
 	private void cadastrarVendedor() {
 		CadastroVendedor cadVendedor = new CadastroVendedor();
-		Boolean cadastrou = cadVendedor.cadastrar(jtfCadRua.getText(), jtfCadNumero.getText(), jtfCadBairro.getText(), jtfCadCidade.getText(), jtfCadUf.getText(), jtfCadCep.getText(), jtfCadNome.getText(), jtfCadSexo.getText(), jcbCadEstadoCivil.getSelectedItem().toString(), jtfCadRg.getText(), jtfCadCpf.getText(), dataNascVerificar, jtfCadEmail.getText(), jtfCadCelular.getText(), jtfCadResidencial.getText(), comissao, salario, jtfCadVendUsuario.getText(), jtfCadVendSenha.getText(), jcbCadVendNivelAcesso.getSelectedIndex());
+		Boolean cadastrou = cadVendedor.cadastrar(jtfCadRua.getText(), jtfCadNumero.getText(), jtfCadComplemento.getText(), jtfCadBairro.getText(), jtfCadCidade.getText(), jtfCadUf.getText(), jtfCadCep.getText(), jtfCadNome.getText(), jtfCadSexo.getText(), jcbCadEstadoCivil.getSelectedItem().toString(), jtfCadRg.getText(), jtfCadCpf.getText(), dataNascVerificar, jtfCadEmail.getText(), jtfCadCelular.getText(), jtfCadResidencial.getText(), comissao, salario, jtfCadVendUsuario.getText(), jtfCadVendSenha.getText(), jcbCadVendNivelAcesso.getSelectedIndex());
 		
 		EscolheMensagem escMensagem = new EscolheMensagem();
 		if(cadastrou){
@@ -364,7 +364,7 @@ public class TelaCadastraPessoa extends JInternalFrame implements ActionListener
 
 	private void cadastrarCliente() {		
 		CadastroCliente cadCliente = new CadastroCliente();
-		Boolean cadastrou = cadCliente.cadastrar(jtfCadRua.getText(), jtfCadNumero.getText(), jtfCadBairro.getText(), jtfCadCidade.getText(), jtfCadUf.getText(), jtfCadCep.getText(), jtfCadNome.getText(), jtfCadSexo.getText(), jcbCadEstadoCivil.getSelectedItem().toString(), jtfCadRg.getText(), jtfCadCpf.getText(), dataNascVerificar, jtfCadEmail.getText(), jtfCadCelular.getText(), jtfCadResidencial.getText());
+		Boolean cadastrou = cadCliente.cadastrar(jtfCadRua.getText(), jtfCadNumero.getText(), jtfCadComplemento.getText(), jtfCadBairro.getText(), jtfCadCidade.getText(), jtfCadUf.getText(), jtfCadCep.getText(), jtfCadNome.getText(), jtfCadSexo.getText(), jcbCadEstadoCivil.getSelectedItem().toString(), jtfCadRg.getText(), jtfCadCpf.getText(), dataNascVerificar, jtfCadEmail.getText(), jtfCadCelular.getText(), jtfCadResidencial.getText());
 		EscolheMensagem escMensagem = new EscolheMensagem();
 		if(cadastrou){
 			escMensagem.mensagemSucesso("cadastro_cliente");

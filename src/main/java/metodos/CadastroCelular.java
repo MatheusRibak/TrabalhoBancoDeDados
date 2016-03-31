@@ -1,7 +1,7 @@
 package metodos;
 
-import DAO.GenericDAO;
 import Model.Celular;
+import Telas.TelaInicial;
 
 public class CadastroCelular {
 	
@@ -29,8 +29,7 @@ public class CadastroCelular {
 		celular.setCor(cor);
 		celular.setTV(tv);
 		celular.setConectividade(conectividade);
-		GenericDAO dao = new GenericDAO();
-		dao.getDao().inserir(celular);
+		TelaInicial.getTlInicial().getDao().getDao().inserir(celular);
 		cadastrado = true;
 		return cadastrado;
 	}

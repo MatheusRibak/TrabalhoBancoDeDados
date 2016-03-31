@@ -3,20 +3,22 @@ package metodos;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import DAO.GenericDAO;
+
 import Model.Cliente;
 import Model.Endereco;
 import Model.Pessoa;
+import Telas.TelaInicial;
 
 public class CadastroCliente {
 
-	public Boolean cadastrar(String rua, String numero, String bairro, String cidade,
+	public Boolean cadastrar(String rua, String numero, String complemento, String bairro, String cidade,
 				String uf, String cep, String nome, String sexo, String estCivil, String rg, String cpf, Date dataNascimento,
 					String email, String telCelular, String telResidencial) {
 		Boolean cadastrado = false;
 		Endereco endereco = new Endereco();
 		endereco.setRua(rua);
 		endereco.setNumero(numero);
+		endereco.setComplemento(complemento);
 		endereco.setBairro(bairro);
 		endereco.setCidade(cidade);
 		endereco.setUf(uf);
@@ -37,8 +39,7 @@ public class CadastroCliente {
 		
 		Cliente cliente = new Cliente();
 		cliente.setPessoa(pessoa);
-		GenericDAO dao = new GenericDAO();
-		dao.getDao().inserir(cliente);
+		TelaInicial.getTlInicial().getDao().inserir(cliente);
 		
 		cadastrado = true;
 		return cadastrado;

@@ -1,20 +1,16 @@
 package metodos;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Scanner;
 
-import DAO.GenericDAO;
 import Model.Endereco;
 import Model.Pessoa;
 import Model.Usuario;
 import Model.Vendedor;
+import Telas.TelaInicial;
 
 public class CadastroVendedor {
 
-	public Boolean cadastrar(String rua, String numero, String bairro, String cidade,
+	public Boolean cadastrar(String rua, String numero, String bairro, String complemento, String cidade,
 			String uf, String cep, String nome, String sexo, String estCivil, String rg, String cpf, Date dataNascimento,
 				String email, String telCelular, String telResidencial, Double comissao, Double salario,
 				 	String login, String senha, int nivelAcesso) {
@@ -22,6 +18,7 @@ public class CadastroVendedor {
 		Endereco endereco = new Endereco();
 		endereco.setRua(rua);
 		endereco.setNumero(numero);
+		endereco.setComplemento(complemento);
 		endereco.setBairro(bairro);
 		endereco.setCidade(cidade);
 		endereco.setUf(uf);
@@ -45,8 +42,7 @@ public class CadastroVendedor {
 		usuario.setNivelAcesso(nivelAcesso);
 		usuario.setLogin(login);
 		usuario.setSenha(senha);
-		GenericDAO dao = new GenericDAO();
-		dao.inserir(usuario);
+		TelaInicial.getTlInicial().getDao().inserir(usuario);
 		return cadastrou = true;
 	}
 

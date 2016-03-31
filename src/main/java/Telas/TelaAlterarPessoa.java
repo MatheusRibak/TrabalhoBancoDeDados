@@ -344,6 +344,7 @@ public class TelaAlterarPessoa extends JInternalFrame implements ActionListener,
 		jtfCadNome.setText(cliente.getPessoa().getNome());
 		jtfCadSexo.setText(cliente.getPessoa().getSexo());
 		jtfCadCelular.setText(cliente.getPessoa().getTelefoneCelular());
+		jtfCadResidencial.setText(cliente.getPessoa().getTelefoneResidencial());
 		jtfCadEmail.setText(cliente.getPessoa().getEmail());
 		
 		jtfCadRua.setText(cliente.getPessoa().getEndereco().getRua());
@@ -394,6 +395,7 @@ public class TelaAlterarPessoa extends JInternalFrame implements ActionListener,
 		jtfCadNome.setText(usuario.getVendedor().getPessoa().getNome());
 		jtfCadSexo.setText(usuario.getVendedor().getPessoa().getSexo());
 		jtfCadCelular.setText(usuario.getVendedor().getPessoa().getTelefoneCelular());
+		jtfCadResidencial.setText(usuario.getVendedor().getPessoa().getTelefoneResidencial());
 		jtfCadEmail.setText(usuario.getVendedor().getPessoa().getEmail());
 		
 		jtfCadRua.setText(usuario.getVendedor().getPessoa().getEndereco().getRua());
@@ -469,8 +471,7 @@ public class TelaAlterarPessoa extends JInternalFrame implements ActionListener,
 				Boolean todosPreenchidos = verificador.verificaJtf(jtfsObrig, descricao);
 				if(todosPreenchidos){
 					alterarCliente();
-					GenericDAO dao = new GenericDAO();
-					dao.alterar(clienteAlterar, clienteAlterar.get_id());
+					TelaInicial.getTlInicial().getDao().alterar(clienteAlterar, clienteAlterar.get_id());
 					EscolheMensagem escMensagem = new EscolheMensagem();
 					escMensagem.mensagemSucesso("alterar_cliente");
 				}else{
@@ -510,8 +511,7 @@ public class TelaAlterarPessoa extends JInternalFrame implements ActionListener,
 				
 				if((todosPreenchidos) && (valorSalarioCorreto) && (valorComissaoCorretor)){
 					usuarioAlterar();
-					GenericDAO dao = new GenericDAO();
-					dao.alterar(clienteAlterar, clienteAlterar.get_id());
+					TelaInicial.getTlInicial().getDao().alterar(usuarioAlterar, usuarioAlterar.get_id());
 					EscolheMensagem escMensagem = new EscolheMensagem();
 					escMensagem.mensagemSucesso("alterar_vendedor");
 				}else{

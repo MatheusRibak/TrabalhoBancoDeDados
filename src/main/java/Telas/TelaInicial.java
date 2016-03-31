@@ -1,5 +1,6 @@
 package Telas;
 
+import java.awt.Color;
 import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -17,8 +18,6 @@ import javax.swing.UnsupportedLookAndFeelException;
 
 import lombok.Getter;
 import lombok.Setter;
-import Componentes.CriaButton;
-import Componentes.CriaField;
 import Componentes.CriaLabel;
 import Componentes.CriaMenu;
 import DAO.GenericDAO;
@@ -26,9 +25,7 @@ import DAO.GenericDAO;
 @Getter @Setter
 public class TelaInicial extends JFrame implements ActionListener{
 	private static final long serialVersionUID = -5502135091121637861L;
-	private CriaField cf = new CriaField();
 	private CriaLabel cl = new CriaLabel();
-	private CriaButton cb = new CriaButton();
 	private CriaMenu cm = new CriaMenu();
 	private JMenuBar jmnBar;
 	private JMenu jmnCadastro, jmnProcurar;
@@ -43,8 +40,15 @@ public class TelaInicial extends JFrame implements ActionListener{
 	private TelaProcurarCelular tlProcurarCelular = new TelaProcurarCelular();
 	private TelaAlterarCelular tlAlterarCelular = new TelaAlterarCelular();
 	private ArrayList<JInternalFrame> listaInternalFrame = new ArrayList<>();
-	private GenericDAO dao = new GenericDAO();
+	private GenericDAO dao;
 
+	public GenericDAO getDao(){
+		if(dao == null){
+			dao = new GenericDAO();
+		}
+		return dao;
+	}
+	
 	public static TelaInicial getTlInicial(){
 		if(tlInicial == null){
 			tlInicial = new TelaInicial();
@@ -58,7 +62,7 @@ public class TelaInicial extends JFrame implements ActionListener{
 		setLayout(null);
 
 		criarBarra();
-		
+				
 		listaInternalFrame.add(tlCadastrarPessoa);
 		listaInternalFrame.add(tlProcurarPessoa);
 		listaInternalFrame.add(tlAlterarPessoa);
@@ -72,6 +76,8 @@ public class TelaInicial extends JFrame implements ActionListener{
 		jmnBar.add(jmnCadastro);
 		jmnBar.add(jmnProcurar);
 		setJMenuBar(jmnBar);
+		
+		tela.setBackground(Color.white);
 		setSize(1200, 700);
 		setVisible(true);
 		setLocationRelativeTo(null);

@@ -157,9 +157,9 @@ public class TelaProcurarCelular extends JInternalFrame implements ActionListene
 			String id = String.valueOf(dtmCelulares.getValueAt(jtbCelulares.getSelectedRow(), 0));
 			ProcurarCelular pc = new ProcurarCelular();
 			Celular celular = pc.procurar(id);
+			TelaInicial.getTlInicial().esconderTelas();
 			TelaInicial.getTlInicial().getTlAlterarCelular().setVisible(true);
 			TelaInicial.getTlInicial().getTlAlterarCelular().popularCampos(celular);
-			TelaInicial.getTlInicial().getTlProcurarCelular().setVisible(false);
 		}
 		if(evt.getSource() == jbtExcluir){
 			String id = String.valueOf(dtmCelulares.getValueAt(jtbCelulares.getSelectedRow(), 0));

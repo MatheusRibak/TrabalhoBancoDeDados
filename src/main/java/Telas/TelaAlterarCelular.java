@@ -336,8 +336,7 @@ public class TelaAlterarCelular extends JInternalFrame implements ActionListener
 			
 			if((todosPreenchidos) && (valorCorreto)){
 				alterarCelular();
-				GenericDAO dao = new GenericDAO();
-				dao.alterar(celularAlterar, celularAlterar.get_id());
+				TelaInicial.getTlInicial().getDao().alterar(celularAlterar, celularAlterar.get_id());
 				EscolheMensagem escMensagem = new EscolheMensagem();
 				escMensagem.mensagemSucesso("alterar_celular");
 			}else{

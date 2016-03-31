@@ -1,25 +1,20 @@
 package metodos;
 
 import java.util.ArrayList;
+
 import javax.swing.table.DefaultTableModel;
 
-import DAO.GenericDAO;
 import Model.Cliente;
 import Model.Usuario;
+import Telas.TelaInicial;
 
 public class ListarPessoa {
 
 	public void listar(DefaultTableModel dtm, String nome, String rg) {
-		GenericDAO dao = new GenericDAO();
-		// só funciona se tiver um, arrumar
-		/*
-		 * (Object objeto = dao.listaFiltro(Pessoa.class, "nome", nome); Pessoa
-		 * pessoa = new Pessoa(); pessoa = (Pessoa) objeto;
-		 */
 		dtm.setRowCount(0);
 
-		ArrayList<Cliente> clientes = dao.getDao().listaQualquer(Cliente.class);
-		ArrayList<Usuario> usuarios = dao.getDao().listaQualquer(Usuario.class);
+		ArrayList<Cliente> clientes = TelaInicial.getTlInicial().getDao().getDao().listaQualquer(Cliente.class);
+		ArrayList<Usuario> usuarios = TelaInicial.getTlInicial().getDao().getDao().listaQualquer(Usuario.class);
 
 		for (Cliente cliente : clientes) {
 			if ((nome.isEmpty()) && (rg.isEmpty())) {

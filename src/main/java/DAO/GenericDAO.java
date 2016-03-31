@@ -1,7 +1,6 @@
 package DAO;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import lombok.Getter;
 
@@ -10,11 +9,7 @@ import org.jongo.Jongo;
 import org.jongo.MongoCollection;
 import org.jongo.MongoCursor;
 
-import Model.Cliente;
-import Model.Usuario;
-
 import com.mongodb.MongoClient;
-
 
 @Getter
 public class GenericDAO<T> {
