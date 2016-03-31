@@ -7,23 +7,34 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
+import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import utilitarios.EscolheMensagem;
+import lombok.Getter;
+import lombok.Setter;
+import metodos.SubstituiCamposVazios;
+import metodos.VerificaJtfObrigatorios;
 import Componentes.CriaButton;
 import Componentes.CriaField;
 import Componentes.CriaLabel;
 import Componentes.CriaPanel;
 import Componentes.FieldEmUpper;
+import DAO.GenericDAO;
 import Model.Celular;
 
-public class TelaAlterarCelular extends JFrame implements ActionListener, KeyListener{
+@Getter @Setter
+public class TelaAlterarCelular extends JInternalFrame implements ActionListener, KeyListener{
+	private static final long serialVersionUID = -6722056900391643613L;
 	private CriaLabel cl = new CriaLabel();
 	private CriaPanel cp = new CriaPanel();
 	private CriaField cf = new CriaField();
@@ -44,6 +55,7 @@ public class TelaAlterarCelular extends JFrame implements ActionListener, KeyLis
 	private ArrayList<JTextField> jtfsObrig, jtfsVazio;
 	private Map<JTextField, String> descricao;
 	private Double valor;
+	private Celular celularAlterar;
 	
 	public TelaAlterarCelular() {
 		tela = getContentPane();
@@ -69,8 +81,62 @@ public class TelaAlterarCelular extends JFrame implements ActionListener, KeyLis
 		setSize(800, 495);
 		setResizable(false);
 		setVisible(true);
-		setLocationRelativeTo(null);
+		setClosable(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	}
+	
+	private void limparCampos(){
+		jtfCadDescricao.setText("");
+		jtfCadImei.setText("");
+		jtfCadModelo.setText("");
+		jtfCadEmpresa.setText("");
+		jtfCadCameraFrontal.setText("");
+		jtfCadCameraTraseira.setText("");
+		jtfCadMemInt.setText("");
+		jtfCadMemRam.setText("");
+		jtfCadQtdChips.setText("");
+		jtfCadTipoChip.setText("");
+		jtfCadTela.setText("");
+		jtfCadSistema.setText("");
+		jtfCadPeso.setText("");
+		jtfCadCor.setText("");
+		jtfCadConectividade.setText("");
+		jtfCadGarantia.setText("");
+		jtfCadValor.setText("");
+		jcbPossuiTV.setSelectedIndex(0);
+	}
+	
+	private void camposObrigatoriosPadrao(){
+		jtfsObrig = new ArrayList<JTextField>();
+		jtfsObrig.add(jtfCadDescricao);
+		jtfsObrig.add(jtfCadImei);
+		jtfsObrig.add(jtfCadModelo);
+		jtfsObrig.add(jtfCadEmpresa);
+		jtfsObrig.add(jtfCadValor);
+		
+		jtfsVazio = new ArrayList<JTextField>();
+		jtfsVazio.add(jtfCadCameraFrontal);
+		jtfsVazio.add(jtfCadCameraTraseira);
+		jtfsVazio.add(jtfCadMemInt);
+		jtfsVazio.add(jtfCadMemRam);
+		jtfsVazio.add(jtfCadQtdChips);
+		jtfsVazio.add(jtfCadTipoChip);
+		jtfsVazio.add(jtfCadTela);
+		jtfsVazio.add(jtfCadSistema);
+		jtfsVazio.add(jtfCadPeso);
+		jtfsVazio.add(jtfCadCor);
+		jtfsVazio.add(jtfCadConectividade);
+		jtfsVazio.add(jtfCadGarantia);
+
+		SubstituiCamposVazios sub = new SubstituiCamposVazios();
+		sub.substitui(jtfsVazio);
+		
+		descricao = new HashMap<JTextField, String>();
+		descricao.put(jtfCadDescricao, "* Descrição");
+		descricao.put(jtfCadImei, "* IMEI");
+		descricao.put(jtfCadModelo, "* Modelo");
+		descricao.put(jtfCadEmpresa, "* Empresa");
+		descricao.put(jtfCadValor, "* Valor(R$) - Entrada deve conter apenas números e ponto. Exemplo: 1.500");
 	}
 	
 	private void criarCamposCadastrado() {
@@ -163,38 +229,135 @@ public class TelaAlterarCelular extends JFrame implements ActionListener, KeyLis
 		jpnCadAdj.add(jcbPossuiTV);
 		jpnCadAdj.add(jbtInfCadValor);
 	}
+		
+	public void popularCampos(Celular celular){
+		celularAlterar = celular;
+		jtfCadDescricao.setText(celular.getDescricao());
+		jtfCadImei.setText(celular.getIMEI());
+		jtfCadModelo.setText(celular.getModelo());
+		jtfCadEmpresa.setText(celular.getEmpresa());
+		jtfCadCameraFrontal.setText(celular.getCameraFrontal());
+		jtfCadCameraTraseira.setText(celular.getCameraTraseira());
+		jtfCadMemInt.setText(celular.getMemoria());
+		jtfCadMemRam.setText(celular.getMemoriaRAM());
+		jtfCadQtdChips.setText(celular.getQuantidadeChips());
+		jtfCadTipoChip.setText(celular.getTipoChip());
+		jtfCadTela.setText(celular.getTamanhoDaTela());
+		jtfCadSistema.setText(celular.getSistemaOperacional());
+		jtfCadPeso.setText(celular.getPeso());
+		jtfCadCor.setText(celular.getCor());
+		jcbPossuiTV.setSelectedItem(celular.getTV());
+		jtfCadConectividade.setText(celular.getConectividade());
+		jtfCadGarantia.setText(celular.getGarantia());
+		jtfCadValor.setText(celular.getValor().toString());
+	}
 	
-	public static void main(String[] args) {
-		new TelaAlterarCelular();
+	private void alterarCelular(){
+		celularAlterar.setDescricao(jtfCadDescricao.getText());
+		celularAlterar.setIMEI(jtfCadImei.getText());
+		celularAlterar.setModelo(jtfCadModelo.getText());
+		celularAlterar.setEmpresa(jtfCadEmpresa.getText());
+		celularAlterar.setCameraFrontal(jtfCadCameraFrontal.getText());
+		celularAlterar.setCameraTraseira(jtfCadCameraTraseira.getText());
+		celularAlterar.setMemoria(jtfCadMemInt.getText());
+		celularAlterar.setMemoriaRAM(jtfCadMemRam.getText());
+		celularAlterar.setQuantidadeChips(jtfCadQtdChips.getText());
+		celularAlterar.setTipoChip(jtfCadTipoChip.getText());
+		celularAlterar.setTamanhoDaTela(jtfCadTela.getText());
+		celularAlterar.setSistemaOperacional(jtfCadSistema.getText());
+		celularAlterar.setPeso(jtfCadPeso.getText());
+		celularAlterar.setCor(jtfCadCor.getText());
+		celularAlterar.setTV(jcbPossuiTV.getSelectedItem().toString());
+		celularAlterar.setConectividade(jtfCadConectividade.getText());
+		celularAlterar.setGarantia(jtfCadGarantia.getText());
+		celularAlterar.setValor(Double.valueOf(jtfCadValor.getText()));
 	}
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void keyReleased(KeyEvent e) {
-		// TODO Auto-generated method stub
+		if(e.getComponent() == jtfCadDescricao){
+			if(e.getSource() == jtfCadDescricao){
+				fu.transformar(jtfCadDescricao);
+			}
+		}
+		if(e.getComponent() == jtfCadCameraFrontal){
+			if(e.getSource() == jtfCadCameraFrontal){
+				fu.transformar(jtfCadCameraFrontal);
+			}
+		}
+		if(e.getComponent() == jtfCadCameraTraseira){
+			if(e.getSource() == jtfCadCameraTraseira){
+				fu.transformar(jtfCadCameraTraseira);
+			}
+		}
+		if(e.getComponent() == jtfCadMemInt){
+			if(e.getSource() == jtfCadMemInt){
+				fu.transformar(jtfCadMemInt);
+			}
+		}
+		if(e.getComponent() == jtfCadMemRam){
+			if(e.getSource() == jtfCadMemRam){
+				fu.transformar(jtfCadMemRam);
+			}
+		}
+		if(e.getComponent() == jtfCadGarantia){
+			if(e.getSource() == jtfCadGarantia){
+				fu.transformar(jtfCadGarantia);
+			}
+		}
 		
 	}
 
 	@Override
 	public void keyTyped(KeyEvent e) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		
+		if(e.getSource() == jbtSalvar){
+			camposObrigatoriosPadrao();
+			VerificaJtfObrigatorios verificador = new VerificaJtfObrigatorios();
+			Boolean todosPreenchidos = verificador.verificaJtf(jtfsObrig, descricao);
+			
+			Boolean valorCorreto = true;
+			valor = null;
+			try {
+				valor = Double.valueOf(jtfCadValor.getText());
+			} catch (Exception f) {
+				valorCorreto = false;
+				verificador.setCamposMostra(verificador.getCamposMostra() + "* REMOVA CARACTERES ESPECIAIS DO CAMPO VALOR, EXEMPLO: , ! ? $ R$");
+			}
+			
+			if((todosPreenchidos) && (valorCorreto)){
+				alterarCelular();
+				GenericDAO dao = new GenericDAO();
+				dao.alterar(celularAlterar.getCameraFrontal(), "cameraFrontal", jtfCadCameraFrontal.getText());
+				EscolheMensagem escMensagem = new EscolheMensagem();
+				escMensagem.mensagemSucesso("alterar_celular");
+			}else{
+				JOptionPane.showMessageDialog(null, "Os campos a baixo são de preenchimento obrigatório:" + verificador.getCamposMostra());
+			}
+		}
+		if(e.getSource() == jbtLimpar){
+			int confirmacao = JOptionPane.showConfirmDialog(null, "Deseja realmente limpar todos os campos do formulário?", "Confirmação", JOptionPane.WARNING_MESSAGE);
+			if(confirmacao == 0){
+				limparCampos();
+			}
+		}
+		if(e.getSource() == jbtCancelar){
+			limparCampos();
+			this.dispose();
+		}
 	}
 	
-	public void popularCampos(Celular celular){
-		
+	public static void main(String[] args) {
+		new TelaAlterarCelular();
 	}
-
 
 }

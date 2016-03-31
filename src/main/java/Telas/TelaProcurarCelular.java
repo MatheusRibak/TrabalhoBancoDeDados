@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -18,8 +19,10 @@ import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 
+import Model.Celular;
 import Model.Cliente;
 import metodos.ListarCelular;
+import metodos.ProcurarCelular;
 import metodos.ProcurarCliente;
 import Componentes.CriaButton;
 import Componentes.CriaField;
@@ -28,7 +31,7 @@ import Componentes.CriaPanel;
 import Componentes.CriaTabela;
 import Componentes.FieldEmUpper;
 
-public class TelaProcurarCelular extends JFrame implements ActionListener, KeyListener {
+public class TelaProcurarCelular extends JInternalFrame implements ActionListener, KeyListener {
 	private static final long serialVersionUID = -9172268853152388303L;
 	private JLabel jlbTituloFrame, jlbProDescricao, jlbProModelo, jlbProMarca, jlbProImei, jlbOpcOpcoes;
 	private JPanel jpnCamposBusca, jpnOpcoes;
@@ -36,7 +39,6 @@ public class TelaProcurarCelular extends JFrame implements ActionListener, KeyLi
 	private CriaPanel cp = new CriaPanel();
 	private CriaField cf = new CriaField();
 	private CriaButton cb = new CriaButton();
-	private CriaTabela ct = new CriaTabela();
 	FieldEmUpper fu = new FieldEmUpper();
 	private JTextField jtfProDescricao, jtfProModelo, jtfProMarca, jtfProImei;
 	private JButton jbtProcurar, jbtNovo, jbtExcluir, jbtAlterar;
@@ -59,7 +61,7 @@ public class TelaProcurarCelular extends JFrame implements ActionListener, KeyLi
 		setSize(800, 587);
 		setResizable(false);
 		setVisible(true);
-		setLocationRelativeTo(null);
+		setClosable(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 	
@@ -152,11 +154,11 @@ public class TelaProcurarCelular extends JFrame implements ActionListener, KeyLi
 		}
 		if(evt.getSource() == jbtAlterar){
 			String id = String.valueOf(dtmCelulares.getValueAt(jtbCelulares.getSelectedRow(), 0));
-			procurar pc = new ProcurarCliente();
-			Cliente cliente = pc.procurar(id);
-			TelaInicial.getTlInicial().getTlAlterarPessoa().setVisible(true);
-			TelaInicial.getTlInicial().getTlAlterarPessoa().popularCliente(cliente);
-			TelaInicial.getTlInicial().getTlProcurarPessoa().setVisible(false);
+			ProcurarCelular pc = new ProcurarCelular();
+			Celular celular = pc.procurar(id);
+			TelaInicial.getTlInicial().getTlAlterarCelular().setVisible(true);
+			TelaInicial.getTlInicial().getTlAlterarCelular().popularCampos(celular);
+			TelaInicial.getTlInicial().getTlProcurarCelular().setVisible(false);
 		}
 		
 	}

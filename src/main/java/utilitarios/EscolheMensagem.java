@@ -31,6 +31,9 @@ public class EscolheMensagem {
 		case "alterar_vendedor":
 			menSucesso.sucessoAlterarCliente();
 			break;	
+		case "alterar_celular":
+			menSucesso.sucessoAlterarCelular();
+			break;	
 		default:
 			break;
 		}

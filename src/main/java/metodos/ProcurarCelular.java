@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import DAO.GenericDAO;
 import Model.Celular;
-import Model.Cliente;
 
 public class ProcurarCelular {
 

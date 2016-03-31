@@ -10,6 +10,8 @@ import Componentes.CriaButton;
 import Componentes.CriaField;
 import Componentes.CriaLabel;
 import Componentes.CriaPanel;
+import DAO.GenericDAO;
+import Model.Usuario;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -18,6 +20,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -85,7 +88,9 @@ public class TelaLogin extends JFrame implements ActionListener, KeyListener{
 		jlbsenha.setBackground(Color.white);
 		jlbsenha.setForeground(Color.black);
 		jtflogin = cf.criarTextField(125, 125, 200, 24, jtflogin, tela, this);
+		jtflogin.setText("convidado");
 		jtfSenha = cf.criarPasswordField(125, 175, 200, 24, jtfSenha, tela);
+		jtfSenha.setText("123456");
 		btnlogin = cb.criarBotao("Entrar", 245, 200, 80, 24, btnlogin, tela, this);
 		
 		jpnLogin = new JPanel();
@@ -124,11 +129,6 @@ public class TelaLogin extends JFrame implements ActionListener, KeyListener{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 
-	public static void main(String args[]) throws ClassNotFoundException, InstantiationException, IllegalAccessException, UnsupportedLookAndFeelException {
-		UIManager.setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");
-		TelaLogin app = new TelaLogin();
-	}
-
 	@Override
 	public void keyPressed(KeyEvent e) {
 		// TODO Auto-generated method stub
@@ -149,10 +149,35 @@ public class TelaLogin extends JFrame implements ActionListener, KeyListener{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
+		if(e.getSource() == btnlogin){
+			Boolean usuarioCorreto = false;
+			if((jtflogin.getText().equals("convidado")) && jtfSenha.getText().equals("123456")){
+				usuarioCorreto = true;
+			}
+			
+			GenericDAO dao = new GenericDAO();
+			ArrayList<Usuario> usuarios = dao.getDao().listaQualquer(Usuario.class);
+			for(Usuario usuario : usuarios){
+				if((usuario.getLogin().equals(jtflogin.getText())) && usuario.getSenha().equals(jtfSenha.getText())){
+					usuarioCorreto = true;
+				}
+			}
+			
+			if (usuarioCorreto) {
+				TelaInicial tlInicial = new TelaInicial();
+				this.dispose();
+			}else{
+				JOptionPane.showMessageDialog(null, "Usuário ou senha incorretos!", "Falha para autenticar", JOptionPane.WARNING_MESSAGE);
+			}
+			
+		}
 		
 	}
 
+	public static void main(String args[]) throws ClassNotFoundException, InstantiationException, IllegalAccessException, UnsupportedLookAndFeelException {
+		UIManager.setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");
+		TelaLogin app = new TelaLogin();
+	}
 
 	
 }

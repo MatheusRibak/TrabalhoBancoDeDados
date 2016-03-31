@@ -28,6 +28,11 @@ public class MensagemSucesso {
 		CORPO_MENSAGEM = "Vendedor alterado com sucesso!";
 		exibeMensagem(CORPO_MENSAGEM);
 	}
+	
+	public void sucessoAlterarCelular() {
+		CORPO_MENSAGEM = "Celular alterado com sucesso!";
+		exibeMensagem(CORPO_MENSAGEM);
+	}
 
 	private void exibeMensagem(String CORPO_MENSAGEM) {
 		JOptionPane.showMessageDialog(null, CORPO_MENSAGEM, TITULO_MENSAGEM,
