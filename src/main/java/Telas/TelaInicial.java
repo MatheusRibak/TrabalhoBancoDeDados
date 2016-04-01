@@ -44,6 +44,7 @@ public class TelaInicial extends JFrame implements ActionListener{
 	private TelaSelecionarCelular tlSelecionarCelular = new TelaSelecionarCelular();
 	private TelaSelecionarCliente tlSelecionarCliente = new TelaSelecionarCliente();
 	private TelaSelecionarVendedor tlSelecionarVendedor = new TelaSelecionarVendedor();
+	private TelaAlteraVenda tlAlterarVenda = new TelaAlteraVenda();
 	private ArrayList<JInternalFrame> listaInternalFrame = new ArrayList<>();
 	private GenericDAO dao;
 
@@ -67,18 +68,23 @@ public class TelaInicial extends JFrame implements ActionListener{
 		setLayout(null);
 
 		criarBarra();
+		
+		listaInternalFrame.add(tlAlterarVenda);
+		listaInternalFrame.add(tlAlterarPessoa);
+		listaInternalFrame.add(tlAlterarCelular);
 				
 		listaInternalFrame.add(tlSelecionarCelular);
 		listaInternalFrame.add(tlSelecionarVendedor);
 		listaInternalFrame.add(tlSelecionarCliente);
-		listaInternalFrame.add(tlCadastrarPessoa);
+		
 		listaInternalFrame.add(tlProcurarPessoa);
-		listaInternalFrame.add(tlAlterarPessoa);
-		listaInternalFrame.add(tlCadastraCelular);
 		listaInternalFrame.add(tlProcurarCelular);
-		listaInternalFrame.add(tlAlterarCelular);
 		listaInternalFrame.add(tlProcurarVenda);
+		
+		listaInternalFrame.add(tlCadastraCelular);
 		listaInternalFrame.add(tlCadastrarVenda);
+		listaInternalFrame.add(tlCadastrarPessoa);
+		
 		posicionaFrames(listaInternalFrame);
 		
 		jmnBar = new JMenuBar();

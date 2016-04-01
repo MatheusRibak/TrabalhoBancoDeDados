@@ -20,12 +20,14 @@ import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 
 import metodos.ListarVenda;
+import metodos.ProcurarCelular;
 import metodos.ProcurarVenda;
 import Componentes.CriaButton;
 import Componentes.CriaField;
 import Componentes.CriaLabel;
 import Componentes.CriaPanel;
 import Componentes.FieldEmUpper;
+import Model.Celular;
 import Model.Venda;
 
 public class TelaProcurarVenda extends JInternalFrame implements ActionListener, KeyListener{
@@ -38,7 +40,7 @@ public class TelaProcurarVenda extends JInternalFrame implements ActionListener,
 	private CriaButton cb = new CriaButton();
 	FieldEmUpper fu = new FieldEmUpper();
 	private JTextField jtfProCliente, jtfProVendedor;
-	private JButton jbtProcurar, jbtNovo, jbtExcluir;
+	private JButton jbtProcurar, jbtNovo, jbtExcluir, jbtDetalhes;
 	private Container tela;
 	private JTable jtbVendas;
 	private DefaultTableModel dtmVendas = new DefaultTableModel();
@@ -63,10 +65,12 @@ public class TelaProcurarVenda extends JInternalFrame implements ActionListener,
 	
 	private void criarOpcoesResultado() {
 		jlbOpcOpcoes = cl.criarParaPanelCenter("Opções", 360, 5, 80, 24, jlbOpcOpcoes, tela);
-		jbtExcluir = cb.criarBotao("Excluir", 350, 33, 100, 24, jbtExcluir, tela, this);
+		jbtDetalhes = cb.criarBotao("Detalhes", 300, 33, 100, 24, jbtDetalhes, tela, this);
+		jbtExcluir = cb.criarBotao("Excluir", 400, 33, 100, 24, jbtExcluir, tela, this);
 		
 		jpnOpcoes = cp.criarPanelSemTitulo(0, 470, 800, 90, jpnOpcoes, true, tela);
 		jpnOpcoes.add(jlbOpcOpcoes);
+		jpnOpcoes.add(jbtDetalhes);
 		jpnOpcoes.add(jbtExcluir);
 	}
 
@@ -139,6 +143,18 @@ public class TelaProcurarVenda extends JInternalFrame implements ActionListener,
 		if(evt.getSource() == jbtProcurar){
 			ListarVenda lv = new ListarVenda();
 			lv.listar(dtmVendas, jtfProCliente.getText(), jtfProVendedor.getText());	
+		}
+		if(evt.getSource() == jbtDetalhes){
+			if(jtbVendas.getSelectedRow() != -1){
+				String id = String.valueOf(dtmVendas.getValueAt(jtbVendas.getSelectedRow(), 0));
+				ProcurarVenda pv = new ProcurarVenda();
+				Venda venda = pv.procurar(id);
+				TelaInicial.getTlInicial().esconderTelas();
+				TelaInicial.getTlInicial().getTlAlterarVenda().setVisible(true);
+				TelaInicial.getTlInicial().getTlAlterarVenda().popularVenda(venda);
+			}else{
+				JOptionPane.showMessageDialog(null, "Selecione uma venda para carregar os detalhes!", "Informação", JOptionPane.INFORMATION_MESSAGE);
+			}
 		}
 		if(evt.getSource() == jbtExcluir){
 			if(jtbVendas.getSelectedRow() != -1){
