@@ -7,15 +7,18 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
+
 import javax.swing.JButton;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
+
 import metodos.ListarVenda;
 import metodos.ProcurarVenda;
 import Componentes.CriaButton;
@@ -155,11 +158,17 @@ public class TelaProcurarVenda extends JInternalFrame implements ActionListener,
 			lv.listar(dtmVendas, jtfProCliente.getText(), jtfProVendedor.getText());	
 		}
 		if(evt.getSource() == jbtExcluir){
+			if(jtbVendas.getSelectedRow() != -1){
 			String id = String.valueOf(dtmVendas.getValueAt(jtbVendas.getSelectedRow(), 0));
 			ProcurarVenda pv = new ProcurarVenda();
 			Venda venda = pv.procurar(id);
+			ListarVenda lv = new ListarVenda();
 			Object objetoVenda = venda;
 			TelaInicial.getTlInicial().getDao().getDao().remove(objetoVenda, venda.get_id());
+			lv.listar(dtmVendas, jtfProCliente.getText(), jtfProVendedor.getText());
+			}else{
+				JOptionPane.showMessageDialog(null, "Selecione uma venda para excluir!", "Informação", JOptionPane.INFORMATION_MESSAGE);
+			}
 		}
 		if(evt.getSource() == jbtNovo){
 			TelaInicial.getTlInicial().esconderTelas();

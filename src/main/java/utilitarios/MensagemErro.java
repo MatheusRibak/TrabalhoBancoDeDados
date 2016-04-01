@@ -22,6 +22,11 @@ public class MensagemErro {
 		CORPO_MENSAGEM = "Todos os campos do painel 'Principal' são obrigatórios! Preencha-os e tente novamente.";
 		exibeMensagem(CORPO_MENSAGEM);
 	}
+	
+	protected void erroCadastroVenda() {
+		CORPO_MENSAGEM = "Todos os campos do painel 'Principal' são obrigatórios! Preencha-os e tente novamente.";
+		exibeMensagem(CORPO_MENSAGEM);
+	}
 
 	private void exibeMensagem(String CORPO_MENSAGEM) {
 		JOptionPane.showMessageDialog(null, CORPO_MENSAGEM, TITULO_MENSAGEM,

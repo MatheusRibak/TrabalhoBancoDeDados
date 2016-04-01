@@ -7,10 +7,12 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
+
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
@@ -18,6 +20,7 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
+
 import metodos.ListarUsuario;
 import metodos.ProcurarUsuario;
 import Componentes.CriaButton;
@@ -174,11 +177,15 @@ public class TelaSelecionarVendedor extends JInternalFrame implements ActionList
 			TelaInicial.getTlInicial().getTlCadastrarPessoa().setVisible(true);
 		}
 		if(evt.getSource() == jbtSelecionar){
+			if(jtbPessoas.getSelectedRow() != 1){
 			String id = String.valueOf(dtmPessoas.getValueAt(jtbPessoas.getSelectedRow(), 0));
 			ProcurarUsuario pu = new ProcurarUsuario();
 			Usuario usuario = pu.procurar(id);
 			TelaInicial.getTlInicial().getTlCadastrarVenda().popularVendedor(usuario);
 			TelaInicial.getTlInicial().getTlSelecionarVendedor().setVisible(false);	
+			}else{
+				JOptionPane.showMessageDialog(null, "Selecione um vendedor para adicionar a venda!", "Informação", JOptionPane.INFORMATION_MESSAGE);
+			}
 		}		
 	}
 	

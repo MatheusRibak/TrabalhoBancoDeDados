@@ -7,10 +7,12 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
+
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
@@ -18,6 +20,7 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
+
 import metodos.ListarCliente;
 import metodos.ProcurarCliente;
 import Componentes.CriaButton;
@@ -174,11 +177,15 @@ public class TelaSelecionarCliente extends JInternalFrame implements ActionListe
 			TelaInicial.getTlInicial().getTlCadastrarPessoa().setVisible(true);
 		}
 		if(evt.getSource() == jbtSelecionar){
+			if(jtbPessoas.getSelectedRow() != 1){
 			String id = String.valueOf(dtmPessoas.getValueAt(jtbPessoas.getSelectedRow(), 0));
 			ProcurarCliente pc = new ProcurarCliente();
 			Cliente cliente = pc.procurar(id);
 			TelaInicial.getTlInicial().getTlCadastrarVenda().popularCliente(cliente);
 			TelaInicial.getTlInicial().getTlSelecionarCliente().setVisible(false);	
+			}else{
+				JOptionPane.showMessageDialog(null, "Selecione um cliente para adicionar a venda!", "Informação", JOptionPane.INFORMATION_MESSAGE);
+			}
 		}		
 	}
 	

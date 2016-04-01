@@ -14,7 +14,7 @@ public class ListarCelular {
 		dtm.setRowCount(0);
 		
 		for(Celular celular : celulares){
-			if((descricao.isEmpty()) && (modelo.isEmpty()) && imei.isEmpty() && (marca.isEmpty())){
+			if((descricao.isEmpty()) && (modelo.isEmpty()) && imei.isEmpty() && (marca.isEmpty()) && (celular.getSituacao().equalsIgnoreCase("P"))){
 				dtm.addRow(new String[]{celular.get_id().toString(), celular.getModelo(), celular.getEmpresa(), celular.getIMEI()});				
 			}
 		}
@@ -45,7 +45,9 @@ public class ListarCelular {
 						|| (celular.getModelo().toUpperCase().contains(modelo.toUpperCase()))
 							|| (celular.getIMEI().toUpperCase().contains(imei.toUpperCase()))
 								|| (celular.getEmpresa().toUpperCase().contains(marca.toUpperCase())))){
-					dtm.addRow(new String[]{celular.get_id().toString(), celular.getModelo(), celular.getEmpresa(), celular.getIMEI()});		
+					if(celular.getSituacao().equalsIgnoreCase("P")){
+						dtm.addRow(new String[]{celular.get_id().toString(), celular.getModelo(), celular.getEmpresa(), celular.getIMEI()});
+					}
 				}
 				
 			}

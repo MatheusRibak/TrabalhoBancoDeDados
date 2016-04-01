@@ -7,15 +7,18 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
+
 import javax.swing.JButton;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
+
 import metodos.ListarCelular;
 import metodos.ProcurarCelular;
 import Componentes.CriaButton;
@@ -146,11 +149,15 @@ public class TelaSelecionarCelular extends JInternalFrame implements KeyListener
 			lc.listar(dtmCelulares, jtfProDescricao.getText(), jtfProModelo.getText(), jtfProImei.getText(), jtfProMarca.getText());	
 		}
 		if(evt.getSource() == jbtSelecionar){
+			if(jtbCelulares.getSelectedRow() != 1){
 			String id = String.valueOf(dtmCelulares.getValueAt(jtbCelulares.getSelectedRow(), 0));
 			ProcurarCelular pc = new ProcurarCelular();
 			Celular celular = pc.procurar(id);
 			TelaInicial.getTlInicial().getTlCadastrarVenda().popularCelular(celular);
 			TelaInicial.getTlInicial().getTlSelecionarCelular().setVisible(false);
+			}else{
+				JOptionPane.showMessageDialog(null, "Selecione um celular para adicionar a venda!", "Informação", JOptionPane.INFORMATION_MESSAGE);
+			}
 		}
 		if(evt.getSource() == jbtNovo){
 			TelaInicial.getTlInicial().esconderTelas();

@@ -7,9 +7,11 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
+
 import javax.swing.JButton;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -152,19 +154,27 @@ public class TelaProcurarCelular extends JInternalFrame implements ActionListene
 			lc.listar(dtmCelulares, jtfProDescricao.getText(), jtfProModelo.getText(), jtfProImei.getText(), jtfProMarca.getText());	
 		}
 		if(evt.getSource() == jbtAlterar){
+			if(jtbCelulares.getSelectedRow() != -1){
 			String id = String.valueOf(dtmCelulares.getValueAt(jtbCelulares.getSelectedRow(), 0));
 			ProcurarCelular pc = new ProcurarCelular();
 			Celular celular = pc.procurar(id);
 			TelaInicial.getTlInicial().esconderTelas();
 			TelaInicial.getTlInicial().getTlAlterarCelular().setVisible(true);
 			TelaInicial.getTlInicial().getTlAlterarCelular().popularCampos(celular);
+			}else{
+				JOptionPane.showMessageDialog(null, "Selecione um celular para alterar!", "Informação", JOptionPane.INFORMATION_MESSAGE);
+			}
 		}
 		if(evt.getSource() == jbtExcluir){
+			if(jtbCelulares.getSelectedRow() != -1){
 			String id = String.valueOf(dtmCelulares.getValueAt(jtbCelulares.getSelectedRow(), 0));
 			ProcurarCelular pc = new ProcurarCelular();
 			Celular celular = pc.procurar(id);
 			Object objetoCelular = celular;
 			TelaInicial.getTlInicial().getDao().getDao().remove(objetoCelular, celular.get_id());
+			}else{
+				JOptionPane.showMessageDialog(null, "Selecione um celular para excluir!", "Informação", JOptionPane.INFORMATION_MESSAGE);
+			}
 		}
 		if(evt.getSource() == jbtNovo){
 			TelaInicial.getTlInicial().esconderTelas();

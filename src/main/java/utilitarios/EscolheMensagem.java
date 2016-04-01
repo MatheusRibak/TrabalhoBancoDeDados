@@ -11,6 +11,9 @@ public class EscolheMensagem {
 		case "cadastro_celular":
 			menErro.erroCadastroCelular();
 			break;
+		case "cadastro_venda":
+			menErro.erroCadastroVenda();
+			break;
 		default:
 			break;
 		}
@@ -22,8 +25,14 @@ public class EscolheMensagem {
 		case "cadastro_cliente":
 			menSucesso.sucessoCadastrarCliente();
 			break;
+		case "cadastro_vendedor":
+			menSucesso.sucessoCadastrarVendedor();
+			break;
 		case "cadastro_celular":
 			menSucesso.sucessoCadastrarCelular();
+			break;	
+		case "cadastro_venda":
+			menSucesso.sucessoCadastrarVenda();
 			break;	
 		case "alterar_cliente":
 			menSucesso.sucessoAlterarCliente();

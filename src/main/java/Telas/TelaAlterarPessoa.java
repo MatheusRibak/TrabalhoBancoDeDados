@@ -474,6 +474,7 @@ public class TelaAlterarPessoa extends JInternalFrame implements ActionListener,
 					TelaInicial.getTlInicial().getDao().alterar(clienteAlterar, clienteAlterar.get_id());
 					EscolheMensagem escMensagem = new EscolheMensagem();
 					escMensagem.mensagemSucesso("alterar_cliente");
+					TelaInicial.getTlInicial().getTlAlterarPessoa().setVisible(false);
 				}else{
 					JOptionPane.showMessageDialog(null, "Os campos a baixo são de preenchimento obrigatório:" + verificador.getCamposMostra());
 				}
@@ -514,6 +515,7 @@ public class TelaAlterarPessoa extends JInternalFrame implements ActionListener,
 					TelaInicial.getTlInicial().getDao().alterar(usuarioAlterar, usuarioAlterar.get_id());
 					EscolheMensagem escMensagem = new EscolheMensagem();
 					escMensagem.mensagemSucesso("alterar_vendedor");
+					TelaInicial.getTlInicial().getTlAlterarPessoa().setVisible(false);
 				}else{
 					JOptionPane.showMessageDialog(null, "Os campos a baixo são de preenchimento obrigatório:" + verificador.getCamposMostra());
 				}

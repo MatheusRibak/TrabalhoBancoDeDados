@@ -338,6 +338,7 @@ public class TelaAlterarCelular extends JInternalFrame implements ActionListener
 				TelaInicial.getTlInicial().getDao().alterar(celularAlterar, celularAlterar.get_id());
 				EscolheMensagem escMensagem = new EscolheMensagem();
 				escMensagem.mensagemSucesso("alterar_celular");
+				TelaInicial.getTlInicial().getTlAlterarCelular().setVisible(false);
 			}else{
 				JOptionPane.showMessageDialog(null, "Os campos a baixo são de preenchimento obrigatório:" + verificador.getCamposMostra());
 			}

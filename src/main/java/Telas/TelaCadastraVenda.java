@@ -7,19 +7,32 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
+import utilitarios.EscolheMensagem;
 import lombok.Getter;
 import lombok.Setter;
+import metodos.CadastroVenda;
+import metodos.CadastroVendedor;
+import metodos.SubstituiCamposVazios;
+import metodos.VerificaJtfObrigatorios;
 import Componentes.CriaButton;
 import Componentes.CriaField;
 import Componentes.CriaLabel;
@@ -53,6 +66,9 @@ public class TelaCadastraVenda extends JInternalFrame implements ActionListener,
 	private Celular celularCadastrar;
 	private Cliente clienteCadastrar;
 	private Usuario vendedorCadastrar;
+	private Date data;
+	private ArrayList<JTextField> jtfsObrig;
+	private Map<JTextField, String> descricao;
 	
 	public TelaCadastraVenda() {
 		tela = getContentPane();
@@ -81,6 +97,75 @@ public class TelaCadastraVenda extends JInternalFrame implements ActionListener,
 		setClosable(true);
 	}
 	
+	private void camposObrigatoriosPadrao(){
+		jtfsObrig = new ArrayList<JTextField>();
+		jtfsObrig.add(jtfCadData);
+		jtfsObrig.add(jtfCadCelular);
+		jtfsObrig.add(jtfCadCliente);
+		jtfsObrig.add(jtfCadVendedor);
+		
+		descricao = new HashMap<JTextField, String>();
+		descricao.put(jtfCadData, "* Data");
+		descricao.put(jtfCadCelular, "* Celular");
+		descricao.put(jtfCadCliente, "* Cliente");
+		descricao.put(jtfCadVendedor, "* Vendedor");
+	}
+	
+	private void verificaCadastroVenda(){
+		camposObrigatoriosPadrao();
+		
+		VerificaJtfObrigatorios verificador = new VerificaJtfObrigatorios();
+		Boolean todosPreenchidos = verificador.verificaJtf(jtfsObrig, descricao);
+		
+		Boolean dataCorreta = true;
+		try {
+			DateFormat formatter = new SimpleDateFormat("MM/dd/yy");
+			data = (Date)formatter.parse(jtfCadData.getText().toString());
+		} catch (ParseException e) {
+			dataCorreta = false;
+			verificador.setCamposMostra(verificador.getCamposMostra() + "* Data da venda - Use o formato Mês/Dia/Ano - Ex: 12/25/15.");
+		}		
+		
+		if((todosPreenchidos) && (dataCorreta)){
+			cadastrarVenda();
+		}else{
+			JOptionPane.showMessageDialog(null, "Os campos a baixo são de preenchimento obrigatório:" + verificador.getCamposMostra());
+		}
+		
+	}
+	
+	private void cadastrarVenda() {
+		CadastroVenda cadVenda = new CadastroVenda();
+		Boolean cadastrou = cadVenda.cadastrar(data, clienteCadastrar, vendedorCadastrar, celularCadastrar);
+		
+		EscolheMensagem escMensagem = new EscolheMensagem();
+		if(cadastrou){
+			escMensagem.mensagemSucesso("cadastro_venda");
+		}else{
+			escMensagem.mensagemErro("cadastro_venda");
+		}
+		
+	}
+	
+	private void limparCampos(){
+		jtfCadCelular.setText("");
+		jtfCadCliente.setText("");
+		jtfCadData.setText("");
+		jtfCadVendedor.setText("");
+		jtfCelEmpresa.setText("");
+		jtfCelImei.setText("");
+		jtfCelModelo.setText("");
+		jtfCelValor.setText("");
+		jtfCliCidade.setText("");
+		jtfCliCpf.setText("");
+		jtfCliNome.setText("");
+		jtfCliRg.setText("");
+		jtfUsuCpf.setText("");
+		jtfUsuLogin.setText("");
+		jtfUsuNome.setText("");
+		jtfUsuRg.setText("");
+	}
+
 	private void criarCamposCadastrado() {
 		jlbCadData = cl.criarLabelParaPanel("Data:", 15, 17, 80, 24, jlbCadData, tela);
 		jlbCadCelular = cl.criarLabelParaPanel("Celular:", 234, 17, 80, 24, jlbCadCelular, tela);
@@ -266,6 +351,19 @@ public class TelaCadastraVenda extends JInternalFrame implements ActionListener,
 		}
 		if(e.getSource() == jbtProVendedor){
 			TelaInicial.getTlInicial().getTlSelecionarVendedor().setVisible(true);
+		}
+		if(e.getSource() == jbtSalvar){
+			verificaCadastroVenda();
+		}
+		if(e.getSource() == jbtLimpar){
+			int confirmacao = JOptionPane.showConfirmDialog(null, "Deseja realmente limpar todos os campos do formulário?", "Confirmação", JOptionPane.WARNING_MESSAGE);
+			if(confirmacao == 0){
+				limparCampos();
+			}
+		}
+		if(e.getSource() == jbtCancelar){
+			limparCampos();
+			this.dispose();
 		}
 	}
 	

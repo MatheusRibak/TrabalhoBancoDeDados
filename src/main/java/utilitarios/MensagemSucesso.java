@@ -12,9 +12,19 @@ public class MensagemSucesso {
 		CORPO_MENSAGEM = "Cliente cadastrado com sucesso!";
 		exibeMensagem(CORPO_MENSAGEM);
 	}
+	
+	public void sucessoCadastrarVendedor() {
+		CORPO_MENSAGEM = "Vendedor cadastrado com sucesso!";
+		exibeMensagem(CORPO_MENSAGEM);
+	}
 
 	public void sucessoCadastrarCelular() {
 		CORPO_MENSAGEM = "Celular cadastrado com sucesso!";
+		exibeMensagem(CORPO_MENSAGEM);
+	}
+	
+	public void sucessoCadastrarVenda() {
+		CORPO_MENSAGEM = "Venda cadastrada com sucesso!";
 		exibeMensagem(CORPO_MENSAGEM);
 	}
 

@@ -29,6 +29,7 @@ public class CadastroCelular {
 		celular.setCor(cor);
 		celular.setTV(tv);
 		celular.setConectividade(conectividade);
+		celular.setSituacao("P");
 		TelaInicial.getTlInicial().getDao().getDao().inserir(celular);
 		cadastrado = true;
 		return cadastrado;

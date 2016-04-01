@@ -7,10 +7,12 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
+
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
@@ -180,6 +182,7 @@ public class TelaProcuraPessoa extends JInternalFrame implements ActionListener,
 			TelaInicial.getTlInicial().getTlCadastrarPessoa().setVisible(true);
 		}
 		if(evt.getSource() == jbtAlterar){
+			if(jtbPessoas.getSelectedRow() != -1){
 			String id = String.valueOf(dtmPessoas.getValueAt(jtbPessoas.getSelectedRow(), 0));
 			String tipo = String.valueOf(dtmPessoas.getValueAt(jtbPessoas.getSelectedRow(), 4));
 			switch (tipo) {
@@ -200,9 +203,12 @@ public class TelaProcuraPessoa extends JInternalFrame implements ActionListener,
 			default:
 				break;
 			}
-			
+			}else{
+				JOptionPane.showMessageDialog(null, "Selecione uma pessoa para alterar!", "Informação", JOptionPane.INFORMATION_MESSAGE);
+			}
 		}
 		if(evt.getSource() == jbtExcluir){
+			if(jtbPessoas.getSelectedRow() != -1){
 			String id = String.valueOf(dtmPessoas.getValueAt(jtbPessoas.getSelectedRow(), 0));
 			String tipo = String.valueOf(dtmPessoas.getValueAt(jtbPessoas.getSelectedRow(), 4));
 			ListarPessoa lp = new ListarPessoa();
@@ -223,6 +229,9 @@ public class TelaProcuraPessoa extends JInternalFrame implements ActionListener,
 				break;
 			default:
 				break;
+			}
+			}else{
+				JOptionPane.showMessageDialog(null, "Selecione uma pessoa para excluir!", "Informação", JOptionPane.INFORMATION_MESSAGE);
 			}
 		}
 		

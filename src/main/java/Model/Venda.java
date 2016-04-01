@@ -20,7 +20,7 @@ public class Venda {
 	private Date data;
 	private Cliente cliente;
 	private Celular celular;
-	private Vendedor vendedor;
+	private Usuario usuario;
 	private ObjectId _id;
 
 }

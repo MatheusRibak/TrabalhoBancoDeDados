@@ -35,5 +35,7 @@ public class Celular {
 	private String cor;
 	private String TV; 
 	private String conectividade; 	
+	
+	private String situacao; // P = POSSUI N = NAO POSSUI
 
 }

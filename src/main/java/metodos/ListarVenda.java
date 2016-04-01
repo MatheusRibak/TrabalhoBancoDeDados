@@ -15,7 +15,7 @@ public class ListarVenda {
 		for (Venda venda : vendas) {
 			if((cliente.isEmpty()) && (vendedor.isEmpty())){
 			dtm.addRow(new String[] { venda.get_id().toString(),
-					venda.getCliente().getPessoa().getNome(), venda.getVendedor().getPessoa().getNome(), venda.getCelular().getValor().toString()});
+					venda.getCliente().getPessoa().getNome(), venda.getUsuario().getVendedor().getPessoa().getNome(), venda.getCelular().getValor().toString()});
 			}
 		}
 		
@@ -31,9 +31,9 @@ public class ListarVenda {
 		}
 		
 		for(Venda venda : vendas){
-			if((venda.getCliente().getPessoa().getNome().toUpperCase().contains(cliente.toUpperCase())) || venda.getVendedor().getPessoa().getNome().toUpperCase().contains(vendedor.toUpperCase())){
+			if((venda.getCliente().getPessoa().getNome().toUpperCase().contains(cliente.toUpperCase())) || venda.getUsuario().getVendedor().getPessoa().getNome().toUpperCase().contains(vendedor.toUpperCase())){
 				dtm.addRow(new String[] { venda.get_id().toString(),
-						venda.getCliente().getPessoa().getNome(), venda.getVendedor().getPessoa().getNome(), venda.getCelular().getValor().toString()});
+						venda.getCliente().getPessoa().getNome(), venda.getUsuario().getVendedor().getPessoa().getNome(), venda.getCelular().getValor().toString()});
 			}
 		}
 		
