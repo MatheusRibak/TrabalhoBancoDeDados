@@ -122,7 +122,7 @@ public class TelaLogin extends JFrame implements ActionListener, KeyListener{
 				}
 			}
 			if (usuarioCorreto) {
-				TelaInicial.getTlInicial();
+				TelaInicial.getTlInicial().setVisible(true);;
 				this.dispose();
 			}else{
 				JOptionPane.showMessageDialog(null, "Usuário ou senha incorretos!", "Falha para autenticar", JOptionPane.WARNING_MESSAGE);

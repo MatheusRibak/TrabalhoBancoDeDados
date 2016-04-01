@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 import javax.swing.JMenu;
@@ -18,6 +19,7 @@ import javax.swing.UnsupportedLookAndFeelException;
 
 import lombok.Getter;
 import lombok.Setter;
+import Componentes.CriaButton;
 import Componentes.CriaLabel;
 import Componentes.CriaMenu;
 import DAO.GenericDAO;
@@ -27,6 +29,8 @@ public class TelaInicial extends JFrame implements ActionListener{
 	private static final long serialVersionUID = -5502135091121637861L;
 	private CriaLabel cl = new CriaLabel();
 	private CriaMenu cm = new CriaMenu();
+	private CriaButton cb = new CriaButton();
+	private JButton jbtSair;
 	private JMenuBar jmnBar;
 	private JMenu jmnCadastro, jmnProcurar;
 	private JMenuItem jmiCadCelular, jmiCadVenda, jmiCadPessoa;
@@ -86,6 +90,8 @@ public class TelaInicial extends JFrame implements ActionListener{
 		listaInternalFrame.add(tlCadastrarPessoa);
 		
 		posicionaFrames(listaInternalFrame);
+		
+		jbtSair = cb.criarBotao("SAIR", 1115, 0, 70, 24, jbtSair, tela, this);
 		
 		jmnBar = new JMenuBar();
 		jmnBar.setVisible(true);
@@ -162,6 +168,10 @@ public class TelaInicial extends JFrame implements ActionListener{
 		if(e.getSource() == jmiCadVenda){
 			esconderTelas();
 			tlCadastrarVenda.setVisible(true);
+		}
+		if(e.getSource() == jbtSair){
+			tlInicial.setVisible(false);
+			TelaLogin login = new TelaLogin();
 		}
 	}
 	
