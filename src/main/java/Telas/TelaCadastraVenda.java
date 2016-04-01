@@ -89,6 +89,26 @@ public class TelaCadastraVenda extends JInternalFrame implements ActionListener,
 		jpnOpcoes.add(jbtSalvar);
 		jpnOpcoes.add(jbtCancelar);
 		
+		jtfCadData.setDisabledTextColor(Color.black);
+		jtfCadCelular.setDisabledTextColor(Color.black);
+		jtfCadCliente.setDisabledTextColor(Color.black);
+		jtfCadVendedor.setDisabledTextColor(Color.black);
+				
+		jtfCelImei.setDisabledTextColor(Color.black);
+		jtfCelModelo.setDisabledTextColor(Color.black);
+		jtfCelEmpresa.setDisabledTextColor(Color.black);
+		jtfCelValor.setDisabledTextColor(Color.black);
+
+		jtfCliNome.setDisabledTextColor(Color.black);
+		jtfCliRg.setDisabledTextColor(Color.black);
+		jtfCliCpf.setDisabledTextColor(Color.black);
+		jtfCliCidade.setDisabledTextColor(Color.black);
+
+		jtfUsuNome.setDisabledTextColor(Color.black);
+		jtfUsuLogin.setDisabledTextColor(Color.black);
+		jtfUsuRg.setDisabledTextColor(Color.black);
+		jtfUsuCpf.setDisabledTextColor(Color.black);
+		
 		tela.setBackground(Color.white);
 		setSize(800, 470);
 		setResizable(false);
