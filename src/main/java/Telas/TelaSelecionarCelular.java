@@ -142,7 +142,7 @@ public class TelaSelecionarCelular extends JInternalFrame implements KeyListener
 			lc.listar(dtmCelulares, jtfProDescricao.getText(), jtfProModelo.getText(), jtfProImei.getText(), jtfProMarca.getText());	
 		}
 		if(evt.getSource() == jbtSelecionar){
-			if(jtbCelulares.getSelectedRow() != 1){
+			if(jtbCelulares.getSelectedRow() != -1){
 			String id = String.valueOf(dtmCelulares.getValueAt(jtbCelulares.getSelectedRow(), 0));
 			ProcurarCelular pc = new ProcurarCelular();
 			Celular celular = pc.procurar(id);

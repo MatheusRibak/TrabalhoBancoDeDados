@@ -173,7 +173,7 @@ public class TelaSelecionarCliente extends JInternalFrame implements ActionListe
 			TelaInicial.getTlInicial().getTlCadastrarPessoa().setVisible(true);
 		}
 		if(evt.getSource() == jbtSelecionar){
-			if(jtbPessoas.getSelectedRow() != 1){
+			if(jtbPessoas.getSelectedRow() != -1){
 			String id = String.valueOf(dtmPessoas.getValueAt(jtbPessoas.getSelectedRow(), 0));
 			ProcurarCliente pc = new ProcurarCliente();
 			Cliente cliente = pc.procurar(id);
