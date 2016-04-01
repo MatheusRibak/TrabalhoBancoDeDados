@@ -96,7 +96,7 @@ public class TelaProcurarCelular extends JInternalFrame implements ActionListene
 	private void criarCamposBusca() {
 		jlbProDescricao = cl.criarLabelParaPanel("Descrição:", 5, 15, 90, 24, jlbProDescricao, tela);
 		jlbProModelo = cl.criarLabelParaPanel("Modelo:", 15, 39, 80, 24, jlbProModelo, tela);
-		jlbProMarca = cl.criarLabelParaPanel("Marca:", 365, 39, 80, 24, jlbProMarca, tela);
+		jlbProMarca = cl.criarLabelParaPanel("Empresa:", 365, 39, 80, 24, jlbProMarca, tela);
 		jlbProImei = cl.criarLabelParaPanel("IMEI:", 15, 63, 80, 24, jlbProImei, tela);
 		
 		jtfProDescricao = cf.criarTextField(100, 15, 600, 24, jtfProDescricao, tela, this);
