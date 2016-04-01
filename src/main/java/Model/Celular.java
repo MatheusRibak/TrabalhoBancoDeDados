@@ -25,7 +25,6 @@ public class Celular {
 	private String quantidadeChips;
 	private Double valor;
 	private String IMEI; 
-	
 	private String tamanhoDaTela;
 	private String sistemaOperacional;
 	private String cameraFrontal;
@@ -35,7 +34,5 @@ public class Celular {
 	private String cor;
 	private String TV; 
 	private String conectividade; 	
-	
 	private String situacao; // P = POSSUI N = NAO POSSUI
-
 }

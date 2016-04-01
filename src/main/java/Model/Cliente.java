@@ -12,10 +12,8 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Cliente{
-
 	public final static String NOME_COLLECTION = Cliente.class.getSimpleName()
 			.toLowerCase();
 	private Pessoa pessoa;
 	private ObjectId _id;
-
 }

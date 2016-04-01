@@ -57,7 +57,6 @@ public class TelaCadastraCelular extends JInternalFrame implements ActionListene
 		setLayout(null);
 
 		jlbTituloFrame = cl.criarTitulo(titulo, jlbTituloFrame, tela);
-		
 		criarCamposCadastrado();
 		
 		jlbOpcOpcoes = cl.criarParaPanelCenter("Opções", 360, 5, 80, 24, jlbOpcOpcoes, tela);
@@ -235,7 +234,6 @@ public class TelaCadastraCelular extends JInternalFrame implements ActionListene
 		}else{
 			escMensagem.mensagemErro("cadastro_celular");
 		}
-	
 	}
 
 	private void limparCampos(){
@@ -323,5 +321,4 @@ public class TelaCadastraCelular extends JInternalFrame implements ActionListene
 	public static void main(String[] args) {
 		new TelaCadastraCelular();
 	}
-	
 }

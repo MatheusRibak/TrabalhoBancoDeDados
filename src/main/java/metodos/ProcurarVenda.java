@@ -14,10 +14,6 @@ public class ProcurarVenda {
 				vendaRetorno = venda; 
 			}
 		}
-
-		
 		return vendaRetorno;
 	}
-	
-	
 }

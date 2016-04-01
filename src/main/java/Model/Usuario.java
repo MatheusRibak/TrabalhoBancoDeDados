@@ -13,7 +13,6 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Usuario {
-	
 	public final static String NOME_COLLECTION = Usuario.class.getSimpleName()
 			.toLowerCase();
 	private String login;
@@ -21,5 +20,4 @@ public class Usuario {
 	private Integer nivelAcesso; // nível = 1 (Vendedor) = 2 (Gestor)
 	private Vendedor vendedor;
 	private ObjectId _id;
-
 }

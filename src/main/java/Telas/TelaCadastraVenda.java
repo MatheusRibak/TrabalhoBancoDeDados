@@ -76,7 +76,6 @@ public class TelaCadastraVenda extends JInternalFrame implements ActionListener,
 		setLayout(null);
 
 		jlbTituloFrame = cl.criarTitulo(titulo, jlbTituloFrame, tela);
-		
 		criarCamposCadastrado();
 		
 		jlbOpcOpcoes = cl.criarParaPanelCenter("Opções", 360, 5, 80, 24, jlbOpcOpcoes, tela);
@@ -131,7 +130,6 @@ public class TelaCadastraVenda extends JInternalFrame implements ActionListener,
 		}else{
 			JOptionPane.showMessageDialog(null, "Os campos a baixo são de preenchimento obrigatório:" + verificador.getCamposMostra());
 		}
-		
 	}
 	
 	private void cadastrarVenda() {
@@ -143,8 +141,7 @@ public class TelaCadastraVenda extends JInternalFrame implements ActionListener,
 			escMensagem.mensagemSucesso("cadastro_venda");
 		}else{
 			escMensagem.mensagemErro("cadastro_venda");
-		}
-		
+		}	
 	}
 	
 	private void limparCampos(){
@@ -293,7 +290,6 @@ public class TelaCadastraVenda extends JInternalFrame implements ActionListener,
 		jpnCliInfo.add(jtfUsuLogin);	
 		jpnCliInfo.add(jtfUsuRg);	
 		jpnCliInfo.add(jtfUsuCpf);	
-		
 	}
 
 	public void popularCelular(Celular celular){
@@ -371,6 +367,5 @@ public class TelaCadastraVenda extends JInternalFrame implements ActionListener,
 		
 		new TelaCadastraVenda();
 	}
-
 
 }

@@ -17,7 +17,6 @@ import java.util.Map;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -71,7 +70,6 @@ public class TelaCadastraPessoa extends JInternalFrame implements ActionListener
 		setLayout(null);
 
 		jlbTituloFrame = cl.criarTitulo(titulo + "CLIENTE", jlbTituloFrame, tela);
-		
 		criarCamposCadastrado();
 		
 		jlbOpcOpcoes = cl.criarParaPanelCenter("Opções", 360, 5, 80, 24, jlbOpcOpcoes, tela);
@@ -187,7 +185,6 @@ public class TelaCadastraPessoa extends JInternalFrame implements ActionListener
 		btnProGrupo.add(jrbCliente);
 		btnProGrupo.add(jrbVendedor);
 		
-		//campos para vendedor
 		jlbCadVendSalario = cl.criarLabelParaPanel("Salário:", 15, 63, 80, 24, jlbCadVendSalario, tela);
 		jlbCadVendComissao = cl.criarLabelParaPanel("Comissão:", 195, 63, 80, 24, jlbCadVendComissao, tela);
 		jlbCadVendUsuario = cl.criarLabelParaPanel("Usuário:", 15, 87, 80, 24, jlbCadVendUsuario, tela);
@@ -234,7 +231,6 @@ public class TelaCadastraPessoa extends JInternalFrame implements ActionListener
 		jtfCadVendSalario.setVisible(false);
 		jtfCadVendComissao.setVisible(false);
 		jcbCadVendNivelAcesso.setVisible(false);
-		
 	}
 	
 	private void camposObrigatoriosPadrao(){
@@ -277,7 +273,6 @@ public class TelaCadastraPessoa extends JInternalFrame implements ActionListener
 	
 	private void verificaCadastroVendedor() {
 		camposObrigatoriosPadrao();
-		//adiciona campos obrigatorios de vendedor
 		jtfsObrig.add(jtfCadVendSalario);
 		jtfsObrig.add(jtfCadVendComissao);
 		jtfsObrig.add(jtfCadVendUsuario);
@@ -316,14 +311,11 @@ public class TelaCadastraPessoa extends JInternalFrame implements ActionListener
 			verificador.setCamposMostra(verificador.getCamposMostra() + "\n* REMOVA CARACTERES ESPECIAIS DO CAMPO COMISSÃO, EXEMPLO: , ! ? $ R$");
 		}
 	
-		
 		if((todosPreenchidos) && (dataCorreta) && (valorSalarioCorreto) && (valorComissaoCorretor)){
 			cadastrarVendedor();
 		}else{
 			JOptionPane.showMessageDialog(null, "Os campos a baixo são de preenchimento obrigatório:" + verificador.getCamposMostra());
-		}
-		
-		
+		}		
 	}
 
 	private void cadastrarVendedor() {
@@ -336,7 +328,6 @@ public class TelaCadastraPessoa extends JInternalFrame implements ActionListener
 		}else{
 			escMensagem.mensagemErro("cadastro_vendedor");
 		}
-	
 	}
 
 	private void verificaCadastroCliente() {	
@@ -357,9 +348,7 @@ public class TelaCadastraPessoa extends JInternalFrame implements ActionListener
 			cadastrarCliente();
 		}else{
 			JOptionPane.showMessageDialog(null, "Os campos a baixo são de preenchimento obrigatório:" + verificador.getCamposMostra());
-		}
-		
-		
+		}	
 	}
 
 	private void cadastrarCliente() {		
@@ -371,7 +360,6 @@ public class TelaCadastraPessoa extends JInternalFrame implements ActionListener
 		}else{
 			escMensagem.mensagemErro("cadastro_cliente");
 		}
-	
 	}
 
 	private void limparCampos(){

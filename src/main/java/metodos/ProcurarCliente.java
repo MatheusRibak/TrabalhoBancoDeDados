@@ -14,9 +14,6 @@ public class ProcurarCliente {
 				clienteRetorno = cliente; 
 			}
 		}
-
-		
 		return clienteRetorno;
 	}
-	
 }

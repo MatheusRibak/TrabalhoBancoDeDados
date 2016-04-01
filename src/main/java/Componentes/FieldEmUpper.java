@@ -7,5 +7,4 @@ public class FieldEmUpper {
 	public void transformar(JTextField field){
 		field.setText(field.getText().toUpperCase());
 	}
-
 }

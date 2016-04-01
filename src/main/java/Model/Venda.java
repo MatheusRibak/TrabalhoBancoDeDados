@@ -14,7 +14,6 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Venda {
-
 	public final static String NOME_COLLECTION = Venda.class.getSimpleName()
 			.toLowerCase();
 	private Date data;
@@ -22,5 +21,4 @@ public class Venda {
 	private Celular celular;
 	private Usuario usuario;
 	private ObjectId _id;
-
 }

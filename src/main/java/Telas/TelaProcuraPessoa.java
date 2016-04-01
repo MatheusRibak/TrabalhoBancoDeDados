@@ -233,8 +233,7 @@ public class TelaProcuraPessoa extends JInternalFrame implements ActionListener,
 			}else{
 				JOptionPane.showMessageDialog(null, "Selecione uma pessoa para excluir!", "Informação", JOptionPane.INFORMATION_MESSAGE);
 			}
-		}
-		
+		}	
 	}
 	
 	public static void main(String[] args){

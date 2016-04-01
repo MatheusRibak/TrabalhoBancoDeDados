@@ -10,10 +10,8 @@ public class SubstituiCamposVazios {
 		for (JTextField jtf : jtfs) {
 			if (jtf.getText().length() > 0) {
 			} else {
-				jtf.setText(" ");// para não gravar null
+				jtf.setText(" ");
 			}
 		}
 	}
-
-	
 }

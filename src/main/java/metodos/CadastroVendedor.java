@@ -45,5 +45,4 @@ public class CadastroVendedor {
 		TelaInicial.getTlInicial().getDao().inserir(usuario);
 		return cadastrou = true;
 	}
-
 }

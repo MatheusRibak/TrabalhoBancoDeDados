@@ -22,8 +22,7 @@ import java.util.ArrayList;
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter
-@Setter
+@Getter @Setter
 public class TelaLogin extends JFrame implements ActionListener, KeyListener{
 	private static final long serialVersionUID = -2619511002441617106L;
 	private JLabel jlblogin, jlbsenha;
@@ -122,22 +121,17 @@ public class TelaLogin extends JFrame implements ActionListener, KeyListener{
 					usuarioCorreto = true;
 				}
 			}
-			
 			if (usuarioCorreto) {
 				TelaInicial.getTlInicial();
 				this.dispose();
 			}else{
 				JOptionPane.showMessageDialog(null, "Usuário ou senha incorretos!", "Falha para autenticar", JOptionPane.WARNING_MESSAGE);
 			}
-			
 		}
-		
 	}
 
 	public static void main(String args[]) throws ClassNotFoundException, InstantiationException, IllegalAccessException, UnsupportedLookAndFeelException {
 		UIManager.setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");
 		TelaLogin app = new TelaLogin();
 	}
-
-	
 }

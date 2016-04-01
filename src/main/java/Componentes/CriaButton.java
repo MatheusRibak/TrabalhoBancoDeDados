@@ -8,7 +8,8 @@ import javax.swing.JButton;
 
 public class CriaButton {
 
-	public JButton criarBotao(String texto, Integer col, Integer lin, Integer lar, Integer alt, JButton button, Container tela, ActionListener action) {
+	public JButton criarBotao(String texto, Integer col, Integer lin, Integer lar, Integer alt, 
+			JButton button, Container tela, ActionListener action) {
 		button = new JButton(texto.toUpperCase());
 		button.setBounds(col, lin, lar, alt);
 		button.setVisible(true);
@@ -16,10 +17,10 @@ public class CriaButton {
 		button.addActionListener(action);
 		tela.add(button);
 		return button;
-
 	}
 	
-	public JButton criarBotaoAjuda(String MENSAGEM, String texto, Integer col, Integer lin, Integer lar, Integer alt, JButton button, Container tela, ActionListener action) {
+	public JButton criarBotaoAjuda(String MENSAGEM, String texto, Integer col, Integer lin, Integer lar,
+			Integer alt, JButton button, Container tela, ActionListener action) {
 		button = new JButton(texto.toUpperCase());
 		button.setBounds(col, lin, lar, alt);
 		button.setVisible(true);
@@ -33,7 +34,8 @@ public class CriaButton {
 
 	}
 	
-	public JButton criarBotaoProcurar(String texto, Integer col, Integer lin, Integer lar, Integer alt, JButton button, Container tela, ActionListener action) {
+	public JButton criarBotaoProcurar(String texto, Integer col, Integer lin, Integer lar, Integer alt, 
+			JButton button, Container tela, ActionListener action) {
 		button = new JButton(texto.toUpperCase());
 		button.setBounds(col, lin, lar, alt);
 		button.setVisible(true);
@@ -43,7 +45,5 @@ public class CriaButton {
 		button.setBackground(Color.WHITE);
 		tela.add(button);
 		return button;
-
 	}
-	
 }

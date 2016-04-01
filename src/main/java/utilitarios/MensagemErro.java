@@ -7,7 +7,6 @@ public class MensagemErro {
 	private static int TIPO_MENSAGEM = JOptionPane.ERROR_MESSAGE;
 	private String CORPO_MENSAGEM = "Erro!";
 
-	// NECESSÁRIO APENAS TROCAR CORPO_MENSAGEM AO CRIAR NOVO METODO
 	protected void erroCadastrarCliente() {
 		CORPO_MENSAGEM = "Os campos de NOME, RG E CPF são obrigatorios! Preencha-os corretamente e tente novamente.";
 		exibeMensagem(CORPO_MENSAGEM);

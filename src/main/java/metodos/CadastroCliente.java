@@ -23,7 +23,6 @@ public class CadastroCliente {
 		endereco.setCidade(cidade);
 		endereco.setUf(uf);
 		endereco.setCep(cep);
-		
 		Pessoa pessoa = new Pessoa();
 		pessoa.setNome(nome);
 		pessoa.setSexo(sexo);
@@ -36,13 +35,10 @@ public class CadastroCliente {
 		pessoa.setTelefoneCelular(telCelular);
 		pessoa.setTelefoneResidencial(telResidencial);
 		pessoa.setEndereco(endereco);
-		
 		Cliente cliente = new Cliente();
 		cliente.setPessoa(pessoa);
 		TelaInicial.getTlInicial().getDao().inserir(cliente);
-		
 		cadastrado = true;
 		return cadastrado;
 	}
-
 }

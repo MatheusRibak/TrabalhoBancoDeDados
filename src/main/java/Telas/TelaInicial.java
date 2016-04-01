@@ -79,8 +79,8 @@ public class TelaInicial extends JFrame implements ActionListener{
 		listaInternalFrame.add(tlAlterarCelular);
 		listaInternalFrame.add(tlProcurarVenda);
 		listaInternalFrame.add(tlCadastrarVenda);
-		
 		posicionaFrames(listaInternalFrame);
+		
 		jmnBar = new JMenuBar();
 		jmnBar.setVisible(true);
 		jmnBar.add(jmnCadastro);
@@ -129,7 +129,6 @@ public class TelaInicial extends JFrame implements ActionListener{
 		jmnProcurar.add(new JSeparator());
 		jmiProVenda = cm.criarMenuItem(jmiProVenda, "Venda", jmnProcurar);
 		jmiProVenda.addActionListener(this);
-		
 	}
 
 	@Override

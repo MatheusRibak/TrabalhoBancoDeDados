@@ -8,7 +8,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Vendedor {
-
 	public final static String NOME_COLLECTION = Vendedor.class.getSimpleName()
 			.toLowerCase();
 	private Pessoa pessoa;
@@ -18,13 +17,10 @@ public class Vendedor {
 	public void setPessoa(Pessoa pessoa) {
 		this.pessoa = pessoa;
 	}
-
 	public void setSalario(Double salario) {
 		this.salario = salario;
 	}
-
 	public void setComissao(Double comissao) {
 		this.comissao = comissao;
 	}
-
 }

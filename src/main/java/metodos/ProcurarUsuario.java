@@ -15,9 +15,6 @@ public class ProcurarUsuario {
 				usuarioRetorno = usuario; 
 			}
 		}
-
-		
 		return usuarioRetorno;
 	}
-	
 }

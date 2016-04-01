@@ -11,7 +11,6 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Pessoa {
-
 	public final static String NOME_COLLECTION = Pessoa.class.getSimpleName()
 			.toLowerCase();
 	private String nome;
@@ -24,7 +23,4 @@ public class Pessoa {
 	private String sexo; 
 	private String telefoneCelular;
 	private String telefoneResidencial;
-
-
-
 }

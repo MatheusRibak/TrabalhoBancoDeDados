@@ -34,5 +34,4 @@ public class CadastroCelular {
 		cadastrado = true;
 		return cadastrado;
 	}
-
 }

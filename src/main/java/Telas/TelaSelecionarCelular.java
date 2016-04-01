@@ -64,13 +64,10 @@ public class TelaSelecionarCelular extends JInternalFrame implements KeyListener
 	private void criarOpcoesResultado() {
 		jlbOpcOpcoes = cl.criarParaPanelCenter("Opções", 360, 5, 80, 24, jlbOpcOpcoes, tela);
 		jbtSelecionar = cb.criarBotao("Selecionar", 300, 33, 200, 24, jbtSelecionar, tela, this);
-		//jbtExcluir = cb.criarBotao("Excluir", 400, 33, 100, 24, jbtExcluir, tela, this);
 		
 		jpnOpcoes = cp.criarPanelSemTitulo(0, 470, 800, 90, jpnOpcoes, true, tela);
 		jpnOpcoes.add(jlbOpcOpcoes);
 		jpnOpcoes.add(jbtSelecionar);
-		//jpnOpcoes.add(jbtExcluir);
-		
 	}
 
 	private void criarTabela() {
@@ -104,8 +101,7 @@ public class TelaSelecionarCelular extends JInternalFrame implements KeyListener
 		jtfProModelo = cf.criarTextField(100, 39, 250, 24, jtfProModelo, tela, this);
 		jtfProMarca = cf.criarTextField(450, 39, 250, 24, jtfProMarca, tela, this);
 		jtfProImei = cf.criarTextField(100, 63, 200, 24, jtfProImei, tela, this);
-		
-		//jbtNovo = cb.criarBotao("Novo", 500, 63, 100, 24, jbtNovo, tela, this);
+
 		jbtProcurar = cb.criarBotao("Procurar", 600, 63, 100, 24, jbtProcurar, tela, this);
 		
 		jpnCamposBusca = cp.criarPanelSemTitulo(0, 70, 800, 100, jpnCamposBusca, true, tela);
@@ -117,9 +113,7 @@ public class TelaSelecionarCelular extends JInternalFrame implements KeyListener
 		jpnCamposBusca.add(jtfProMarca);
 		jpnCamposBusca.add(jlbProImei);
 		jpnCamposBusca.add(jtfProImei);
-		//jpnCamposBusca.add(jbtNovo);
 		jpnCamposBusca.add(jbtProcurar);
-		
 	}
 
 	@Override
@@ -134,7 +128,6 @@ public class TelaSelecionarCelular extends JInternalFrame implements KeyListener
 				fu.transformar(jtfProDescricao);
 			}
 		}
-		
 	}
 
 	@Override
@@ -164,7 +157,6 @@ public class TelaSelecionarCelular extends JInternalFrame implements KeyListener
 			TelaInicial.getTlInicial().getTlCadastraCelular().setVisible(true);
 		}
 	}
-
 	
 	public static void main(String[] args) {
 		new TelaSelecionarCelular();

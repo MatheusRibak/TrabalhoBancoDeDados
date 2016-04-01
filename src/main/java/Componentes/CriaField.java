@@ -11,7 +11,8 @@ import javax.swing.text.MaskFormatter;
 
 public class CriaField {
 	
-	public JTextField criarTextField(Integer col, Integer lin, Integer lar, Integer alt, JTextField textField, Container tela, KeyListener mouse) {
+	public JTextField criarTextField(Integer col, Integer lin, Integer lar, 
+			Integer alt, JTextField textField, Container tela, KeyListener mouse) {
 		textField = new JTextField();
 		textField.setBounds(col, lin, lar, alt);
 		textField.setVisible(true);
@@ -20,7 +21,8 @@ public class CriaField {
 		return textField;
 	}
 	
-	public JTextField criarPasswordField(Integer col, Integer lin, Integer lar, Integer alt, JTextField textField, Container tela) {
+	public JTextField criarPasswordField(Integer col, Integer lin, Integer lar, Integer alt,
+			JTextField textField, Container tela) {
 		textField = new JPasswordField();
 		textField.setBounds(col, lin, lar, alt);
 		textField.setVisible(true);
@@ -28,7 +30,8 @@ public class CriaField {
 		return textField;
 	}
 	
-	public JTextField criarMaskFieldDate(Integer col, Integer lin, Integer lar, Integer alt, JTextField textField, Container tela){
+	public JTextField criarMaskFieldDate(Integer col, Integer lin, Integer lar, Integer alt,
+			JTextField textField, Container tela){
 		try {
 			textField = new JFormattedTextField(new MaskFormatter("##/##/##"));
 		} catch (ParseException e) {
@@ -40,5 +43,4 @@ public class CriaField {
 		tela.add(textField);
 		return textField;
 	}
-
 }

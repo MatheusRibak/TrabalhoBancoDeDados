@@ -20,17 +20,12 @@ import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 
 import Model.Celular;
-import Model.Cliente;
-import Model.Usuario;
 import metodos.ListarCelular;
 import metodos.ProcurarCelular;
-import metodos.ProcurarCliente;
-import metodos.ProcurarUsuario;
 import Componentes.CriaButton;
 import Componentes.CriaField;
 import Componentes.CriaLabel;
 import Componentes.CriaPanel;
-import Componentes.CriaTabela;
 import Componentes.FieldEmUpper;
 
 public class TelaProcurarCelular extends JInternalFrame implements ActionListener, KeyListener {
@@ -75,7 +70,6 @@ public class TelaProcurarCelular extends JInternalFrame implements ActionListene
 		jpnOpcoes.add(jlbOpcOpcoes);
 		jpnOpcoes.add(jbtAlterar);
 		jpnOpcoes.add(jbtExcluir);
-		
 	}
 
 	private void criarTabela() {
@@ -123,8 +117,7 @@ public class TelaProcurarCelular extends JInternalFrame implements ActionListene
 		jpnCamposBusca.add(jlbProImei);
 		jpnCamposBusca.add(jtfProImei);
 		jpnCamposBusca.add(jbtNovo);
-		jpnCamposBusca.add(jbtProcurar);
-		
+		jpnCamposBusca.add(jbtProcurar);	
 	}
 
 	@Override
@@ -139,7 +132,6 @@ public class TelaProcurarCelular extends JInternalFrame implements ActionListene
 				fu.transformar(jtfProDescricao);
 			}
 		}
-		
 	}
 
 	@Override

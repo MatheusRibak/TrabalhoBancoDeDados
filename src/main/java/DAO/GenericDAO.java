@@ -29,7 +29,6 @@ public class GenericDAO<T> {
 		jongo = new Jongo(mongoClient.getDB("TrabalhoBancoDeDados3-Final"));
 	}
 	
-	
 	public void remove(Object objeto, ObjectId id){
 		MongoCollection collection = jongo.getCollection(objeto.getClass().getName());
 		collection.remove("{_id: #}", id);
@@ -42,13 +41,10 @@ public class GenericDAO<T> {
 	
 	public void inserir(Object entidade){
 		MongoCollection collection = jongo.getCollection(entidade.getClass().getName());
-		collection.insert(entidade);
-		
+		collection.insert(entidade);	
 	}
 
-
 	public Object listaFiltro(Class classe, String campo, String consulta){
-		@SuppressWarnings("unchecked")
 		Object objeto = jongo.getCollection(classe.getName()).findOne("{" + campo + ":'" + consulta + "'}").as(classe);
 		return objeto;
 		

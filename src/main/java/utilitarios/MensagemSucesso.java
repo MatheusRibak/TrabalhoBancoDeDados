@@ -7,7 +7,6 @@ public class MensagemSucesso {
 	private static int TIPO_MENSAGEM = JOptionPane.PLAIN_MESSAGE;
 	private String CORPO_MENSAGEM = "Cadastrado!";
 
-	// NECESSÁRIO APENAS TROCAR CORPO_MENSAGEM AO CRIAR NOVO METODO
 	public void sucessoCadastrarCliente() {
 		CORPO_MENSAGEM = "Cliente cadastrado com sucesso!";
 		exibeMensagem(CORPO_MENSAGEM);
@@ -28,7 +27,6 @@ public class MensagemSucesso {
 		exibeMensagem(CORPO_MENSAGEM);
 	}
 
-	
 	public void sucessoAlterarCliente() {
 		CORPO_MENSAGEM = "Cliente alterado com sucesso!";
 		exibeMensagem(CORPO_MENSAGEM);

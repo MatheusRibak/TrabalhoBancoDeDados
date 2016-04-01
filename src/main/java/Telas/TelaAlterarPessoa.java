@@ -14,7 +14,6 @@ import java.util.Map;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -30,7 +29,6 @@ import Componentes.CriaField;
 import Componentes.CriaLabel;
 import Componentes.CriaPanel;
 import Componentes.CriaRadioButton;
-import DAO.GenericDAO;
 import Model.Cliente;
 import Model.Usuario;
 
@@ -62,7 +60,6 @@ public class TelaAlterarPessoa extends JInternalFrame implements ActionListener,
 	private Double salario, comissao;
 	private Usuario usuarioAlterar = null;
 	private Cliente clienteAlterar = null;
-	
 
 	public TelaAlterarPessoa() {
 		tela = getContentPane();
@@ -70,7 +67,6 @@ public class TelaAlterarPessoa extends JInternalFrame implements ActionListener,
 		setLayout(null);
 
 		jlbTituloFrame = cl.criarTitulo(titulo + "CLIENTE", jlbTituloFrame, tela);
-		
 		criarCamposCadastrado();
 		
 		jlbOpcOpcoes = cl.criarParaPanelCenter("Opções", 360, 5, 80, 24, jlbOpcOpcoes, tela);
@@ -174,7 +170,6 @@ public class TelaAlterarPessoa extends JInternalFrame implements ActionListener,
 		
 		jtfCadRg = cf.criarTextField(100, 15, 90, 24, jtfCadRg, tela, this);
 		jtfCadCpf = cf.criarTextField(240, 15, 120, 24, jtfCadCpf, tela, this);
-	
 		
 		jlbProTipo = cl.criarLabelParaPanel("Tipo:", 15, 39, 80, 24, jlbProTipo, tela);
 		jrbCliente = crb.criarRadioButton("Cliente", 100, 39, 70, 24, jrbCliente, tela);
@@ -186,7 +181,6 @@ public class TelaAlterarPessoa extends JInternalFrame implements ActionListener,
 		btnProGrupo.add(jrbCliente);
 		btnProGrupo.add(jrbVendedor);
 		
-		//campos para vendedor
 		jlbCadVendSalario = cl.criarLabelParaPanel("Salário:", 15, 63, 80, 24, jlbCadVendSalario, tela);
 		jlbCadVendComissao = cl.criarLabelParaPanel("Comissão:", 195, 63, 80, 24, jlbCadVendComissao, tela);
 		jlbCadVendUsuario = cl.criarLabelParaPanel("Usuário:", 15, 87, 80, 24, jlbCadVendUsuario, tela);
@@ -196,7 +190,6 @@ public class TelaAlterarPessoa extends JInternalFrame implements ActionListener,
 		jtfCadVendSalario = cf.criarTextField(100, 63, 90, 24, jtfCadVendUsuario, tela, this);
 		jtfCadVendComissao = cf.criarTextField(280, 63, 80, 24, jtfCadVendComissao, tela, this);
 		jtfCadVendUsuario = cf.criarTextField(100, 87, 120, 24, jtfCadVendUsuario, tela, this);
-		//jtfCadVendSenha = cf.criarPasswordField(280, 87, 110, 24, jtfCadVendSenha, tela);
 		jtfCadVendSenha = cf.criarTextField(280, 87, 110, 24, jtfCadVendSenha, tela, this);
 		
 		jcbCadVendNivelAcesso = new JComboBox<>();
@@ -286,7 +279,6 @@ public class TelaAlterarPessoa extends JInternalFrame implements ActionListener,
 		clienteAlterar.getPessoa().getEndereco().setCidade(jtfCadCidade.getText());
 		clienteAlterar.getPessoa().getEndereco().setUf(jtfCadUf.getText());
 		clienteAlterar.getPessoa().getEndereco().setCep(jtfCadCep.getText());
-		
 		clienteAlterar.getPessoa().setRg(jtfCadRg.getText());
 		clienteAlterar.getPessoa().setCpf(jtfCadCpf.getText());
 	}
@@ -303,10 +295,8 @@ public class TelaAlterarPessoa extends JInternalFrame implements ActionListener,
 		usuarioAlterar.getVendedor().getPessoa().getEndereco().setCidade(jtfCadCidade.getText());
 		usuarioAlterar.getVendedor().getPessoa().getEndereco().setUf(jtfCadUf.getText());
 		usuarioAlterar.getVendedor().getPessoa().getEndereco().setCep(jtfCadCep.getText());
-		
 		usuarioAlterar.getVendedor().getPessoa().setRg(jtfCadRg.getText());
 		usuarioAlterar.getVendedor().getPessoa().setCpf(jtfCadCpf.getText());
-		
 		usuarioAlterar.getVendedor().setSalario(Double.valueOf(jtfCadVendSalario.getText()));
 		usuarioAlterar.getVendedor().setComissao(Double.valueOf(jtfCadVendComissao.getText()));
 		usuarioAlterar.setLogin(jtfCadVendUsuario.getText());
@@ -446,7 +436,6 @@ public class TelaAlterarPessoa extends JInternalFrame implements ActionListener,
 		jcbCadEstadoCivil.setSelectedIndex(0);
 	}
 	
-
 	@Override
 	public void keyPressed(KeyEvent e) {
 		

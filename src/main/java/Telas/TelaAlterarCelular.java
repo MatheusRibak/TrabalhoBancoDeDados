@@ -28,7 +28,6 @@ import Componentes.CriaField;
 import Componentes.CriaLabel;
 import Componentes.CriaPanel;
 import Componentes.FieldEmUpper;
-import DAO.GenericDAO;
 import Model.Celular;
 
 @Getter @Setter
@@ -62,7 +61,6 @@ public class TelaAlterarCelular extends JInternalFrame implements ActionListener
 		setLayout(null);
 
 		jlbTituloFrame = cl.criarTitulo(titulo, jlbTituloFrame, tela);
-		
 		criarCamposCadastrado();
 		
 		jlbOpcOpcoes = cl.criarParaPanelCenter("Opções", 360, 5, 80, 24, jlbOpcOpcoes, tela);
@@ -358,5 +356,4 @@ public class TelaAlterarCelular extends JInternalFrame implements ActionListener
 	public static void main(String[] args) {
 		new TelaAlterarCelular();
 	}
-
 }

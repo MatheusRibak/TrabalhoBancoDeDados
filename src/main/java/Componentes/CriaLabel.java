@@ -9,7 +9,8 @@ import javax.swing.SwingConstants;
 
 public class CriaLabel {
 	
-	public JLabel criarLabel(String texto, Integer col, Integer lin, Integer lar, Integer alt, JLabel label, Container container) {
+	public JLabel criarLabel(String texto, Integer col, Integer lin, Integer lar, 
+			Integer alt, JLabel label, Container container) {
 		label = new JLabel(texto);
 		label.setBounds(col, lin, lar, alt);
 		label.setVisible(true);
@@ -17,7 +18,8 @@ public class CriaLabel {
 		return label;
 	}
 	
-	public JLabel criarLabelParaPanel(String texto, Integer col, Integer lin, Integer lar, Integer alt, JLabel label, Container container) {
+	public JLabel criarLabelParaPanel(String texto, Integer col, Integer lin, Integer lar,
+			Integer alt, JLabel label, Container container) {
 		label = new JLabel(texto.toUpperCase(), SwingConstants.RIGHT);
 		label.setFont(new Font("ARIAL", Font.PLAIN, 14));
 		label.setForeground(Color.BLACK);
@@ -27,7 +29,8 @@ public class CriaLabel {
 		return label;
 	}
 	
-	public JLabel criarParaPanelCenter(String texto, Integer col, Integer lin, Integer lar, Integer alt, JLabel label, Container container) {
+	public JLabel criarParaPanelCenter(String texto, Integer col, Integer lin, Integer lar, 
+			Integer alt, JLabel label, Container container) {
 		label = new JLabel(texto.toUpperCase(), SwingConstants.CENTER);
 		label.setFont(new Font("ARIAL", Font.PLAIN, 14));
 		label.setForeground(Color.BLACK);
@@ -37,7 +40,8 @@ public class CriaLabel {
 		return label;
 	}
 	
-	public JLabel criarParaPanelLogin(String texto, Integer col, Integer lin, Integer lar, Integer alt, JLabel label, Container container) {
+	public JLabel criarParaPanelLogin(String texto, Integer col, Integer lin, Integer lar,
+			Integer alt, JLabel label, Container container) {
 		label = new JLabel(texto.toUpperCase(), SwingConstants.CENTER);
 		label.setFont(new Font("ARIAL", Font.PLAIN, 14));
 		label.setForeground(Color.BLACK);
@@ -62,6 +66,5 @@ public class CriaLabel {
 		label.setVisible(true);
 		container.add(label);
 		return label;
-	}
-	
+	}	
 }

@@ -40,7 +40,6 @@ public class TelaSelecionarVendedor extends JInternalFrame implements ActionList
 	private CriaPanel cp = new CriaPanel();
 	private CriaField cf = new CriaField();
 	private CriaButton cb = new CriaButton();
-	private CriaTabela ct = new CriaTabela();
 	private FieldEmUpper fu = new FieldEmUpper();
 	private CriaRadioButton crb = new CriaRadioButton();
 	private JTextField jtfProNome, jtfProRG, jtfProTelefone;
@@ -79,12 +78,10 @@ public class TelaSelecionarVendedor extends JInternalFrame implements ActionList
 	private void criarOpcoesResultado() {
 		jlbOpcOpcoes = cl.criarParaPanelCenter("Opções", 360, 5, 80, 24, jlbOpcOpcoes, tela);
 		jbtSelecionar = cb.criarBotao("Selecionar", 300, 33, 200, 24, jbtSelecionar, tela, this);
-		//jbtExcluir = cb.criarBotao("Excluir", 400, 33, 100, 24, jbtExcluir, tela, this);
 		
 		jpnOpcoes = cp.criarPanelSemTitulo(0, 470, 800, 90, jpnOpcoes, true, tela);
 		jpnOpcoes.add(jlbOpcOpcoes);
-		jpnOpcoes.add(jbtSelecionar);
-		//jpnOpcoes.add(jbtExcluir);	
+		jpnOpcoes.add(jbtSelecionar);	
 	}
 
 	private void criarTabela() {
@@ -158,7 +155,6 @@ public class TelaSelecionarVendedor extends JInternalFrame implements ActionList
 				fu.transformar(jtfProNome);
 			}
 		}
-		
 	}
 
 	@Override
@@ -192,5 +188,4 @@ public class TelaSelecionarVendedor extends JInternalFrame implements ActionList
 	public static void main(String[] args) {
 		new TelaSelecionarVendedor();
 	}
-
 }
