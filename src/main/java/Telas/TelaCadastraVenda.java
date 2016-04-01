@@ -26,6 +26,7 @@ import Componentes.CriaLabel;
 import Componentes.CriaPanel;
 import Model.Celular;
 import Model.Cliente;
+import Model.Usuario;
 import Model.Vendedor;
 
 @Getter @Setter
@@ -51,7 +52,7 @@ public class TelaCadastraVenda extends JInternalFrame implements ActionListener,
 	private JLabel jlbOpcOpcoes;
 	private Celular celularCadastrar;
 	private Cliente clienteCadastrar;
-	private Vendedor vendedorCadastrar;
+	private Usuario vendedorCadastrar;
 	
 	public TelaCadastraVenda() {
 		tela = getContentPane();
@@ -213,10 +214,31 @@ public class TelaCadastraVenda extends JInternalFrame implements ActionListener,
 	public void popularCelular(Celular celular){
 		celularCadastrar = celular;
 		celularCadastrar.set_id(celular.get_id());
+		jtfCadCelular.setText(celular.getIMEI());
 		jtfCelImei.setText(celular.getIMEI());
 		jtfCelModelo.setText(celular.getModelo());
 		jtfCelEmpresa.setText(celular.getEmpresa());
 		jtfCelValor.setText(celular.getValor().toString());
+	}
+	
+	public void popularCliente(Cliente cliente){
+		clienteCadastrar = cliente;
+		clienteCadastrar.set_id(cliente.get_id());
+		jtfCadCliente.setText(cliente.getPessoa().getNome());
+		jtfCliNome.setText(cliente.getPessoa().getNome());
+		jtfCliRg.setText(cliente.getPessoa().getRg());
+		jtfCliCpf.setText(cliente.getPessoa().getCpf());
+		jtfCliCidade.setText(cliente.getPessoa().getEndereco().getCidade());
+	}
+	
+	public void popularVendedor(Usuario vendedor){
+		vendedorCadastrar = vendedor;
+		vendedorCadastrar.set_id(vendedor.get_id());
+		jtfCadVendedor.setText(vendedor.getVendedor().getPessoa().getNome());
+		jtfUsuNome.setText(vendedor.getVendedor().getPessoa().getNome());
+		jtfUsuLogin.setText(vendedor.getLogin());
+		jtfUsuRg.setText(vendedor.getVendedor().getPessoa().getRg());
+		jtfUsuCpf.setText(vendedor.getVendedor().getPessoa().getCpf());
 	}
 	
 	@Override
@@ -238,6 +260,12 @@ public class TelaCadastraVenda extends JInternalFrame implements ActionListener,
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == jbtProCelular){
 			TelaInicial.getTlInicial().getTlSelecionarCelular().setVisible(true);
+		}
+		if(e.getSource() == jbtProCliente){
+			TelaInicial.getTlInicial().getTlSelecionarCliente().setVisible(true);
+		}
+		if(e.getSource() == jbtProVendedor){
+			TelaInicial.getTlInicial().getTlSelecionarVendedor().setVisible(true);
 		}
 	}
 	

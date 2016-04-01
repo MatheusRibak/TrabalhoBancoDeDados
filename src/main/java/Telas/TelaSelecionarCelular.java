@@ -46,7 +46,7 @@ public class TelaSelecionarCelular extends JInternalFrame implements KeyListener
 	
 	public TelaSelecionarCelular() {
 		tela = getContentPane();
-		setTitle("M&M Celulares - Vender celular - Selecionar");
+		setTitle("M&M Celulares - Venda - Selecionar");
 		setLayout(null);
 		
 		jlbTituloFrame = cl.criarTitulo(titulo, jlbTituloFrame, tela);
@@ -152,9 +152,6 @@ public class TelaSelecionarCelular extends JInternalFrame implements KeyListener
 			String id = String.valueOf(dtmCelulares.getValueAt(jtbCelulares.getSelectedRow(), 0));
 			ProcurarCelular pc = new ProcurarCelular();
 			Celular celular = pc.procurar(id);
-			//TelaInicial.getTlInicial().esconderTelas();
-			//TelaInicial.getTlInicial().getTlAlterarCelular().setVisible(true);
-			//TelaInicial.getTlInicial().getTlAlterarCelular().popularCampos(celular);
 			TelaInicial.getTlInicial().getTlCadastrarVenda().popularCelular(celular);
 			TelaInicial.getTlInicial().getTlSelecionarCelular().setVisible(false);
 		}

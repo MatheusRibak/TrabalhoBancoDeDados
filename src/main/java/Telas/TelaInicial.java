@@ -42,6 +42,8 @@ public class TelaInicial extends JFrame implements ActionListener{
 	private TelaProcurarVenda tlProcurarVenda = new TelaProcurarVenda();
 	private TelaCadastraVenda tlCadastrarVenda = new TelaCadastraVenda();
 	private TelaSelecionarCelular tlSelecionarCelular = new TelaSelecionarCelular();
+	private TelaSelecionarCliente tlSelecionarCliente = new TelaSelecionarCliente();
+	private TelaSelecionarVendedor tlSelecionarVendedor = new TelaSelecionarVendedor();
 	private ArrayList<JInternalFrame> listaInternalFrame = new ArrayList<>();
 	private GenericDAO dao;
 
@@ -67,6 +69,8 @@ public class TelaInicial extends JFrame implements ActionListener{
 		criarBarra();
 				
 		listaInternalFrame.add(tlSelecionarCelular);
+		listaInternalFrame.add(tlSelecionarVendedor);
+		listaInternalFrame.add(tlSelecionarCliente);
 		listaInternalFrame.add(tlCadastrarPessoa);
 		listaInternalFrame.add(tlProcurarPessoa);
 		listaInternalFrame.add(tlAlterarPessoa);
@@ -132,11 +136,11 @@ public class TelaInicial extends JFrame implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == jmiCadCelular){
 			esconderTelas();
-			tlCadastraCelular.setVisible(true);;
+			tlCadastraCelular.setVisible(true);
 		}
 		if(e.getSource() == jmiCadPessoa){
 			esconderTelas();
-			tlCadastrarPessoa.setVisible(true);;
+			tlCadastrarPessoa.setVisible(true);
 		}	
 		if(e.getSource() == jmiProPessoa){
 			esconderTelas();
