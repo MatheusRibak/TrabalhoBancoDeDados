@@ -1,10 +1,7 @@
 package metodos;
 
 import java.util.List;
-
 import javax.swing.table.DefaultTableModel;
-
-import utilitarios.EscolheMensagem;
 import Model.Venda;
 import Telas.TelaInicial;
 

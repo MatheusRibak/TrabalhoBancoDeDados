@@ -1,8 +1,6 @@
 package metodos;
 
 import java.util.ArrayList;
-
-import DAO.GenericDAO;
 import Model.Cliente;
 import Telas.TelaInicial;
 

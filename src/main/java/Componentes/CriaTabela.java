@@ -2,13 +2,11 @@ package Componentes;
 
 import java.awt.Container;
 import java.util.List;
-
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 
-import Telas.TelaProcuraPessoa;
 
 public class CriaTabela {
 

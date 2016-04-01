@@ -1,9 +1,7 @@
 package Componentes;
 
 import java.awt.Container;
-import java.awt.Font;
 import java.awt.event.KeyListener;
-import java.awt.event.MouseListener;
 import java.text.ParseException;
 
 import javax.swing.JFormattedTextField;
@@ -20,7 +18,6 @@ public class CriaField {
 		textField.addKeyListener(mouse);
 		tela.add(textField);
 		return textField;
-
 	}
 	
 	public JTextField criarPasswordField(Integer col, Integer lin, Integer lar, Integer alt, JTextField textField, Container tela) {
@@ -29,7 +26,6 @@ public class CriaField {
 		textField.setVisible(true);
 		tela.add(textField);
 		return textField;
-
 	}
 	
 	public JTextField criarMaskFieldDate(Integer col, Integer lin, Integer lar, Integer alt, JTextField textField, Container tela){

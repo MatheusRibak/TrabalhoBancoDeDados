@@ -1,8 +1,6 @@
 package metodos;
 
 import java.util.ArrayList;
-
-import Model.Cliente;
 import Model.Venda;
 import Telas.TelaInicial;
 

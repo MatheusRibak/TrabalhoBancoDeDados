@@ -6,11 +6,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.awt.event.MouseListener;
 import java.util.ArrayList;
-
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -19,18 +16,13 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
-
-import metodos.ListarCelular;
 import metodos.ListarVenda;
-import metodos.ProcurarCelular;
 import metodos.ProcurarVenda;
 import Componentes.CriaButton;
 import Componentes.CriaField;
 import Componentes.CriaLabel;
 import Componentes.CriaPanel;
-import Componentes.CriaTabela;
 import Componentes.FieldEmUpper;
-import Model.Celular;
 import Model.Venda;
 
 public class TelaProcurarVenda extends JInternalFrame implements ActionListener, KeyListener{

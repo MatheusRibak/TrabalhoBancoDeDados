@@ -7,10 +7,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
-
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -20,10 +18,7 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
-
-import metodos.ListarCliente;
 import metodos.ListarUsuario;
-import metodos.ProcurarCliente;
 import metodos.ProcurarUsuario;
 import Componentes.CriaButton;
 import Componentes.CriaField;
@@ -32,7 +27,6 @@ import Componentes.CriaPanel;
 import Componentes.CriaRadioButton;
 import Componentes.CriaTabela;
 import Componentes.FieldEmUpper;
-import Model.Cliente;
 import Model.Usuario;
 
 public class TelaSelecionarVendedor extends JInternalFrame implements ActionListener, KeyListener{

@@ -1,11 +1,8 @@
 package metodos;
 
 import java.util.ArrayList;
-
 import javax.swing.table.DefaultTableModel;
-
 import Model.Cliente;
-import Model.Usuario;
 import Telas.TelaInicial;
 
 public class ListarCliente {

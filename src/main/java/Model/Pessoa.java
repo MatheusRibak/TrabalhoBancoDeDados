@@ -1,10 +1,6 @@
 package Model;
 
 import java.util.Date;
-
-import org.bson.types.ObjectId;
-import org.jongo.marshall.jackson.oid.MongoObjectId;
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
